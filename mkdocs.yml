@@ -1,0 +1,8 @@
+site_name: Documentação Squad2
+
+nav:
+  - Início: "index.md"
+  - Integrantes: "integrantes.md"
+
+theme:
+  name: material
