@@ -4,6 +4,10 @@
 - [📝 Descrição do Projeto](#-descrição-do-projeto)
 - [✅ Funcionalidades](#-funcionalidades)
 - [📱 Tecnologias](#-tecnologias)
+- [🧑‍🏭 Executando a aplicação](#-executando-a-aplicação)
+    - [📋 Pré-requisitos](#-pré-requisitos)
+    - [💻 Ambiente](#-ambiente)
+- [📚 Documentação](#-documentação)
 - [👥 Colaboradores](#-colaboradores)
 
 
@@ -22,6 +26,26 @@ Este projeto realiza o mapeamento de obras e serviços, proporcionando uma visã
 -
 -
 -
+
+## 🧑‍🏭 Executando a aplicação
+
+Clone o repositório do projeto usando o seguinte comando:
+
+```bash
+git clone https://github.com/unb-mds/2024-2-Squad02.git
+```
+
+### 📋 Pré-requisitos
+
+Para rodar o projeto, você precisa das seguintes ferramentas:
+
+-
+
+## 💻 Ambiente
+
+## 📚 Documentação
+
+Acesse a documentação completa do projeto [aqui](https://google.com).
 
 ## 👥 Colaboradores
 
