@@ -2,7 +2,7 @@
 
 ## Sumário
 - [📝 Descrição do Projeto](#-descrição-do-projeto)
-- [✅ Objetivos](#-objetivos)
+- [✅ Funcionalidades](#-funcionalidades)
 - [📱 Tecnologias](#-tecnologias)
 - [👥 Colaboradores](#-colaboradores)
 
@@ -13,9 +13,15 @@ Este projeto realiza o mapeamento de obras e serviços, proporcionando uma visã
 
 > Este projeto faz parte da disciplina de Métodos de Desenvolvimento de Software da Universidade de Brasília de 2024.
 
-## ✅ Objetivos 
+## ✅ Funcionalidades 
+-
+-
+-
 
 ## 📱 Tecnologias 
+-
+-
+-
 
 ## 👥 Colaboradores
 
