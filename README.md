@@ -67,7 +67,7 @@ Acesse a documentação completa do projeto [aqui](https://unb-mds.github.io/202
         <td align="center">
             <a href="https://github.com/Bessazs">
                 <img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/118318004?v=4" width="150px;"/>
-                <h5 class="text-center">Vitor Pereira</h5>
+                <h5 class="text-center">Vitor Bessa</h5>
             </a>
         </td>
         </td>
