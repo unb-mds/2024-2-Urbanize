@@ -9,14 +9,20 @@ assignees: ''
 
 ## Título da tarefa
 
-**Descrição**
-Descreva a tarefa de forma clara e concisa.
-
-**Escopo**
-Descreva o escopo da tarefa. Essa tarefa está relacionada a um código ou a um requisito?
-
-**Tópicos para conclusão da tarefa:**
-
-- [ ] Tópico 1
-- [ ] Tópico 2
-- [ ] ...
+>## Título da tarefa
+>
+>#Descrição
+>Descreva a tarefa de forma clara e concisa.
+>
+>#Escopo
+>Descreva o escopo da tarefa. Essa tarefa está relacionada a um código ou a um requisito?
+>
+>#Tópicos para conclusão da tarefa:
+>
+>* [ ] Tópico 1
+>* [ ] Tópico 2
+>* [ ] ...
+>
+>#Critérios de aceitação
+>
+>*[ ] Resultado esperado da issue 
