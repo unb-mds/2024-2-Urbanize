@@ -1,9 +1,9 @@
-# InfObras: Mapeamento de obras e serviços
+# Urbanize: Mapeamento de obras e serviços
 
-Bem-vindo à Wiki do infObras
+Bem-vindo à Wiki do Urbanize
 ## Sobre o Projeto
 
-Escrever Objetivo do Projeto
+Urbanize é uma plataforma intuitiva e moderna para o mapeamento e acompanhamento de obras públicas, permitindo que cidadãos, gestores e equipes técnicas visualizem, monitorem e planejem o desenvolvimento urbano em tempo real 
 
 ## Benefícios e Recursos
 

@@ -1,8 +1,9 @@
-site_name: Documentação Squad2
+site_name: Documentação Urbanize
 
 nav:
   - Início: "index.md"
+  - Sobre: ""
   - Integrantes: "integrantes.md"
-
+  - Documentação: "" 
 theme:
   name: material
