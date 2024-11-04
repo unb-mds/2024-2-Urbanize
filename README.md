@@ -32,7 +32,7 @@ Este projeto realiza o mapeamento de obras e serviços, proporcionando uma visã
 Clone o repositório do projeto usando o seguinte comando:
 
 ```bash
-git clone https://github.com/unb-mds/2024-2-Squad02.git
+git clone https://github.com/unb-mds/2024-2-Urbanize.git
 ```
 
 ### 📋 Pré-requisitos
