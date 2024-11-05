@@ -45,7 +45,7 @@ Para rodar o projeto, você precisa das seguintes ferramentas:
 
 ## 📚 Documentação
 
-Acesse a documentação completa do projeto [aqui](https://unb-mds.github.io/2024-2-Squad02/).
+Acesse a documentação completa do projeto [aqui](https://unb-mds.github.io/2024-2-Urbanize/).
 
 ## 👥 Colaboradores
 
