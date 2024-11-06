@@ -5,13 +5,7 @@ nav:
   - Sprints:
     - Sprint 0: sprints/sprint-0.md
   - Projeto:
-    - Personas: project/personas.md
-    - Story Map: project/storymap.md
-    - Requisitos: project/requirements.md
-    - EAP: project/eap.md
-    - API: project/servicos.md
-    - Arquitetura e Tecnologias: project/arquitetura.md
-    - Protótipo: project/prototipo.md
+    - Arquitetura e Tecnologias: projects/arquitetura.md
   - Sobre: about.md
 
 theme:
