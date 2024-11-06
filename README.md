@@ -18,14 +18,14 @@ Este projeto realiza o mapeamento de obras e serviços, proporcionando uma visã
 > Este projeto faz parte da disciplina de Métodos de Desenvolvimento de Software da Universidade de Brasília de 2024.
 
 ## ✅ Funcionalidades 
--
--
--
+- Mapa interativo com obras públicas
+- Pesquisa e filtragem (Pelo órgão solicitante) de obras que aparecem no mapa
+- Visualização de dados e informações sobre as obras
 
 ## 📱 Tecnologias 
--
--
--
+- NodeJs
+- Docker
+- Python
 
 ## 🧑‍🏭 Executando a aplicação
 
