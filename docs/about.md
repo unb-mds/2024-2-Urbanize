@@ -1,57 +1,21 @@
-# 🏗️ Urbanize
+# Sobre 
 
-## Sumário
-- [🏗️ Urbanize](#️-urbanize)
-  - [Sumário](#sumário)
-  - [📝 Descrição do Projeto](#-descrição-do-projeto)
-  - [✅ Funcionalidades](#-funcionalidades)
-  - [📱 Tecnologias](#-tecnologias)
-  - [🧑‍🏭 Executando a aplicação](#-executando-a-aplicação)
-    - [📋 Pré-requisitos](#-pré-requisitos)
-  - [💻 Ambiente](#-ambiente)
-  - [📚 Documentação](#-documentação)
-  - [👥 Colaboradores](#-colaboradores)
+## Sobre os integrantes
+
+**Gabriel:** estudante back-end e front-end.
+
+**Leo Lima:** estudante e entusiasta de tecnologias front-end.
+
+**Vitor Bessa:** estudante de Engenharia de Software e apaixonado por programação.
+
+**Mateus Bastos:** estudante e entusiasta de Engenharia de Software.
+
+**Fernanda Vaz:** estudante e entusiasta de Engenharia de Software.
+
+**Angelica Campos:** estudante e desenvolvedora entusiasta do universo JavaScript.
 
 
-## 📝 Descrição do Projeto
-
-Este projeto realiza o mapeamento de obras e serviços, proporcionando uma visão detalhada das atividades de infraestrutura em uma determinada área. Ele permite rastrear, organizar e visualizar informações relevantes sobre o andamento de obras e a disponibilidade de serviços, facilitando a tomada de decisão e o gerenciamento de projetos. A aplicação foi projetada para ser uma ferramenta prática e intuitiva para usuários que necessitam acompanhar o progresso e planejar intervenções de forma eficaz.
-
-> Este projeto faz parte da disciplina de Métodos de Desenvolvimento de Software da Universidade de Brasília de 2024.
-
-## ✅ Funcionalidades 
-- Mapa interativo com obras públicas
-- Pesquisa e filtragem (Pelo órgão solicitante) de obras que aparecem no mapa
-- Visualização de dados e informações sobre as obras
-
-## 📱 Tecnologias 
-- Express.js
-- Docker
-- Python
-- TypeScript
-- Tailwind
-
-## 🧑‍🏭 Executando a aplicação
-
-Clone o repositório do projeto usando o seguinte comando:
-
-```bash
-git clone https://github.com/unb-mds/2024-2-Urbanize.git
-```
-
-### 📋 Pré-requisitos
-
-Para rodar o projeto, você precisa das seguintes ferramentas:
-
--
-
-## 💻 Ambiente
-
-## 📚 Documentação
-
-Acesse a documentação completa do projeto [aqui](https://unb-mds.github.io/2024-2-Urbanize/).
-
-## 👥 Colaboradores
+---
 
 <center>
 <table style="margin-left: auto; margin-right: auto;">
