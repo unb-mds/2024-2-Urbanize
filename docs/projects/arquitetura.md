@@ -15,7 +15,7 @@ O **Urbanize** é constituído de cinco componentes principais:
 **Arquitetura do Urbanize**
 
 
-Para fornecer uma visão clara de como esses componentes interagem e se integram no sistema, o diagrama abaixo ilustra a arquitetura geral do Urbanize. Nele, é possível visualizar o fluxo de dados e a relação entre cada um dos componentes descritos acima, desde a coleta de dados no INEP até a apresentação dos resultados para o usuário final.
+Para fornecer uma visão clara de como esses componentes interagem e se integram no sistema, o diagrama abaixo ilustra a arquitetura geral do Urbanize. Nele, é possível visualizar o fluxo de dados e a relação entre cada um dos componentes descritos acima, desde a coleta de dados no SODF até a apresentação dos resultados para o usuário final.
 
 <iframe width="768" height="432" src="https://miro.com/app/live-embed/uXjVLI0DWAY=/?moveToViewport=-69,-202,1222,563&embedId=271195419009" frameborder="0" scrolling="no" allow="fullscreen; clipboard-read; clipboard-write" allowfullscreen></iframe>
 
@@ -71,20 +71,20 @@ O **backend/API** é responsável pela busca, regras de negócio e tratamento do
 
 ## Scraper
 
-O **scraper** é responsável por extrair dados diretamente das plataformas do INEP, realizando a raspagem de informações relevantes. Esses dados brutos, coletados de forma automatizada, servem como base para as análises e visualizações do sistema. O scraper navega pelos sites, interage com os elementos das páginas e extrai os dados necessários para o EducaMinas.
+O **scraper** é responsável por extrair dados diretamente da plataforma do SODF, realizando a raspagem de informações relevantes. Esses dados brutos, coletados de forma automatizada, servem como base para as análises e visualizações do sistema. O scraper navega pelos sites, interage com os elementos das páginas e extrai os dados necessários para o Urbanize.
 
 **Tecnologias Utilizadas:**
 
 - **Selenium:** Biblioteca para automação de navegadores web, permitindo que o scraper interaja com páginas da web de forma programática, clicando em botões, preenchendo formulários, e navegando entre páginas.
 - **re (Regex):** Módulo de expressões regulares em Python, usado para encontrar e manipular padrões específicos de texto dentro dos dados raspados.
 
-A fonte dos dados extraídos pelo scraper: [data](#)
+A fonte dos dados extraídos pelo scraper: [SODF_data](http://dados.df.gov.br/pt_BR/organization/sinesp-secretaria-de-estado-de-infraestrutura-e-servicos-publicos-do-distrito-federal)
 
 ---
 
 ## ETL
 
-O **ETL** (Extract, Transform, Load) é o processo responsável por transformar os dados brutos coletados pelo scraper em um formato estruturado e organizado para armazenamento no banco de dados. Este processo garante que os dados estejam limpos, consistentes e prontos para serem usados nas análises do EducaMinas.
+O **ETL** (Extract, Transform, Load) é o processo responsável por transformar os dados brutos coletados pelo scraper em um formato estruturado e organizado para armazenamento no banco de dados. Este processo garante que os dados estejam limpos, consistentes e prontos para serem usados nas análises do Urbanize.
 
 **Tecnologias Utilizadas:**
 
@@ -105,7 +105,7 @@ A fazer!!
 
 **Tecnologias Utilizadas:**
 
-- **PostgreSQL:** Sistema de gerenciamento de banco de dados relacional de código aberto, usado para armazenar e gerenciar os dados de forma eficiente e segura. Ele oferece suporte a operações complexas e é altamente escalável, adequado para o volume e a complexidade dos dados no EducaMinas.
+- **PostgreSQL:** Sistema de gerenciamento de banco de dados relacional de código aberto, usado para armazenar e gerenciar os dados de forma eficiente e segura. Ele oferece suporte a operações complexas e é altamente escalável, adequado para o volume e a complexidade dos dados no Urbanize.
 - **Supabase:** Plataforma de backend como serviço, que fornece uma interface simplificada para o PostgreSQL, facilitando o acesso, gerenciamento e integração com o banco de dados através de APIs e outras ferramentas de desenvolvimento.
 
 

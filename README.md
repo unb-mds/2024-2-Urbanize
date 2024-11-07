@@ -15,7 +15,7 @@
 
 ## 📝 Descrição do Projeto
 
-Este projeto realiza o mapeamento de obras e serviços, proporcionando uma visão detalhada das atividades de infraestrutura em uma determinada área. Ele permite rastrear, organizar e visualizar informações relevantes sobre o andamento de obras e a disponibilidade de serviços, facilitando a tomada de decisão e o gerenciamento de projetos. A aplicação foi projetada para ser uma ferramenta prática e intuitiva para usuários que necessitam acompanhar o progresso e planejar intervenções de forma eficaz.
+Este projeto realiza o mapeamento de obras e serviços, proporcionando uma visão detalhada das atividades de infraestrutura em uma determinada área do DF. Ele permite rastrear, organizar e visualizar informações relevantes sobre o andamento de obras e a disponibilidade de serviços, facilitando a tomada de decisão e o gerenciamento de projetos. A aplicação foi projetada para ser uma ferramenta prática e intuitiva para usuários que necessitam acompanhar o progresso e planejar intervenções de forma eficaz.
 
 > Este projeto faz parte da disciplina de Métodos de Desenvolvimento de Software da Universidade de Brasília de 2024.
 
