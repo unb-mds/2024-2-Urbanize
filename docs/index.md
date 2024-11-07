@@ -1,6 +1,6 @@
 # Urbanize
 
-Bem-vindo ao **Urbanize**, um projeto desenvolvido na disciplina de Métodos de Desenvolvimento de Software (MDS) do curso de Engenharia de Software da Universidade de Brasília (UnB). Este projeto visa em fazer o mapeamento e consolidação de dados sobre obras e serviços públicos do DF, utilizando informações extraídas do (Secretaria de Estado de Obras e Infraestrutura do Distrito Federal - SODF)[http://dados.df.gov.br/pt_BR/organization/sinesp-secretaria-de-estado-de-infraestrutura-e-servicos-publicos-do-distrito-federal].
+Bem-vindo ao **Urbanize**, um projeto desenvolvido na disciplina de Métodos de Desenvolvimento de Software (MDS) do curso de Engenharia de Software da Universidade de Brasília (UnB). Este projeto visa em fazer o mapeamento e consolidação de dados sobre obras e serviços públicos do DF, utilizando informações extraídas do [Secretaria de Estado de Obras e Infraestrutura do Distrito Federal - SODF](http://dados.df.gov.br/pt_BR/organization/sinesp-secretaria-de-estado-de-infraestrutura-e-servicos-publicos-do-distrito-federal)
 
 ---
 
