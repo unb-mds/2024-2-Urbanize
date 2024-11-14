@@ -20,7 +20,7 @@ model Projeto {
   dataInicialEfetiva   DateTime?
   dataFinalEfetiva     DateTime?
   dataCadastro         DateTime
-  especie              String
+  especie              String?
   natureza             String
   situacao             String
   uf                   String

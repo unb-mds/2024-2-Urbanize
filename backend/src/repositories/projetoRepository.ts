@@ -1,17 +1,21 @@
 import { Projeto } from "@prisma/client";
 
 export interface ProjetoWhereParams {
-  nome?: {
+  situacao?: {
     like: string;
     equals?: string;
     mode?: "default" | "insensitive"
   }
-  situacao?: string;
+  uf?: {
+    like: string;
+    equals?: string;
+    mode?: "default" | "insensitive"
+  }
 }
 
 export interface FindProjetosParams {
   where?: ProjetoWhereParams
-  sortBy?: "nome" | "situacao" | "createdAt"
+  sortBy?: "situacao" | "uf" | "createdAt" 
   order?: "asc" | "desc"
   limit?: number
   offset?: number
