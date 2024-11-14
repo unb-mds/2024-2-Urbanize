@@ -4,20 +4,49 @@ import { PrismaClient } from '@prisma/client';
 export const prisma = new PrismaClient();
 
 async function fetchAndSaveProjects() {
+  let pagina = 0;
+  const tamanhoDaPagina = 100; // Ajuste este valor conforme a capacidade da API
+  let hasMoreData = true;
+  let uf = "DF";
+
   try {
-    const response = await axios.get('https://api.obrasgov.gestao.gov.br/obrasgov/api/projeto-investimento?pagina=0&tamanhoDaPagina=10');
-    if (response.status !== 200) {
-      throw new Error(`Erro ao buscar dados: ${response.statusText}`);
-    }
+    while (hasMoreData) {
+      console.log(`Buscando página ${pagina}...`);
 
-    const { content: projetos } = response.data;
-
-    for (const projeto of projetos) {
-      const existingProject = await prisma.projeto.findUnique({
-        where: { id: projeto.idUnico }
+      // Faz a requisição para a API externa
+      const response = await axios.get('https://api.obrasgov.gestao.gov.br/obrasgov/api/projeto-investimento', {
+        params: {
+          pagina,
+          tamanhoDaPagina,
+          uf,
+        }
       });
 
-      if (!existingProject) {
+      if (response.status !== 200) {
+        throw new Error(`Erro ao buscar dados: ${response.statusText}`);
+      }
+
+      const { content: projetos } = response.data;
+
+      // Se não há mais projetos, encerre o loop
+      if (projetos.length === 0) {
+        hasMoreData = false;
+        break;
+      }
+
+      // Salvar ou atualizar cada projeto no banco de dados
+      for (const projeto of projetos) {
+        // Verifica se o projeto já existe no banco de dados
+        const existingProject = await prisma.projeto.findUnique({
+          where: { id: projeto.idUnico }
+        });
+
+        // Se o projeto já existe, pule para o próximo
+        if (existingProject) {
+          console.log(`Projeto ${projeto.nome} já existe, ignorando.`);
+          continue;
+        }
+
         await prisma.projeto.create({
           data: {
             id: projeto.idUnico,
@@ -32,7 +61,7 @@ async function fetchAndSaveProjects() {
             dataInicialEfetiva: projeto.dataInicialEfetiva ? new Date(projeto.dataInicialEfetiva) : null,
             dataFinalEfetiva: projeto.dataFinalEfetiva ? new Date(projeto.dataFinalEfetiva) : null,
             dataCadastro: new Date(projeto.dataCadastro),
-            especie: projeto.especie,
+            especie: projeto.especie ?? null,
             natureza: projeto.natureza,
             situacao: projeto.situacao,
             uf: projeto.uf,
@@ -82,9 +111,10 @@ async function fetchAndSaveProjects() {
           }
         });
         console.log(`Projeto ${projeto.nome} salvo com sucesso!`);
-      } else {
-        console.log(`Projeto ${projeto.nome} já existe, ignorando.`);
       }
+
+      // Incrementa para a próxima página
+      pagina++;
     }
   } catch (error) {
     console.error('Erro ao buscar e salvar projetos:', error);
@@ -93,4 +123,5 @@ async function fetchAndSaveProjects() {
   }
 }
 
-fetchAndSaveProjects()
+// Sincroniza os dados a cada hora
+fetchAndSaveProjects();
