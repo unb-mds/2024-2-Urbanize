@@ -1,5 +1,5 @@
 import { Projeto, Prisma } from "@prisma/client";
-import { FindProjetosParams, ProjetosRepository } from "../projetoRepository";
+import { FindProjetosParams, ProjetosRepository, ProjetoWhereParams } from "../projetoRepository";
 import { prisma } from "@/database";
 
 export class PrismaProjetosRepository implements ProjetosRepository {
@@ -31,5 +31,17 @@ export class PrismaProjetosRepository implements ProjetosRepository {
     })
 
     return projetos || []
+  }
+
+  async findById (id: string): Promise<Projeto | null> {
+    return prisma.projeto.findUnique({
+      where: { id },
+      include: {
+        eixos: true,
+        tipos: true,
+        geometrias: true,
+        fontesDeRecurso: true
+      }
+    })
   }
 }

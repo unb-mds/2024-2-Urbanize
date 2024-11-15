@@ -21,4 +21,14 @@ export class ProjetosController {
       next(error)
     }
   }
+
+  show: Handler = async (req, res, next) => {
+    try {
+      const projeto = await this.projetosService.getProjetoById(req.params.id)
+
+      res.json(projeto)
+    } catch (error) {
+      next(error)
+    }
+  }
 }

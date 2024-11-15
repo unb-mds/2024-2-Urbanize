@@ -32,4 +32,5 @@ export interface FindProjetosParams {
 
 export interface ProjetosRepository {
   find: (params: FindProjetosParams) => Promise<Projeto[]>
+  findById: (id: string) => Promise<Projeto | null> 
 }

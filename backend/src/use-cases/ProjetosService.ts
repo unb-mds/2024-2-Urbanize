@@ -1,3 +1,4 @@
+import { HttpError } from "@/error/HttpError";
 import { ProjetosRepository, ProjetoWhereParams } from "@/repositories/projetoRepository";
 
 interface GetProjetosWithPaginationParams {
@@ -38,5 +39,15 @@ export class ProjetosService {
         pageSize: limit,
       }
     }
+  }
+
+  async getProjetoById(id: string) {
+    const projeto = await this.projetosRepository.findById(id)
+
+    if (!projeto) {
+      throw new HttpError(404, 'Projeto não encontrado!')
+    }
+
+    return projeto
   }
 }
