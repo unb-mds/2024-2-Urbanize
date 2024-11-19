@@ -2,8 +2,8 @@ import axios from "axios";
 import { prisma } from "@/database";
 
 async function fetchAndSaveProjects() {
-  let pagina = 0;
-  const tamanhoDaPagina = 100; // Ajuste este valor conforme a capacidade da API
+  let pagina = 56;
+  const tamanhoDaPagina = 10; // Ajuste este valor conforme a capacidade da API
   let hasMoreData = true;
   let uf = "DF";
 

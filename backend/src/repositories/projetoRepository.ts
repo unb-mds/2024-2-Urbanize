@@ -11,11 +11,16 @@ export interface ProjetoWhereParams {
     equals?: string;
     mode?: "default" | "insensitive"
   }
+  natureza?: {
+    like: string;
+    equals?: string;
+    mode?: "default" | "insensitive"
+  }
 }
 
 export interface FindProjetosParams {
   where?: ProjetoWhereParams
-  sortBy?: "situacao" | "uf" | "createdAt" 
+  sortBy?: "natureza"| "situacao" | "uf" | "createdAt" 
   order?: "asc" | "desc"
   limit?: number
   offset?: number

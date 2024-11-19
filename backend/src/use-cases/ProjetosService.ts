@@ -4,9 +4,10 @@ import { ProjetosRepository, ProjetoWhereParams } from "@/repositories/projetoRe
 interface GetProjetosWithPaginationParams {
 	page?: number
 	pageSize?: number
+  natureza?: string
 	situacao?: string
   uf?: string
-	sortBy?: "situacao" | "uf" | "createdAt"
+	sortBy?: "natureza" | "situacao" | "uf" | "createdAt"
 	order?: "asc" | "desc"
 }
 
@@ -14,7 +15,7 @@ export class ProjetosService {
   constructor(private readonly projetosRepository: ProjetosRepository) {}
 
   async getAllProjetosPaginated(params: GetProjetosWithPaginationParams) {
-    const { situacao, uf, page = 1, pageSize = 10, sortBy, order } = params
+    const { natureza, situacao, uf, page = 1, pageSize = 10, sortBy, order } = params
 
     const limit = pageSize
     const offset = (page - 1) * limit
@@ -22,6 +23,7 @@ export class ProjetosService {
     const where: ProjetoWhereParams = {}
 
     if (situacao) where.situacao = { like: situacao, mode: 'insensitive' }
+    if (natureza) where.natureza = { like: natureza, mode: 'insensitive' }
     if (uf) where.uf = { like: uf, mode: 'insensitive' }
   
     const projetos = await this.projetosRepository.find({

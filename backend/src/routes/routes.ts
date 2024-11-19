@@ -3,7 +3,7 @@ import { Router } from "express";
 
 const router = Router()
 
-router.get('/projects', projetosController.index)
-router.get('/projects/:id', projetosController.show)
+router.get('/projeto-investimento', projetosController.index)
+router.get('/projeto-investimento/:id', projetosController.show)
 
 export { router }

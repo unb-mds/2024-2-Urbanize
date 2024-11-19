@@ -15,6 +15,12 @@ export class PrismaProjetosRepository implements ProjetosRepository {
         equals: params.where?.uf?.equals,
         mode: params.where?.uf?.mode
       },
+      natureza: {
+        contains: params.where?.natureza?.like,
+        equals: params.where?.natureza?.equals,
+        mode: params.where?.natureza?.mode
+      }
+      
     }
 
     const projetos = await prisma.projeto.findMany({
