@@ -6,10 +6,6 @@ O **Urbanize** é constituído de cinco componentes principais:
 
 - **Backend/API:** Gerencia a lógica de negócios e atua como intermediário entre o frontend e o banco de dados. Ele processa as solicitações dos usuários, executa as regras de negócio e retorna os dados apropriados para o frontend.
 
-- **Scraper:** Responsável por coletar dados diretamente, raspando as informações relevantes de suas plataformas. Esses dados brutos são a base para as análises e visualizações realizadas pelo sistema.
-
-- **ETL (Extract, Transform, Load):** Depois que os dados são raspados pelo Scraper, o processo de ETL entra em ação. Ele organiza, transforma e carrega os dados nas tabelas do banco de dados, garantindo que eles estejam estruturados de forma eficiente e prontos para serem utilizados pelo backend e visualizados no frontend.
-
 - **Banco de Dados:** Armazena e organiza os dados necessários para o funcionamento do Urbanize. É o repositório central onde todos os dados coletados, processados e organizados são mantidos para acesso e consulta.
 
 **Arquitetura do Urbanize**
@@ -65,32 +61,18 @@ O **backend/API** é responsável pela busca, regras de negócio e tratamento do
 - **Nodemon:** Ferramenta que reinicia automaticamente o servidor Node.js quando mudanças são detectadas, agilizando o desenvolvimento.
 - **ESLint:** Ferramenta de linting que identifica e corrige problemas de estilo e padrões no código, garantindo a qualidade e consistência.
 - **Swagger:** Ferramenta para documentação interativa de APIs, permitindo a exploração e testes das rotas da API.
-- **Supabase:** Plataforma de backend como serviço usada para conectar ao banco de dados PostgreSQL.
 
 ---
 
-## Scraper
+## API
 
-O **scraper** é responsável por extrair dados diretamente da plataforma do SODF, realizando a raspagem de informações relevantes. Esses dados brutos, coletados de forma automatizada, servem como base para as análises e visualizações do sistema. O scraper navega pelos sites, interage com os elementos das páginas e extrai os dados necessários para o Urbanize.
-
-**Tecnologias Utilizadas:**
-
-- **Selenium:** Biblioteca para automação de navegadores web, permitindo que o scraper interaja com páginas da web de forma programática, clicando em botões, preenchendo formulários, e navegando entre páginas.
-- **re (Regex):** Módulo de expressões regulares em Python, usado para encontrar e manipular padrões específicos de texto dentro dos dados raspados.
-
-A fonte dos dados extraídos pelo scraper: [SODF_data](http://dados.df.gov.br/pt_BR/organization/sinesp-secretaria-de-estado-de-infraestrutura-e-servicos-publicos-do-distrito-federal)
-
----
-
-## ETL
-
-O **ETL** (Extract, Transform, Load) é o processo responsável por transformar os dados brutos coletados pelo scraper em um formato estruturado e organizado para armazenamento no banco de dados. Este processo garante que os dados estejam limpos, consistentes e prontos para serem usados nas análises do Urbanize.
+Uma **API** (Application Programming Interface, ou Interface de Programação de Aplicações) é um conjunto de definições e protocolos que permite que diferentes sistemas ou softwares se comuniquem entre si de maneira estruturada e padronizada..
 
 **Tecnologias Utilizadas:**
 
-- **Pandas:** Biblioteca Python para manipulação e análise de dados, utilizada no ETL para realizar a limpeza, transformação e organização dos dados extraídos, preparando-os para o carregamento no banco de dados.
-- **SQLAlchemy:** Biblioteca de mapeamento objeto-relacional (ORM) para Python, utilizada para interagir com o banco de dados durante a etapa de carregamento dos dados processados, facilitando as operações de inserção e atualização no banco.
+- **Axios:** é uma biblioteca JavaScript usada para fazer requisições HTTP de maneira simples e eficiente. Ela funciona tanto em navegadores quanto em ambientes Node.js, permitindo que você se conecte a APIs ou servidores, envie dados e receba respostas.
 
+A fonte dos dados extraídos pelo api: [Obrasgov](https://api.obrasgov.gestao.gov.br/obrasgov/api/swagger-ui/index.html#/Execu%C3%A7%C3%A3o%20F%C3%ADsica/buscarPorFiltro_1)
 
 ---
 
@@ -106,8 +88,6 @@ Veja sua modelagem:
 **Tecnologias Utilizadas:**
 
 - **PostgreSQL:** Sistema de gerenciamento de banco de dados relacional de código aberto, usado para armazenar e gerenciar os dados de forma eficiente e segura. Ele oferece suporte a operações complexas e é altamente escalável, adequado para o volume e a complexidade dos dados no Urbanize.
-- **Supabase:** Plataforma de backend como serviço, que fornece uma interface simplificada para o PostgreSQL, facilitando o acesso, gerenciamento e integração com o banco de dados através de APIs e outras ferramentas de desenvolvimento.
-
 
 ---
 
