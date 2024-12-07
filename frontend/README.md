@@ -11,7 +11,7 @@ Certifique-se de ter as seguintes ferramentas instaladas:
 
 ## Instalação
 
-Entre na pasta [brb](/frontend/brb/)
+Entre na pasta (ainda não definida)
 
 instale as depedências com:
 
