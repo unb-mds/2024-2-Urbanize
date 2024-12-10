@@ -8,9 +8,7 @@
   - [📱 Tecnologias](#-tecnologias)
   - [🧑‍🏭 Executando a aplicação](#-executando-a-aplicação)
     - [📋 Pré-requisitos](#-pré-requisitos)
-    - [Frontend](#-frontend)
-    - [Backend](#-Backend)
-  - [💻 Ambiente](#-ambiente)
+  - [💻 Back-End](#-back-end)
   - [📚 Documentação](#-documentação)
   - [👥 Colaboradores](#-colaboradores)
 
@@ -47,26 +45,9 @@ Para rodar o projeto, você precisa das seguintes ferramentas:
 - **Node.js** v20 ou superior
 - **Python** 3.12.3
 
-### Frontend
+## 💻 Back-End
 
-Clone o repositório
-
-```bash
-git clone https://github.com/unb-mds/LicitaBSB-24.1.git
-```
-
-Navegue até o diretório frontend e instale as dependências:
-```bash
-npm install
-```
-Para rodar o projeto, execute:
-```bash
-npm run build
-npm run dev
-```
-### Backend
-
-## 💻 Ambiente
+Acesse a completa do README.md [**Aqui**](#)
 
 ## 📚 Documentação
 
