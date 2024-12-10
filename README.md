@@ -8,6 +8,8 @@
   - [📱 Tecnologias](#-tecnologias)
   - [🧑‍🏭 Executando a aplicação](#-executando-a-aplicação)
     - [📋 Pré-requisitos](#-pré-requisitos)
+    - [Frontend](#-frontend)
+    - [Backend](#-Backend)
   - [💻 Ambiente](#-ambiente)
   - [📚 Documentação](#-documentação)
   - [👥 Colaboradores](#-colaboradores)
@@ -42,14 +44,35 @@ git clone https://github.com/unb-mds/2024-2-Urbanize.git
 ### 📋 Pré-requisitos
 
 Para rodar o projeto, você precisa das seguintes ferramentas:
+- **Node.js** v20 ou superior
+- **Python** 3.12.3
 
--
+### Frontend
+
+Clone o repositório
+
+```bash
+git clone https://github.com/unb-mds/LicitaBSB-24.1.git
+```
+
+Navegue até o diretório frontend e instale as dependências:
+```bash
+npm install
+```
+Para rodar o projeto, execute:
+```bash
+npm run build
+npm run dev
+```
+### Backend
 
 ## 💻 Ambiente
 
 ## 📚 Documentação
 
-Acesse a documentação completa do projeto [aqui](https://unb-mds.github.io/2024-2-Urbanize/).
+- Acesse a documentação completa do projeto [aqui](https://unb-mds.github.io/2024-2-Urbanize/).
+- [Miro](https://miro.com/app/board/uXjVL56n25w=/)
+- [Figma](https://www.figma.com/design/DYEq9aokP5ZRNHNsfSQnFw/Urbanize?node-id=247-2&node-type=canvas&t=eyd9R0ranoBqN73u-0)
 
 ## 👥 Colaboradores
 
