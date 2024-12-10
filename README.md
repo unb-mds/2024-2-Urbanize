@@ -45,7 +45,11 @@ Para rodar o projeto, você precisa das seguintes ferramentas:
 - **Node.js** v20 ou superior
 - **Python** 3.12.3
 
-## 💻 Back-End
+## 💻 Front-End
+
+Acesse a documentação completa [**aqui**](https://github.com/unb-mds/2024-2-Urbanize/blob/main/frontend/README.md)
+
+## 🤖 Back-End
 
 Acesse a documentação completa [**aqui**](https://github.com/unb-mds/2024-2-Urbanize/blob/main/backend/README.md)
 
