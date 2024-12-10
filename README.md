@@ -47,7 +47,7 @@ Para rodar o projeto, você precisa das seguintes ferramentas:
 
 ## 💻 Back-End
 
-Acesse a completa do README.md [**aqui**](https://github.com/unb-mds/2024-2-Urbanize/blob/main/backend/README.md)
+Acesse a documentação completa [**aqui**](https://github.com/unb-mds/2024-2-Urbanize/blob/main/backend/README.md)
 
 ## 📚 Documentação
 
