@@ -54,7 +54,3 @@ Exemplo de commit:
 ## Pull Request
 
 Por meio do processo de pull request, realizado no GitHub, toda nova funcionalidade deve ser integrada à branch Main. Mas isso semente será feito após todos os critérios de sucesso para a feature estarem atendidos.
-
-## Histórico de Versão
-| Versão | Data | Descrição | Autor(es) | Data de revisão | Revisor(es) |
-| :-: | :-: | :-: | :-: | :-: | :-: |
