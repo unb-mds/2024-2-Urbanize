@@ -1,7 +1,7 @@
 ## 📝 Estrutura da Issue
 
 ### **Título da Issue**
-- Use um título claro e descritivo.
+- Use um título claro e descritivo.  
 - Formato sugerido:
   - `[BUG] Descrição curta do problema`
   - `[FEATURE] Nome da funcionalidade`
@@ -18,7 +18,7 @@ Preencha os seguintes campos para descrever a issue:
    - Inclua links ou referências relevantes, se houver.
 
 3. **Critérios de Aceitação**:
-   - Lista dos requisitos necessários para que a issue seja considerada resolvida.
+   - Lista dos requisitos necessários para que a issue seja considerada resolvida.  
    - Exemplo:
      - [ ] O botão X está funcionando conforme o esperado.
      - [ ] O endpoint retorna os dados corretamente.
@@ -51,10 +51,11 @@ Inclua imagens, logs ou exemplos de código, se necessário.
 
 ## Exemplo de Issue Preenchida
 
-### **Título:**
+### **Título:**  
 `[BUG] Erro ao carregar o mapa interativo`
 
 ### **Descrição:**
+
 1. **Resumo**:
    - O mapa interativo não está carregando ao acessar a página inicial.
 
@@ -71,12 +72,13 @@ Inclua imagens, logs ou exemplos de código, se necessário.
    - [ ] Corrigir a falha de comunicação.
    - [ ] Validar o funcionamento em diferentes navegadores.
 
-### **Prioridade:**
+### **Prioridade:**  
 Alta
 
 ### **Anexos:**
 - Captura de tela do erro no console.
 - Logs detalhados do servidor.
+
 
 ---
 
