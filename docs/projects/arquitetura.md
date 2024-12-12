@@ -194,7 +194,7 @@ Com o ambiente ativado como instruído acima, para extrair os dados do Oracle Da
 DataScraper/InepScrapper.py
 ```
 
-## **ETL**
+### **ETL**
 
 Para tratar e carregar os dados extraídos, em modo debugger, acesse `WebScrapper/DataETL`, lembre-se de selecionar o ambiente conda que foi criado, e então para rodar o programa por partes, execute:
 
@@ -210,13 +210,13 @@ python3 WebSrapper/DataETL/main.py
 
 ---
 
-## 🛠️ Guia de contribuição
+### Guia de contribuição
 
 **Para acessar o guia completo de contribuição**: [**Guia de Contribuição**](https://unb-mds.github.io/2024-2-Urbanize/)
 
 ---
 
-## 📒 Documentação e muito mais!
+### Documentação 
 
 **Para acessar a documentação completa**: [**Documentação Urbanize**](https://unb-mds.github.io/2024-2-Urbanize/)
 
