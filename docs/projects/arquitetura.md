@@ -113,6 +113,58 @@ Após configurar o [**Ambiente e Pré-requisitos**](https://unb-mds.github.io/20
 git clone https://github.com/unb-mds/2024-2-Urbanize.git
 ```
 
+Com o repositório do backend devidamente clonado, você terá acesso à aplicação **Express** e ao **Scraper**:
+
+### **Express/API**
+
+Navegue até o diretório raiz do repositório clonado:
+
+```bash
+cd 2024-2-Urbanize
+```
+Em seguida instale as dependências do Urbanize:
+
+```bash
+npm install
+```
+
+### **Scraper**
+
+Navegue até o diretório `WebScrapper`:
+
+```bash
+cd WebScrapper
+```
+Crie um ambiente virtual com conda:
+
+```bash
+conda create --name <my-env>
+```
+
+Ative o ambiente criado:
+
+```bash
+conda activate <my-env>
+```
+
+Instale as dependências e bibliotecas dentro do ambiente virtual:
+
+```bash
+conda install --yes --file requirements.txt
+```
+
+O script ETL acessa o banco de dados por meio de um `.env` encontrado no caminho
+`WebScrapper/DataETL/.env`. A sua estrutura está escrita abaixo:
+
+```bash
+DATABASE_USERNAME=<INSERIR AQUI>
+DATABASE_PASSWORD=<INSERIR AQUI>
+DATABASE_NAME=<INSERIR AQUI>
+DATABASE_PORT=<INSERIR AQUI>
+DATABASE_HOST=<INSERIR AQUI>
+```
+
+
 
 
 
