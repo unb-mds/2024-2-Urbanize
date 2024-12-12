@@ -91,4 +91,28 @@ Veja sua modelagem:
 
 ---
 
+## 🏁 Início
+
+Siga os passos abaixo para executar o **backend** do [**Urbanize**](#):
+
+### 🏞️ Ambiente e Pré-requisitos
+
+Para rodar o projeto é fundamental ter algumas dependências globais:
+
+- Node
+- Miniconda/Python
+
+Para visualizar versões, links e as instruções completas de configuração do ambiente: [**Ambiente e Pré-requisitos**](https://unb-mds.github.io/2024-1-EducaMinas-frontend/environment/)
+
+
+### 📲 Instalação
+
+Após configurar o [**Ambiente e Pré-requisitos**](https://unb-mds.github.io/2024-1-EducaMinas-frontend/environment/), em um diretório de sua máquina, abra o terminal e execute:
+
+```bash
+git clone https://github.com/unb-mds/2024-2-Urbanize.git
+```
+
+
+
 
