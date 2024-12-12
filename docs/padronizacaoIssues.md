@@ -1,6 +1,6 @@
-# Estrutura da Issue
+## Estrutura da Issue
 
-## Título da Issue
+# Título da Issue
 
 Use um título claro e descritivo.  
 **Formato sugerido**:  
@@ -10,24 +10,24 @@ Use um título claro e descritivo.
 
 ---
 
-## Descrição
+# Descrição
 
 Preencha os seguintes campos para descrever a issue:
 
-### Resumo
+# Resumo
 Breve descrição da issue.
 
-### Contexto
+# Contexto
 - Explique o problema ou a necessidade.  
 - Inclua links ou referências relevantes, se houver.  
 
-### Critérios de Aceitação
+## Critérios de Aceitação
 Liste os requisitos necessários para que a issue seja considerada resolvida.  
 **Exemplo**:  
 - O botão X está funcionando conforme o esperado.  
 - O endpoint retorna os dados corretamente.  
 
-### Tarefas
+# Tarefas
 Liste as etapas necessárias para completar a issue:  
 1. Etapa 1  
 2. Etapa 2  
@@ -35,7 +35,7 @@ Liste as etapas necessárias para completar a issue:
 
 ---
 
-## Prioridade
+# Prioridade
 
 Indique a prioridade da issue:  
 - **Alta**: Impacta diretamente o funcionamento principal do sistema.  
@@ -44,13 +44,13 @@ Indique a prioridade da issue:
 
 ---
 
-## Anexos
+# Anexos
 
 Inclua imagens, logs ou exemplos de código, se necessário.
 
 ---
 
-## 🚀 Boas Práticas
+# Boas Práticas
 
 - Mantenha as issues objetivas e claras.  
 - Atualize a issue à medida que houver progresso.  
@@ -61,31 +61,31 @@ Inclua imagens, logs ou exemplos de código, se necessário.
 
 ## Exemplo de Issue Preenchida
 
-### Título
+# Título
 `[BUG] Erro ao carregar o mapa interativo`
 
-### Descrição
+## Descrição
 
-#### Resumo
+# Resumo
 O mapa interativo não está carregando ao acessar a página inicial.
 
-#### Contexto
+# Contexto
 - O problema ocorre em todas as sessões de usuário ao usar navegadores baseados em Chromium.  
 - Logs de erro no console indicam falha na comunicação com o endpoint `/api/map`.  
 
-#### Critérios de Aceitação
+# Critérios de Aceitação
 - O mapa carrega corretamente em navegadores compatíveis.  
 - Logs de erro são tratados adequadamente.  
 
-#### Tarefas
+# Tarefas
 1. Investigar o erro no endpoint `/api/map`.  
 2. Corrigir a falha de comunicação.  
 3. Validar o funcionamento em diferentes navegadores.  
 
-### Prioridade
+# Prioridade
 **Alta**
 
-### Anexos
+# Anexos
 - Captura de tela do erro no console.  
 - Logs detalhados do servidor.  
 

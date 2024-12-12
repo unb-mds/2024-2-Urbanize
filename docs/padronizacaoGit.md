@@ -51,6 +51,6 @@ Exemplo de commit:
 [refact](#25): ajustando página de login  
 
 
-## Pull Request
+# Pull Request
 
 Por meio do processo de pull request, realizado no GitHub, toda nova funcionalidade deve ser integrada à branch Main. Mas isso semente será feito após todos os critérios de sucesso para a feature estarem atendidos.
