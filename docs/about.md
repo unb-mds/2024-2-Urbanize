@@ -8,7 +8,7 @@
 
 **Vitor Bessa:** estudante de Engenharia de Software e apaixonado por programação.
 
-**Mateus Bastos:** estudante e entusiasta de Engenharia de Software.
+**Mateus Bastos:** estudante de Engenharia de Software entusiasta da programação procedural.
 
 **Fernanda Vaz:** estudante e entusiasta de Engenharia de Software.
 
