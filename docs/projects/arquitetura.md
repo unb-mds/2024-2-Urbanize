@@ -163,8 +163,80 @@ DATABASE_NAME=<INSERIR AQUI>
 DATABASE_PORT=<INSERIR AQUI>
 DATABASE_HOST=<INSERIR AQUI>
 ```
+### ⚙️ Execução
 
+### **Express/API**
 
+Para executar a aplicação Express em sua máquina, execute no diretório raiz:
+
+```bash
+npm run start
+```
+O servidor será inicializado e estará disponível na porta 3001 do localhost:
+
+```bash
+http://localhost:3333/
+```
+
+Demais comandos para execução de testes, builds e linter podem ser encontrados na guia _scripts_  do arquivo `package.json` na pasta raiz.
+
+Com a api rodando localmente é possível acessar sua documentação e testá-la no **Swagger**, basta acessar:
+
+```bash
+http://localhost:3001/api-docs
+```
+
+### **Scraper**
+
+Com o ambiente ativado como instruído acima, para extrair os dados do Oracle Data com o selenium execute:
+
+```bash
+DataScraper/InepScrapper.py
+```
+
+## **ETL**
+
+Para tratar e carregar os dados extraídos, em modo debugger, acesse `WebScrapper/DataETL`, lembre-se de selecionar o ambiente conda que foi criado, e então para rodar o programa por partes, execute:
+
+```bash
+ETLDebugger.ipynb
+```
+
+Se preferir, e não precisar/quiser rodar em modo debugger(por partes), execute o código para produção:
+
+```bash
+python3 WebSrapper/DataETL/main.py
+```
+
+---
+
+## 🛠️ Guia de contribuição
+
+**Para acessar o guia completo de contribuição**: [**Guia de Contribuição**](https://unb-mds.github.io/2024-2-Urbanize/)
+
+---
+
+## 📒 Documentação e muito mais!
+
+**Para acessar a documentação completa**: [**Documentação Urbanize**](https://unb-mds.github.io/2024-2-Urbanize/)
+
+Nela, você encontra os seguintes tópicos:
+
+- [Início](https://unb-mds.github.io/2024-2-Urbanize/)
+- [Sprints](https://unb-mds.github.io/2024-2-Urbanize/sprints/sprint-0/)
+- [Projeto](https://unb-mds.github.io/2024-2-Urbanize/project/personas/):
+    - [Personas](https://unb-mds.github.io/2024-2-Urbanize/project/personas/)
+    - [StoryMap](https://unb-mds.github.io/2024-2-Urbanize/project/storymap/)
+    - [Requisitos](https://unb-mds.github.io/2024-2-Urbanize/project/requirements/)
+    - [EAP](https://unb-mds.github.io/2024-2-Urbanize/project/eap/)
+    - [API](https://unb-mds.github.io/2024-2-Urbanize/project/servicos/)
+    - [Arquitetura e Tecnologias](https://unb-mds.github.io/2024-2-Urbanize/project/arquitetura/)
+    - [Protótipo](https://unb-mds.github.io/2024-2-Urbanize/project/prototipo/)
+- [Como contribuir](https://unb-mds.github.io/2024-2-Urbanize/environment/):
+    - [Ambiente de desenvolvimento](https://unb-mds.github.io/2024-2-Urbanize/environment/)
+    - [Primeiros passos - frotend](https://unb-mds.github.io/2024-2-Urbanize/contributing-frontend/)
+    - [Primeiros passos - backend](https://unb-mds.github.io/2024-2-Urbanize/contributing-backend/)
+- [Sobre](https://unb-mds.github.io/2024-2-Urbanize/about/)
 
 
 
