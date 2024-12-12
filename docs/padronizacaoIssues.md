@@ -21,7 +21,7 @@ Breve descrição da issue.
 - Explique o problema ou a necessidade.  
 - Inclua links ou referências relevantes, se houver.  
 
-## Critérios de Aceitação
+# Critérios de Aceitação
 Liste os requisitos necessários para que a issue seja considerada resolvida.  
 **Exemplo**:  
 - O botão X está funcionando conforme o esperado.  
@@ -59,12 +59,12 @@ Inclua imagens, logs ou exemplos de código, se necessário.
 
 ---
 
-## Exemplo de Issue Preenchida
+# Exemplo de Issue Preenchida
 
 # Título
 `[BUG] Erro ao carregar o mapa interativo`
 
-## Descrição
+# Descrição
 
 # Resumo
 O mapa interativo não está carregando ao acessar a página inicial.
