@@ -7,6 +7,9 @@ nav:
     - Sprint 1: sprints/sprint-1.md
   - Projeto:
     - Arquitetura e Tecnologias: projects/arquitetura.md
+    - Padrões:    # Novo link de navegação
+      - Padrão 1: padronizacaoGit.md  # Primeiro arquivo
+      - Padrão 2: padronizacaoIssues.md  # Segundo arquivo                               # Novo link de navegação
   - Sobre: about.md
 
 theme:
