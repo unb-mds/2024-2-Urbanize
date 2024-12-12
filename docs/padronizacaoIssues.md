@@ -92,3 +92,4 @@ O mapa interativo não está carregando ao acessar a página inicial.
 ---
 
 Seguindo este padrão, garantimos a consistência e a produtividade no gerenciamento das issues do projeto **Urbanize**.
+
