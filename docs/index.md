@@ -27,6 +27,8 @@ O **Urbanize** tem como objetivos principais:
 - **Confiabilidade dos Dados:** Implementação de validações e tratamento de erros para garantir a precisão e integridade dos dados coletados.
 - **Visualização de Dados:** Desenvolvimento de uma interface intuitiva e responsiva para a apresentação mapeada, facilitando a análise e interpretação.
 - **Pesquisa Avançada:** Funcionalidades de busca e filtragem detalhada por início e término, gastos e andamento da obra, permitindo consultas específicas e personalizadas.
+- **Rastreamento de anomalias:** Identificação e sinalização de irregularidades, como atrasos nas obras ou gastos superiores ao orçamento previsto.
+
 
 ---
 
