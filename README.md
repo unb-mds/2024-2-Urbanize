@@ -1,7 +1,13 @@
-# 🏗️ Urbanize
+<div align="center">
+  
+![Screenshot 2024-12-23 155846](https://github.com/user-attachments/assets/4b4e1c71-8eaa-4926-80f3-b5b35d6aec8d)
+
+</div>
+
+---
 
 ## Sumário
-- [🏗️ Urbanize](#️-urbanize)
+- 🏗️ Urbanize
   - [Sumário](#sumário)
   - [📝 Descrição do Projeto](#-descrição-do-projeto)
   - [✅ Funcionalidades](#-funcionalidades)
