@@ -15,7 +15,7 @@ app.use(errorHandling);
 
 // inicializando o cron job para coleta de dados
 new CronJob( 
-  '1 * * * * *', 
+  '0 0 */7 * *', // atualiza a cada 7 dias
   async () => { 
     await fetchAndSaveProjects(); 
   }, 
