@@ -1,9 +1,9 @@
 import axios from "axios";
 import { prisma } from "@/database";
 
-async function fetchAndSaveProjects() {
-  let pagina = 56;
-  const tamanhoDaPagina = 10; // Ajuste este valor conforme a capacidade da API
+export async function fetchAndSaveProjects() {
+  let pagina = 0;
+  const tamanhoDaPagina = 100; // Ajuste este valor conforme a capacidade da API
   let hasMoreData = true;
   let uf = "DF";
 
@@ -27,7 +27,8 @@ async function fetchAndSaveProjects() {
       const { content: projetos } = response.data;
 
       // Se não há mais projetos, encerre o loop
-      if (projetos.length === 0) {
+      if (!projetos || projetos.length === 0) {
+        console.log("Nenhum projeto restante para processar.");
         hasMoreData = false;
         break;
       }
@@ -118,8 +119,6 @@ async function fetchAndSaveProjects() {
     console.error('Erro ao buscar e salvar projetos:', error);
   } finally {
     await prisma.$disconnect();
+    console.log("Conexão com o banco de dados encerrada.");
   }
 }
-
-// Sincroniza os dados a cada hora
-fetchAndSaveProjects();
