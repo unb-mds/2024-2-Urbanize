@@ -1,7 +1,7 @@
 import axios from "axios";
 import { prisma } from "@/database";
 
-async function fetchAndSaveProjects() {
+export async function fetchAndSaveProjects() {
   let pagina = 56;
   const tamanhoDaPagina = 10; // Ajuste este valor conforme a capacidade da API
   let hasMoreData = true;
@@ -114,12 +114,9 @@ async function fetchAndSaveProjects() {
       // Incrementa para a próxima página
       pagina++;
     }
+    console.log(`Cron job finalizado!`);
+    await prisma.$disconnect();
   } catch (error) {
     console.error('Erro ao buscar e salvar projetos:', error);
-  } finally {
-    await prisma.$disconnect();
   }
 }
-
-// Sincroniza os dados a cada hora
-fetchAndSaveProjects();
