@@ -63,7 +63,7 @@ Com o repositório do backend devidamente clonado, você terá acesso à aplica�
 Navegue até o diretório raiz do repositório clonado:
 
 ```bash
-cd 2024-2-Urbanize
+cd 2024-2-Urbanize/backend/node
 ```
 Em seguida instale as dependências do Urbanize:
 
