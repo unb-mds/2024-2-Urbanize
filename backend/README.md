@@ -14,6 +14,13 @@ O projeto é um software livre e está sob a licença [MIT](./LICENSE).
 
 ---
 
+## ✨ Tecnologias relevantes
+
+- [ExpressJS](https://expressjs.com/pt-br/): ExpressJs é uma estrutura para a construção de aplicativos Node.js do lado do servidor eficientes e simples.
+- [Zod](https://zod.dev): Zod é uma biblioteca de validação de dados para TypeScript.
+- [Prisma](https://www.prisma.io/): Prisma é uma biblioteca de persistência de banco de dados para Node.js.
+- [Cron](https://www.npmjs.com/package/cron): Cron usado para fazer cronograma de comandos de tarefas.
+
 ## 🗒️ Sumário
 
 - [Urbanize](#urbanize)
@@ -22,11 +29,9 @@ O projeto é um software livre e está sob a licença [MIT](./LICENSE).
     - [🏞️ Ambiente e Pré-requisitos](#️-ambiente-e-pré-requisitos)
     - [📲 Instalação](#-instalação)
       - [**Express/API**](#expressapi)
-      - [**Scraper**](#scraper)
     - [⚙️ Execução](#️-execução)
       - [**Express/API**](#expressapi-1)
-      - [**Scraper**](#scraper-1)
-      - [**ETL**](#etl)
+    - [🧪 Testes](#️-testes)
   - [🛠️ Guia de contribuição](#️-guia-de-contribuição)
   - [📒 Documentação e muito mais!](#-documentação-e-muito-mais)
 
@@ -81,6 +86,37 @@ O servidor será inicializado e estará disponível na porta 3001 do localhost:
 http://localhost:3333/
 ```
 
+Adicione as variáveis de ambiente copiando o arquivo `.env.example` e renomeando para `.env`:
+
+```properties
+# Database
+DATABASE_URL="postgresql://postgres:postgres@localhost:5432/api-urbanize?schema=public"
+```
+
+Usando o docker-compose inicie os serviços necessários para executar a aplicação com:
+
+```bash
+$ docker-compose up -d
+```
+
+Não esqueça de rodar as migrações:
+
+```bash
+$ npm prisma migrate dev
+```
+
+### 🧪 Testes
+
+Nesse projeto estou utilizando testes unitários e testes de ponta a ponta (e2e) e para executar basta rodar os comandos:
+
+```bash
+# Testes unitários
+$ npm run test
+
+# Testes de ponta a ponta
+$ npm run test:e2e
+```
+
 Demais comandos para execução de testes, builds e linter podem ser encontrados na guia _scripts_  do arquivo `package.json` na pasta raiz.
 
 Com a api rodando localmente é possível acessar sua documentação e testá-la no **Swagger**, basta acessar:
@@ -99,3 +135,5 @@ http://localhost:3001/api-docs
 ## 📒 Documentação e muito mais!
 
 **Para acessar a documentação completa**: [**Documentação Urbanize**](https://unb-mds.github.io/2024-2-Urbanize/)
+
+
