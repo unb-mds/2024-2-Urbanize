@@ -14,7 +14,8 @@
   - [📱 Tecnologias](#-tecnologias)
   - [🧑‍🏭 Executando a aplicação](#-executando-a-aplicação)
     - [📋 Pré-requisitos](#-pré-requisitos)
-  - [💻 Back-End](#-back-end)
+  - [💻 Front-End](#-front-end)
+  - [🤖 Back-End](#-back-end)
   - [📚 Documentação](#-documentação)
   - [👥 Colaboradores](#-colaboradores)
 
