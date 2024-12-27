@@ -1,13 +1,5 @@
 # [Urbanize](#)
 
----
-
-Para melhor divisão e organização, o Urbanize está dividido em dois repositórios.
-
-Você está no **Backend**:
-
----
-
 O [Urbanize](#) é um projeto desenvolvido na disciplina Métodos de Desenvolvimento de Software (MDS) ofertada no curso de Engenharia de Software na Universidade de Brasília (UnB), que visa reunir em um único local dados sobre obras publicas, utilizando informações extraídas da pesquisa educacional realizada pelo ObrasGov. A plataforma permite diferentes interpretações dos dados e progresso das obras.
 
 O projeto é um software livre e está sob a licença [MIT](./LICENSE).
