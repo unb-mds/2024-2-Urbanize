@@ -47,7 +47,7 @@ model Tomador {
 model Executor {
   id        Int     @id @default(autoincrement())
   nome      String
-  codigo    BigInt
+  codigo    BigInt 
   projetoId String
   projeto   Projeto @relation(fields: [projetoId], references: [id])
 }
@@ -55,7 +55,7 @@ model Executor {
 model Repassador {
   id        Int     @id @default(autoincrement())
   nome      String
-  codigo    BigInt
+  codigo    BigInt 
   projetoId String
   projeto   Projeto @relation(fields: [projetoId], references: [id])
 }
@@ -80,6 +80,8 @@ model Geometria {
   geometria   String
   dataCriacao DateTime
   origem      String
+  latitude    Float? // Campo para armazenar a latitude
+  longitude   Float? // Campo para armazenar a longitude
   projetoId   String
   projeto     Projeto  @relation(fields: [projetoId], references: [id])
 }
@@ -87,7 +89,7 @@ model Geometria {
 model FonteDeRecurso {
   id                        Int     @id @default(autoincrement())
   origem                    String
-  valorInvestimentoPrevisto Decimal @db.Decimal(15,2)
+  valorInvestimentoPrevisto Decimal @db.Decimal(15, 2)
   projetoId                 String
   projeto                   Projeto @relation(fields: [projetoId], references: [id])
 }
