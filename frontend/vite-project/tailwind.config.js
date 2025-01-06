@@ -3,21 +3,20 @@ export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     screens: {
-      sm: '640px',  // Telas pequenas
-      md: '768px',  // Telas médias
-      lg: '1024px', // Telas grandes
-      xl: '1280px', // Telas extra grandes
-      '2xl': '1536px', // Telas muito grandes
+      sm: '640px',
+      md: '768px',
+      lg: '1024px',
+      xl: '1280px',
+      '2xl': '1536px',
     },
     extend: {
       colors: {
-        customRed: '#FF0505', // Vermelho
-        customLightGreen: '#00CD1F', // Verde
-        customGrey: '#C7C5C5', // Cinza
-        customBlue: '#104177', // Azul
-      }
+        customRed: '#FF0505',
+        customLightGreen: '#00CD1F',
+        customGrey: '#C7C5C5',
+        customBlue: '#104177',
+      },
     },
   },
   plugins: [],
-}
-
+};
