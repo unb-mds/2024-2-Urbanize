@@ -6,9 +6,9 @@ interface TituloMenus {
 
 const TituloMenus: React.FC<TituloMenus> = ({ className }) => {
     return (
-        <div className="text-center py-3 border-b border-gray-300">
-          <div className="w-[50px] h-1 bg-[#104177] mx-auto mt-2 rounded-md"></div>
-          <h1 className="text-2xl font-mono font-medium">URBANIZE</h1>
+        <div className="text-center border-b border-gray-300">
+          <div className="w-[92px] h-[9px] bg-customBlue mx-auto mt-3 rounded-md"></div>
+          <h1 className="text-[40px] font-mono font-medium mt-2">URBANIZE</h1>
         </div>
     );
 };

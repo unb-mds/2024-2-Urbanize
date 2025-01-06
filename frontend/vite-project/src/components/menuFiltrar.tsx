@@ -2,7 +2,11 @@ import React, { useState } from 'react';
 import BotoesMenu from './botoesMenu';
 import TituloMenus from './tituloMenus';
 
-const MenuFiltrar: React.FC = () => {
+interface MenuFiltrarProps {
+  closeFilterMenu: () => void; // Função para redirecionar ao menu principal
+}
+
+const MenuFiltrar: React.FC<MenuFiltrarProps> = ({ closeFilterMenu }) => {
   const [value, setValue] = useState('');
 
   // Função para formatar o valor como moeda
@@ -33,10 +37,13 @@ const MenuFiltrar: React.FC = () => {
 
   return (
     <div className="">
-      <div className="bottom-12 left-10 w-64 h-[400px] bg-white rounded-lg shadow-lg flex flex-col items-center fixed max-w-xs mx-auto my-1 rounded-t-lg z-10">
-        <TituloMenus />
+      <div className="bottom-5 left-10 w-64 h-[400px] bg-white rounded-[10px] shadow-lg flex flex-col items-center fixed max-w-xs mx-auto my-6 rounded-t-lg z-10">
+        <div onClick={closeFilterMenu} className="cursor-pointer w-full">
+          {/* O clique na div redireciona ao menu principal */}
+          <TituloMenus />
+        </div>
 
-        <form className="w-full flex flex-col gap-3 p-3 bg-white mt-[-10px]">
+        <form className="w-full flex flex-col gap-2 p-3 bg-white mt-[-5px] ">
           <div>
             <label htmlFor="name" className="block text-gray-700 text-sm font-bold ">
               Nome da obra:
@@ -45,7 +52,7 @@ const MenuFiltrar: React.FC = () => {
               type="text"
               id="name"
               placeholder="Nome"
-              className="w-full px-4 py-2 mt-1 text-gray bg-[#104177] text-white rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
+              className="w-full px-3 py-2  text-gray bg-[#104177] text-white rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
             />
           </div>
 
@@ -79,14 +86,14 @@ const MenuFiltrar: React.FC = () => {
             <button
               type="button"
               onClick={handleFilter}
-              className="w-20 py-1 mt-1 bg-[#104177] text-white font-bold rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400"
+              className="w-20 py-1 mt-1 bg-[#104177] text-white font-bold rounded-[10px] hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400"
             >
               Filtrar
             </button>
           </div>
         </form>
 
-        <BotoesMenu className="w-[255px] mt-4" />
+        <BotoesMenu className="w-full mt-0" />
       </div>
     </div>
   );
