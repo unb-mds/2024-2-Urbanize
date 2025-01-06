@@ -9,7 +9,7 @@
       "@/*": ["./src/*"]
     },
 
-    "module": "node16",
+    "module": "CommonJS",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
 
