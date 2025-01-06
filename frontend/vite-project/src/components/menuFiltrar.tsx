@@ -11,15 +11,17 @@ const MenuFiltrar: React.FC<MenuFiltrarProps> = ({ closeFilterMenu }) => {
 
   // Função para formatar o valor como moeda
   const formatCurrency = (value: string) => {
-    // Remove tudo que não seja número ou vírgula
-    const numericValue = value.replace(/[^\d,]/g, '').replace(',', '.');
+    // Remove tudo que não seja número
+    const numericValue = value.replace(/[^\d]/g, '');
 
-    // Verifica se há mais de 2 casas decimais e remove
-    const [integer, decimal] = numericValue.split('.');
-    const formattedDecimal = decimal ? decimal.slice(0, 2) : '';
+    if (!numericValue) return '';
 
-    // Recria a string com o número formatado
-    const formattedValue = `${integer}${formattedDecimal ? '.' + formattedDecimal : ''}`;
+    // Adiciona os separadores de milhares e vírgula para decimais
+    const formattedValue = (parseFloat(numericValue) / 100)
+      .toFixed(2) // Garante duas casas decimais
+      .replace('.', ',') // Troca ponto por vírgula
+      .replace(/\B(?=(\d{3})+(?!\d))/g, '.'); // Adiciona pontos para milhares
+
     return formattedValue;
   };
 
@@ -37,22 +39,22 @@ const MenuFiltrar: React.FC<MenuFiltrarProps> = ({ closeFilterMenu }) => {
 
   return (
     <div className="">
-      <div className="bottom-5 left-10 w-64 h-[400px] bg-white rounded-[10px] shadow-lg flex flex-col items-center fixed max-w-xs mx-auto my-6 rounded-t-lg z-10">
+      <div className="bottom-5 left-10 w-64 h-[400px] bg-white rounded-[10px] shadow-lg flex flex-col items-center fixed max-w-xs mx-auto my-6 z-10">
         <div onClick={closeFilterMenu} className="cursor-pointer w-full">
           {/* O clique na div redireciona ao menu principal */}
           <TituloMenus />
         </div>
 
-        <form className="w-full flex flex-col gap-2 p-3 bg-white mt-[-5px] ">
+        <form className="w-full flex flex-col gap-2 p-3 bg-white mt-[-5px]">
           <div>
-            <label htmlFor="name" className="block text-gray-700 text-sm font-bold ">
+            <label htmlFor="name" className="block text-gray-700 text-sm font-bold">
               Nome da obra:
             </label>
             <input
               type="text"
               id="name"
               placeholder="Nome"
-              className="w-full px-3 py-2  text-gray bg-[#104177] text-white rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
+              className="w-full px-3 py-2 text-gray bg-customBlue text-white rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
             />
           </div>
 
@@ -64,7 +66,7 @@ const MenuFiltrar: React.FC<MenuFiltrarProps> = ({ closeFilterMenu }) => {
               type="text"
               id="category"
               placeholder="Categoria"
-              className="w-full px-4 py-2 mt-1 text-gray-700 bg-[#104177] text-white rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
+              className="w-full px-4 py-2 mt-1 text-gray-700 bg-customBlue text-white rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
             />
           </div>
 
@@ -72,21 +74,26 @@ const MenuFiltrar: React.FC<MenuFiltrarProps> = ({ closeFilterMenu }) => {
             <label htmlFor="value" className="block text-gray-700 text-sm font-bold">
               Valor da obra:
             </label>
-            <input
-              type="text"
-              id="value"
-              value={value}
-              onChange={handleChange}
-              placeholder="R$ Valor"
-              className="w-full px-4 py-2 mt-1 text-gray-700 bg-[#104177] text-white rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
-            />
+            <div className="relative">
+              <span className="absolute inset-y-1 left-0 flex items-center pl-3  text-gray-400 text-sm font-bold">
+                R$
+              </span>
+              <input
+                type="text"
+                id="value"
+                value={value}
+                onChange={handleChange}
+                placeholder="0,00"
+                className="w-full pl-10 pr-4 py-2 mt-1 text-gray-700 bg-customBlue text-white rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
+              />
+            </div>
           </div>
 
           <div className="flex justify-center">
             <button
               type="button"
               onClick={handleFilter}
-              className="w-20 py-1 mt-1 bg-[#104177] text-white font-bold rounded-[10px] hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400"
+              className="w-20 py-1 mt-1 bg-customBlue text-white font-bold rounded-[10px] hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400"
             >
               Filtrar
             </button>
