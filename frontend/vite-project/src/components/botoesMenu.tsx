@@ -30,7 +30,7 @@ const BotoesMenu: React.FC<BotoesMenuProps> = ({ className, onFilterClick, onLis
             viewBox="0 0 24 24"
             fill="currentColor"
             className={`w-6 h-6 transform transition-transform duration-300 ${
-              isArrowUp ? 'rotate-90' : ''
+              isArrowUp ? 'rotate-180' : ''
             }`}
           >
             <path
