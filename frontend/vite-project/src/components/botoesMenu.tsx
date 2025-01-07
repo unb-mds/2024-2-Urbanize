@@ -1,13 +1,13 @@
-import React from 'react';
-
 interface BotoesMenuProps {
-  className?: string; // Define que o componente aceita a propriedade 'className'
-  onFilterClick?: () => void; // Adiciona uma prop para o clique do botão "Filtrar"
+  className?: string;
+  onFilterClick?: () => void;
+  onListClick?: () => void; // Propriedade para o clique do botão "Listar"
 }
 
-const BotoesMenu: React.FC<BotoesMenuProps> = ({ className, onFilterClick }) => {
+const BotoesMenu: React.FC<BotoesMenuProps> = ({ className, onFilterClick, onListClick }) => {
   return (
     <div className={`bg-customBlue text-white flex justify-around py-2 rounded-md ${className}`}>
+      {/* Botão Procurar */}
       <div className="flex flex-col items-center">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
           <path fillRule="evenodd" d="M10.5 3.75a6.75 6.75 0 1 0 0 13.5 6.75 6.75 0 0 0 0-13.5ZM2.25 10.5a8.25 8.25 0 1 1 14.59 5.28l4.69 4.69a.75.75 0 1 1-1.06 1.06l-4.69-4.69A8.25 8.25 0 0 1 2.25 10.5Z" clipRule="evenodd" />
@@ -15,13 +15,17 @@ const BotoesMenu: React.FC<BotoesMenuProps> = ({ className, onFilterClick }) => 
         <span className="text-[14px] mt-1 ">Procurar</span>
       </div>
 
+      {/* Botão Listar */}
       <div className="flex flex-col items-center">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
-          <path fillRule="evenodd" d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z" clipRule="evenodd" />
-        </svg>
-        <span className="text-sm mt-1">Listar</span>
+        <button onClick={onListClick}>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
+            <path fillRule="evenodd" d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z" clipRule="evenodd" />
+          </svg>
+          <span className="text-sm mt-1">Listar</span>
+        </button>
       </div>
 
+      {/* Botão Filtrar */}
       <div className="flex flex-col items-center">
         <button onClick={onFilterClick}>
           <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
