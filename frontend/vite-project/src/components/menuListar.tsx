@@ -20,7 +20,7 @@ const MenuListar: React.FC<MenuListarProps> = ({ closeListMenu }) => {
 
   return (
     <div className="">
-      <div className="bottom-5 left-10 w-64 h-[400px] bg-white rounded-[10px] shadow-lg flex flex-col items-center fixed max-w-xs mx-auto my-6 z-10">
+      <div className="bottom-5 left-10 w-64 h-[400px] bg-white rounded-[10px] shadow-lg flex flex-col items-center fixed max-w-xs mx-auto my-1 z-10">
         {/* Cabeçalho */}
         <div onClick={closeListMenu} className="cursor-pointer w-full">
           <TituloMenus />
