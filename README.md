@@ -1,10 +1,6 @@
-<div align="center">
+
   
-![Screenshot 2024-12-23 155846](https://github.com/user-attachments/assets/4b4e1c71-8eaa-4926-80f3-b5b35d6aec8d)
 
-</div>
-
----
 
 ## Sumário
 - 🏗️ Urbanize
@@ -63,7 +59,7 @@ Acesse a documentação completa [**aqui**](https://github.com/unb-mds/2024-2-Ur
 ## 📚 Documentação
 
 - Acesse a documentação completa do projeto [aqui](https://unb-mds.github.io/2024-2-Urbanize/).
-- [Miro](https://miro.com/app/board/uXjVL56n25w=/)
+- [Miro](https://miro.com/welcomeonboard/dnAvb1JGWUZzUy9VMWZ2TzBCNnNFUTVTRytYUkhWOC8xckVKNnEwcVJ3ODR0SEsxYVU5ODdrUlZCYm0yTGQvcGErKzNyNElvN3dyVGFTZmNWSXJvV1o2T1FSblBmMzdGNVR2Zk1RUmtnQzkwcmJrYm9pdnZEU2Fjem9iY1FaZm4hZQ==?share_link_id=355575909966)
 - [Figma](https://www.figma.com/design/DYEq9aokP5ZRNHNsfSQnFw/Urbanize?node-id=247-2&node-type=canvas&t=eyd9R0ranoBqN73u-0)
 
 ## 👥 Colaboradores
