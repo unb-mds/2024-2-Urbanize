@@ -4,9 +4,10 @@ import TituloMenus from './tituloMenus';
 
 interface MenuListarProps {
   closeListMenu: () => void; // Função para redirecionar ao menu principal
+  isArrowUp: boolean;
 }
 
-const MenuListar: React.FC<MenuListarProps> = ({ closeListMenu }) => {
+const MenuListar: React.FC<MenuListarProps> = ({ closeListMenu, isArrowUp }) => {
   const [isArrowDown, setIsArrowDown] = useState(true); // Estado para controlar a direção da seta
 
   const toggleMenu = () => {
@@ -52,7 +53,11 @@ const MenuListar: React.FC<MenuListarProps> = ({ closeListMenu }) => {
         )}
 
         {/* Botões de Navegação */}
-        {isArrowDown && <BotoesMenu className="w-full mt-0" />}
+        {isArrowDown && <BotoesMenu 
+          className="w-full mt-0" 
+          onListClick={closeListMenu}
+          isArrowUp={isArrowUp}
+        />}
       </div>
     </div>
   );

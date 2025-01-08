@@ -10,7 +10,7 @@ const MenuComponent: React.FC = () => {
   const [isArrowUp, setIsArrowUp] = useState(false); // Controla a rotação da seta do botão "Listar"
 
   const handleFilterClick = () => {
-    setShowFilterMenu(true);
+    setShowFilterMenu((prevState) => !prevState);
     setShowListMenu(false);
     setIsArrowUp(false);
   };
@@ -32,13 +32,16 @@ const MenuComponent: React.FC = () => {
             className="w-full"
             onFilterClick={handleFilterClick}
             onListClick={handleListClick}
-            isArrowUp={isArrowUp} // Passa o estado da seta para o botão
+            isArrowUp={!isArrowUp} // Inverte o estado da seta
           />
         </div>
       ) : showFilterMenu ? (
-        <MenuFiltrar closeFilterMenu={() => setShowFilterMenu(false)} />
+        <MenuFiltrar closeFilterMenu={handleFilterClick} />
       ) : (
-        <MenuListar closeListMenu={() => setShowListMenu(false)} />
+        <MenuListar 
+          closeListMenu={handleListClick}
+          isArrowUp={!isArrowUp}
+        />
       )}
     </div>
   );
