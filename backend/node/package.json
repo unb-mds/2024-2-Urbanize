@@ -2,8 +2,8 @@
   "name": "API-Urbanize",
   "version": "1.0.0",
   "description": "",
+  "type": "module",
   "main": "index.js",
-  "module": "",
   "scripts": {
     "dev": "tsx watch ./src/server.ts",
     "start": "node ./build/server.js",
@@ -33,7 +33,6 @@
     "ts-node": "^10.9.2",
     "tsx": "^4.19.2",
     "typescript": "^5.6.3",
-    "vite-tsconfig-paths": "^5.1.4",
     "vitest": "^2.1.8"
   }
 }

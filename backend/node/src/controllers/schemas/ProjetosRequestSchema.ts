@@ -5,7 +5,7 @@ export const GetProjetosRequestSchema = z.object({
   pageSize: z.string().optional(),
   natureza: z.string().optional(),
   situacao: z.string().optional(),
-  uf: z.string().optional(),
-  sortBy: z.enum(['situacao', 'uf', 'createdAt']).optional(),
+  nome: z.string().optional(),
+  sortBy: z.enum(['situacao', 'nome', 'natureza', 'createdAt']).optional(),
   order: z.enum(['asc', 'desc']).optional(),
 })

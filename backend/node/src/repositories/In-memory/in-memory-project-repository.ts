@@ -1,17 +1,24 @@
-import { Projeto } from "@prisma/client";
+import { Projeto, FonteDeRecurso } from "@prisma/client";
 import { FindProjetosParams, ProjetosRepository } from "../projetoRepository";
 
 export class InMemoryProjectRepository implements ProjetosRepository {
-  public items: Projeto[] = [];
+  public items: (Projeto & { fontesDeRecurso: FonteDeRecurso[] })[] = [];
 
   async find(params: FindProjetosParams) {
     const { where } = params;
     return this.items.filter((item) => {
-      return (
-        (!where?.situacao || item.situacao.toLowerCase() === where.situacao.like.toLowerCase()) &&
-        (!where?.natureza || item.natureza.toLowerCase() === where.natureza.like.toLowerCase()) &&
-        (!where?.uf || item.uf.toLowerCase() === where.uf.like.toLowerCase())
-      );
+      const matchesSituacao =
+        !where?.situacao ||
+        item.situacao.toLowerCase() === where.situacao.like?.toLowerCase();
+
+      const matchesNatureza =
+        !where?.natureza ||
+        item.natureza.toLowerCase() === where.natureza.like?.toLowerCase();
+
+      const matchesNome =
+        !where?.nome || item.nome.toLowerCase() === where.nome.like?.toLowerCase();
+
+      return matchesSituacao && matchesNatureza && matchesNome;
     });
   }
 
