@@ -100,7 +100,10 @@ const MenuFiltrar: React.FC<MenuFiltrarProps> = ({ closeFilterMenu }) => {
           </div>
         </form>
 
-        <BotoesMenu className="w-full mt-0" />
+        <BotoesMenu 
+          className="w-full mt-0" 
+          onFilterClick={closeFilterMenu}
+        />
       </div>
     </div>
   );
