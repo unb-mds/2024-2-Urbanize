@@ -10,10 +10,10 @@ interface BotoesMenuProps {
 
 const BotoesMenu: React.FC<BotoesMenuProps> = ({ className, onFilterClick, onListClick, onSearchClick, isArrowUp }) => {
   return (
-    <div className={`bg-customBlue text-white flex justify-around py-2 rounded-md ${className}`}>
+    <div className={`bg-customBlue text-white grid grid-cols-3 py-3 rounded-md ${className}`}>
       {/* Botão Procurar */}
-      <div className="flex flex-col items-center">
-        <button onClick={onSearchClick}>
+      <div className="flex items-center justify-center">
+        <button onClick={onSearchClick} className="flex flex-col items-center space-y-1">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
             <path
               fillRule="evenodd"
@@ -21,13 +21,13 @@ const BotoesMenu: React.FC<BotoesMenuProps> = ({ className, onFilterClick, onLis
               clipRule="evenodd"
             />
           </svg>
-          <span className="text-[14px] mt-1">Procurar</span>
+          <span className="text-[14px]">Procurar</span>
         </button>
       </div>
 
       {/* Botão Listar */}
-      <div className="flex flex-col items-center">
-        <button onClick={onListClick}>
+      <div className="flex items-center justify-center border-l border-r border-white/20">
+        <button onClick={onListClick} className="flex flex-col items-center space-y-1">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
@@ -42,13 +42,13 @@ const BotoesMenu: React.FC<BotoesMenuProps> = ({ className, onFilterClick, onLis
               clipRule="evenodd"
             />
           </svg>
-          <span className="text-sm mt-1">Listar</span>
+          <span className="text-[14px]">Listar</span>
         </button>
       </div>
 
       {/* Botão Filtrar */}
-      <div className="flex flex-col items-center">
-        <button onClick={onFilterClick}>
+      <div className="flex items-center justify-center">
+        <button onClick={onFilterClick} className="flex flex-col items-center space-y-1">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="w-6 h-6"
@@ -63,7 +63,7 @@ const BotoesMenu: React.FC<BotoesMenuProps> = ({ className, onFilterClick, onLis
               d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2a1 1 0 01-.293.707l-7 7V20a1 1 0 01-.553.894l-4 2A1 1 0 018 22v-6.586l-7-7A1 1 0 011 6V4a1 1 0 011-1z"
             />
           </svg>
-          <span className="text-sm mt-1">Filtrar</span>
+          <span className="text-[14px]">Filtrar</span>
         </button>
       </div>
     </div>
