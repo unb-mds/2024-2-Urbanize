@@ -32,7 +32,7 @@ const MenuComponent: React.FC = () => {
             className="w-full"
             onFilterClick={handleFilterClick}
             onListClick={handleListClick}
-            isArrowUp={!isArrowUp} // Inverte o estado da seta
+            isArrowUp={isArrowUp} // Inverte o estado da seta
           />
         </div>
       ) : showFilterMenu ? (
@@ -40,7 +40,7 @@ const MenuComponent: React.FC = () => {
       ) : (
         <MenuListar 
           closeListMenu={handleListClick}
-          isArrowUp={!isArrowUp}
+          isArrowUp={isArrowUp}
         />
       )}
     </div>
