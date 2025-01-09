@@ -3,6 +3,7 @@ import MapComponent from './components/Mapa';
 import MenuComponent from './components/menuPrincipal';
 import MenuFiltrar from './components/menuFiltrar';
 import MenuListar from './components/menuListar';
+import MenuProcurar from './components/menuProcurar';
 
 const App: React.FC = () => {
   return (
@@ -11,6 +12,7 @@ const App: React.FC = () => {
       <MenuComponent />
       {/*<MenuFiltrar />*/} 
       {/*<MenuListar />*/} 
+      {/*<MenuProcurar />*/} 
     </div>
 
   );
