@@ -99,7 +99,7 @@ const MenuFiltrar: React.FC<MenuFiltrarProps> = ({
             <button
               type="button"
               onClick={handleFilter}
-              className="w-20 py-1 mt-1 bg-customBlue text-white font-bold rounded-[10px] hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400"
+              className="w-20 py-1 mb-1 bg-customBlue text-white font-bold rounded-[10px] hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400"
             >
               Filtrar
             </button>
@@ -107,7 +107,7 @@ const MenuFiltrar: React.FC<MenuFiltrarProps> = ({
         </form>
 
         <BotoesMenu 
-          className="w-full mt-0" 
+          className="w-full mt-[-10px]" 
           onFilterClick={closeFilterMenu}
           onSearchClick={onSearchClick}
           onListClick={onListClick}
