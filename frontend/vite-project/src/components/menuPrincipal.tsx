@@ -19,13 +19,20 @@ const MenuComponent: React.FC = () => {
   };
 
   const handleListClick = () => {
-    setShowListMenu((prevState) => !prevState);
-    setIsArrowUp((prevState) => !prevState); // Alterna a seta ao abrir ou fechar o menu
+    setShowListMenu(true);  // Sempre abre o menu Listar
+    setShowFilterMenu(false);
+    setShowSearchMenu(false);
+    setIsArrowUp(true);     // Controla a direção da seta
   };
 
   const handleSearchClick = () => {
     setShowSearchMenu((prevState) => !prevState);
     setShowFilterMenu(false);
+    setShowListMenu(false);
+    setIsArrowUp(false);
+  };
+
+  const closeListMenu = () => {
     setShowListMenu(false);
     setIsArrowUp(false);
   };
@@ -47,12 +54,22 @@ const MenuComponent: React.FC = () => {
           />
         </div>
       ) : showFilterMenu ? (
-        <MenuFiltrar closeFilterMenu={handleFilterClick} />
+        <MenuFiltrar 
+          closeFilterMenu={handleFilterClick}
+          onSearchClick={handleSearchClick}
+          onListClick={handleListClick}  // Usa handleListClick ao invés de closeListMenu
+        />
       ) : showSearchMenu ? (
-        <MenuProcurar closeSearchMenu={handleSearchClick} /> // Exibe o menuProcurar
+        <MenuProcurar 
+          closeSearchMenu={handleSearchClick}
+          onFilterClick={handleFilterClick}
+          onListClick={handleListClick}   // Usa handleListClick ao invés de closeListMenu
+        />
       ) : (
         <MenuListar 
-          closeListMenu={handleListClick}
+          closeListMenu={closeListMenu}   // Nova função específica para fechar
+          onFilterClick={handleFilterClick}
+          onSearchClick={handleSearchClick}
           isArrowUp={isArrowUp}
         />
       )}

@@ -2,13 +2,19 @@ import React from 'react';
 
 interface BotoesMenuProps {
   className?: string;
-  onFilterClick?: () => void;
-  onListClick?: () => void;
-  onSearchClick?: () => void; // Nova prop para o botão "Procurar"
+  onFilterClick: () => void;  // Removido opcional
+  onListClick: () => void;    // Removido opcional
+  onSearchClick: () => void;  // Removido opcional
   isArrowUp?: boolean; // Controla a rotação da seta no botão "Listar"
 }
 
-const BotoesMenu: React.FC<BotoesMenuProps> = ({ className, onFilterClick, onListClick, onSearchClick, isArrowUp }) => {
+const BotoesMenu: React.FC<BotoesMenuProps> = ({ 
+  className, 
+  onFilterClick, 
+  onListClick, 
+  onSearchClick, 
+  isArrowUp 
+}) => {
   return (
     <div className={`bg-customBlue text-white grid grid-cols-3 py-3 rounded-md ${className}`}>
       {/* Botão Procurar */}

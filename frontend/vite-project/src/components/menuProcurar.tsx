@@ -4,9 +4,15 @@ import BotoesMenu from './botoesMenu';
 
 interface MenuProcurarProps {
   closeSearchMenu: () => void;
+  onFilterClick: () => void;
+  onListClick: () => void;
 }
 
-const MenuProcurar: React.FC<MenuProcurarProps> = ({ closeSearchMenu }) => {
+const MenuProcurar: React.FC<MenuProcurarProps> = ({ 
+  closeSearchMenu, 
+  onFilterClick, 
+  onListClick 
+}) => {
   return (
     <div className="">
       <div className="bottom-5 left-10 w-64 h-[400px] bg-white rounded-[10px] shadow-lg flex flex-col items-center fixed max-w-xs mx-auto my-1 z-10">
@@ -29,6 +35,8 @@ const MenuProcurar: React.FC<MenuProcurarProps> = ({ closeSearchMenu }) => {
           <BotoesMenu 
             className="w-full"
             onSearchClick={closeSearchMenu}
+            onFilterClick={onFilterClick}
+            onListClick={onListClick}
           />
         </div>
       </div>

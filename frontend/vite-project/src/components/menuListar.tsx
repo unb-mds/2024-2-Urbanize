@@ -1,22 +1,20 @@
-import React, { useState } from 'react';
+import React from 'react';
 import BotoesMenu from './botoesMenu';
 import TituloMenus from './tituloMenus';
 
 interface MenuListarProps {
-  closeListMenu: () => void; // Função para redirecionar ao menu principal
+  closeListMenu: () => void;
+  onFilterClick: () => void;
+  onSearchClick: () => void;
   isArrowUp: boolean;
 }
 
-const MenuListar: React.FC<MenuListarProps> = ({ closeListMenu, isArrowUp }) => {
-  const [isArrowDown, setIsArrowDown] = useState(true); // Estado para controlar a direção da seta
-
-  const toggleMenu = () => {
-    setIsArrowDown(!isArrowDown); // Alterna entre seta para baixo e cima
-    if (!isArrowDown) {
-      closeListMenu(); // Fecha o menu quando a seta aponta para cima
-    }
-  };
-
+const MenuListar: React.FC<MenuListarProps> = ({ 
+  closeListMenu, 
+  onFilterClick, 
+  onSearchClick, 
+  isArrowUp 
+}) => {
   const obras = [
     'Pavimentação - EPTG',
     'Pavimentação - EPIA',
@@ -30,7 +28,7 @@ const MenuListar: React.FC<MenuListarProps> = ({ closeListMenu, isArrowUp }) => 
 
   return (
     <div className="">
-      <div className={`bottom-5 left-10 w-64 ${isArrowDown ? 'h-[400px]' : 'h-0'} bg-white rounded-[10px] shadow-lg flex flex-col items-center fixed max-w-xs mx-auto my-1 z-10 transition-all duration-300 overflow-hidden`}>
+      <div className="bottom-5 left-10 w-64 h-[400px] bg-white rounded-[10px] shadow-lg flex flex-col fixed max-w-xs mx-auto my-1 z-10">
         {/* Cabeçalho */}
         <div className="w-full">
           <div className="text-center border-b border-gray-300">
@@ -40,27 +38,27 @@ const MenuListar: React.FC<MenuListarProps> = ({ closeListMenu, isArrowUp }) => 
         </div>
 
         {/* Lista de Obras */}
-        {isArrowDown && (
-          <div className="w-full flex flex-col p-3 bg-white mt-[-5px] overflow-y-auto">
-            <ul className="space-y-1 text-sm text-gray-700">
-              {obras.map((obra, index) => (
-                <li
-                  key={index}
-                  className="border-b border-gray-300 py-2 last:border-none"
-                >
-                  {obra}
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
+        <div className="w-full flex-grow flex flex-col p-3 bg-white mt-[-5px] overflow-y-auto">
+          <ul className="space-y-1 text-sm text-gray-700">
+            {obras.map((obra, index) => (
+              <li
+                key={index}
+                className="border-b border-gray-300 py-2 last:border-none"
+              >
+                {obra}
+              </li>
+            ))}
+          </ul>
+        </div>
 
-        {/* Botões de Navegação */}
-        {isArrowDown && <BotoesMenu 
-          className="w-full mt-0" 
+        {/* Navbar com navegação */}
+        <BotoesMenu 
+          className="w-full"
           onListClick={closeListMenu}
+          onFilterClick={onFilterClick}
+          onSearchClick={onSearchClick}
           isArrowUp={isArrowUp}
-        />}
+        />
       </div>
     </div>
   );
