@@ -6,7 +6,7 @@ export interface ProjetoWhereParams {
     equals?: string;
     mode?: "default" | "insensitive"
   }
-  uf?: {
+  nome?: {
     like: string;
     equals?: string;
     mode?: "default" | "insensitive"
@@ -20,7 +20,7 @@ export interface ProjetoWhereParams {
 
 export interface FindProjetosParams {
   where?: ProjetoWhereParams
-  sortBy?: "natureza"| "situacao" | "uf" | "createdAt" 
+  sortBy?: "natureza"| "situacao" | "nome" | "createdAt" 
   order?: "asc" | "desc"
   limit?: number
   offset?: number

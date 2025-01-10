@@ -10,22 +10,21 @@ export class PrismaProjetosRepository implements ProjetosRepository {
         equals: params.where?.situacao?.equals,
         mode: params.where?.situacao?.mode
       },
-      uf: {
-        contains: params.where?.uf?.like,
-        equals: params.where?.uf?.equals,
-        mode: params.where?.uf?.mode
+      nome: {
+        contains: params.where?.nome?.like,
+        equals: params.where?.nome?.equals,
+        mode: params.where?.nome?.mode
       },
       natureza: {
         contains: params.where?.natureza?.like,
         equals: params.where?.natureza?.equals,
         mode: params.where?.natureza?.mode
-      }
-      
+      },
     }
 
     const projetos = await prisma.projeto.findMany({
       where,
-      orderBy: { [params.sortBy ?? "uf"]: params.order},
+      orderBy: { [params.sortBy ?? "nome"]: params.order},
       skip: params.offset,
       take: params.limit,
       include: {
