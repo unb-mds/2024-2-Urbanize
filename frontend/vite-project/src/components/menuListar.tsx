@@ -24,10 +24,15 @@ const MenuListar: React.FC<MenuListarProps> = ({
     'Pintura de vias - Guará 2',
     'Obra de drenagem - Águas Claras',
     'Obra de drenagem - Asa Sul',
+    'Nova obra - Samambaia',
   ];
 
+  const handleItemClick = (obra: string) => {
+    alert(`Você clicou na obra: ${obra}`);
+  };
+
   return (
-    <div className="">
+    <div>
       <div className="bottom-5 left-10 w-64 h-[400px] bg-white rounded-[10px] shadow-lg flex flex-col fixed max-w-xs mx-auto my-1 z-10">
         {/* Cabeçalho */}
         <div className="w-full">
@@ -38,12 +43,13 @@ const MenuListar: React.FC<MenuListarProps> = ({
         </div>
 
         {/* Lista de Obras */}
-        <div className="w-full flex-grow flex flex-col p-3 bg-white mt-[-5px] overflow-y-auto">
+        <div className="w-full flex-grow flex flex-col p-3 bg-white mt-[-5px] overflow-y-auto scroll-container">
           <ul className="space-y-1 text-sm text-gray-700">
             {obras.map((obra, index) => (
               <li
                 key={index}
-                className="border-b border-gray-300 py-2 last:border-none"
+                onClick={() => handleItemClick(obra)}
+                className="border-b border-gray-300 py-2 last:border-none cursor-pointer hover:bg-gray-100"
               >
                 {obra}
               </li>
