@@ -31,8 +31,8 @@ const BotoesMenu: React.FC<BotoesMenuProps> = ({
         </button>
       </div>
 
-      {/* Botão Listar */}
-      <div className="flex items-center justify-center border-l border-r border-white/20">
+      {/* Botão Listar - Removida as classes border-l border-r border-white/20 */}
+      <div className="flex items-center justify-center">
         <button onClick={onListClick} className="flex flex-col items-center space-y-1">
           <svg
             xmlns="http://www.w3.org/2000/svg"
