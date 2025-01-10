@@ -32,8 +32,11 @@ const MenuListar: React.FC<MenuListarProps> = ({ closeListMenu, isArrowUp }) => 
     <div className="">
       <div className={`bottom-5 left-10 w-64 ${isArrowDown ? 'h-[400px]' : 'h-0'} bg-white rounded-[10px] shadow-lg flex flex-col items-center fixed max-w-xs mx-auto my-1 z-10 transition-all duration-300 overflow-hidden`}>
         {/* Cabeçalho */}
-        <div onClick={toggleMenu} className="cursor-pointer w-full flex items-center justify-center">
-          <TituloMenus />
+        <div className="w-full">
+          <div className="text-center border-b border-gray-300">
+            <div onClick={closeListMenu} className="w-[92px] h-[9px] bg-customBlue mx-auto mt-3 rounded-md cursor-pointer"></div>
+            <h1 className="text-[40px] font-mono font-medium mt-2">URBANIZE</h1>
+          </div>
         </div>
 
         {/* Lista de Obras */}
