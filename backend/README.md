@@ -16,16 +16,16 @@ O projeto é um software livre e está sob a licença [MIT](./LICENSE).
 ## 🗒️ Sumário
 
 - [Urbanize](#urbanize)
-  - [🗒️ Sumário](#️-sumário)
-  - [🏁 Início](#-início)
-    - [🏞️ Ambiente e Pré-requisitos](#️-ambiente-e-pré-requisitos)
-    - [📲 Instalação](#-instalação)
+  - [ Sumário](#️-sumário)
+  - [ Início](#-início)
+    - [ Ambiente e Pré-requisitos](#️-ambiente-e-pré-requisitos)
+    - [Instalação](#-instalação)
       - [**Express/API**](#expressapi)
-    - [⚙️ Execução](#️-execução)
+    - [Execução](#️-execução)
       - [**Express/API**](#expressapi-1)
-    - [🧪 Testes](#️-testes)
-  - [🛠️ Guia de contribuição](#️-guia-de-contribuição)
-  - [📒 Documentação e muito mais!](#-documentação-e-muito-mais)
+    - [ Testes](#️-testes)
+  - [ Guia de contribuição](#️-guia-de-contribuição)
+  - [Documentação e muito mais!](#-documentação-e-muito-mais)
 
 ---
 
