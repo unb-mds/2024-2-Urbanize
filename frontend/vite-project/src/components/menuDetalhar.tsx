@@ -49,15 +49,15 @@ const MenuDetalhar: React.FC<MenuDetalharProps> = ({ closeDetailMenu, obraDetalh
               <strong>Órgão superior:</strong><br />
               {detalhes.orgaoSuperior}
             </p>
-            <p className="mt-3">
+            <p className="mt-2">
               <strong>Modalidade:</strong><br />
               {detalhes.modalidade}
             </p>
-            <p className="mt-3">
+            <p className="mt-2">
               <strong>Quantidade de itens licitados:</strong><br />
               {detalhes.quantidadeItens}
             </p>
-            <p className="mt-3">
+            <p className="mt-2">
               <strong>Objeto:</strong><br />
               {detalhes.objeto}
             </p>
@@ -67,11 +67,11 @@ const MenuDetalhar: React.FC<MenuDetalharProps> = ({ closeDetailMenu, obraDetalh
               <strong>Órgão / Entidade vinculada:</strong><br />
               {detalhes.orgaoVinculado}
             </p>
-            <p className="mt-3">
+            <p className="mt-2">
               <strong>Data:</strong><br />
               {detalhes.data}
             </p>
-            <p className="mt-3">
+            <p className="mt-2">
               <strong>Valor:</strong><br />
               {detalhes.valor}
             </p>
@@ -81,11 +81,11 @@ const MenuDetalhar: React.FC<MenuDetalharProps> = ({ closeDetailMenu, obraDetalh
               <strong>Unidade gestora responsável:</strong><br />
               {detalhes.unidadeGestora}
             </p>
-            <p className="mt-3">
+            <p className="mt-2">
               <strong>Situação:</strong><br />
               {detalhes.situacao}
             </p>
-            <p className="mt-3">
+            <p className="mt-2">
               <strong>Contato no órgão / Entidade responsável:</strong><br />
               {detalhes.contato}
             </p>
@@ -95,11 +95,11 @@ const MenuDetalhar: React.FC<MenuDetalharProps> = ({ closeDetailMenu, obraDetalh
               <strong>Número da licitação:</strong><br />
               {detalhes.numeroLicitacao}
             </p>
-            <p className="mt-3">
+            <p className="mt-2">
               <strong>Processo:</strong><br />
               {detalhes.processo}
             </p>
-            <p className="mt-3">
+            <p className="mt-2">
               <strong>Município / UF:</strong><br />
               {detalhes.municipioUf}
             </p>
