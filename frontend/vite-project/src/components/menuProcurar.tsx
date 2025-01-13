@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import TituloMenus from './tituloMenus';
 import BotoesMenu from './botoesMenu';
+import MenuDetalhar from './menuDetalhar';
 
 interface MenuProcurarProps {
   closeSearchMenu: () => void;
@@ -14,6 +15,7 @@ const MenuProcurar: React.FC<MenuProcurarProps> = ({
   onListClick 
 }) => {
   const [searchTerm, setSearchTerm] = useState('');
+  const [obraSelecionada, setObraSelecionada] = useState<string | null>(null);
 
   const obras = [
     'Pavimentação - EPTG',
@@ -25,6 +27,15 @@ const MenuProcurar: React.FC<MenuProcurarProps> = ({
   const filteredObras = obras.filter((obra) =>
     obra.toLowerCase().includes(searchTerm.toLowerCase())
   );
+
+  if (obraSelecionada) {
+    return (
+      <MenuDetalhar
+        obraDetalhada={obraSelecionada}
+        closeDetailMenu={() => setObraSelecionada(null)}
+      />
+    );
+  }
 
   return (
     <div className="">
@@ -53,7 +64,11 @@ const MenuProcurar: React.FC<MenuProcurarProps> = ({
           {searchTerm && (
             <div className="mt-4">
               {filteredObras.map((obra, index) => (
-                <div key={index} className="border-b border-gray-300 py-2 last:border-none cursor-pointer">
+                <div
+                  key={index}
+                  onClick={() => setObraSelecionada(obra)}
+                  className="border-b border-gray-300 py-2 last:border-none cursor-pointer"
+                >
                   {obra}
                 </div>
               ))}

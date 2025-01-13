@@ -1,13 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import BotoesMenu from './botoesMenu';
 import TituloMenus from './tituloMenus';
-
-interface MenuListarProps {
-  closeListMenu: () => void;
-  onFilterClick: () => void;
-  onSearchClick: () => void;
-  isArrowUp: boolean;
-}
+import MenuDetalhar from './menuDetalhar'; // Importe o novo componente
 
 const MenuListar: React.FC<MenuListarProps> = ({ 
   closeListMenu, 
@@ -15,6 +9,8 @@ const MenuListar: React.FC<MenuListarProps> = ({
   onSearchClick, 
   isArrowUp 
 }) => {
+  const [obraSelecionada, setObraSelecionada] = useState<string | null>(null);
+
   const obras = [
     'Pavimentação - EPTG',
     'Pavimentação - EPIA',
@@ -27,9 +23,14 @@ const MenuListar: React.FC<MenuListarProps> = ({
     'Nova obra - Samambaia',
   ];
 
-  const handleItemClick = (obra: string) => {
-    alert(`Você clicou na obra: ${obra}`);
-  };
+  if (obraSelecionada) {
+    return (
+      <MenuDetalhar
+        obraDetalhada={obraSelecionada}
+        closeDetailMenu={() => setObraSelecionada(null)}
+      />
+    );
+  }
 
   return (
     <div>
@@ -48,7 +49,7 @@ const MenuListar: React.FC<MenuListarProps> = ({
             {obras.map((obra, index) => (
               <li
                 key={index}
-                onClick={() => handleItemClick(obra)}
+                onClick={() => setObraSelecionada(obra)}
                 className="border-b border-gray-300 py-2 last:border-none cursor-pointer hover:bg-gray-100"
               >
                 {obra}
