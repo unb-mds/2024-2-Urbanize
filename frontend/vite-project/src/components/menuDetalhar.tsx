@@ -25,7 +25,7 @@ const MenuDetalhar: React.FC<MenuDetalharProps> = ({ closeDetailMenu, obraDetalh
   };
 
   return (
-    <div className="bottom-0 left-0 w-full bg-white rounded-[10px]  flex flex-col items-center fixed z-10">
+    <div className="bottom-0 left-0 w-full bg-white rounded-[10px] flex flex-col items-center fixed z-10 max-h-screen overflow-y-auto">
       {/* Cabeçalho */}
       <div onClick={closeDetailMenu} className="cursor-pointer w-full">
         <div className="w-[92px] h-[9px] bg-customBlue mx-auto mt-3 rounded-md"></div>
@@ -43,63 +43,63 @@ const MenuDetalhar: React.FC<MenuDetalharProps> = ({ closeDetailMenu, obraDetalh
           Status da obra: <span className="font-bold text-gray-800">{detalhes.status}</span>
         </p>
 
-        <div className="grid grid-cols-4 gap-x-6 text-sm text-gray-800 leading-6">
-          <div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 text-sm text-gray-800 leading-6">
+          <div className="flex flex-col space-y-2">
             <p>
               <strong>Órgão superior:</strong><br />
               {detalhes.orgaoSuperior}
             </p>
-            <p className="mt-2">
+            <p>
               <strong>Modalidade:</strong><br />
               {detalhes.modalidade}
             </p>
-            <p className="mt-2">
+            <p>
               <strong>Quantidade de itens licitados:</strong><br />
               {detalhes.quantidadeItens}
             </p>
-            <p className="mt-2">
+            <p>
               <strong>Objeto:</strong><br />
               {detalhes.objeto}
             </p>
           </div>
-          <div>
+          <div className="flex flex-col space-y-2">
             <p>
               <strong>Órgão / Entidade vinculada:</strong><br />
               {detalhes.orgaoVinculado}
             </p>
-            <p className="mt-2">
+            <p>
               <strong>Data:</strong><br />
               {detalhes.data}
             </p>
-            <p className="mt-2">
+            <p>
               <strong>Valor:</strong><br />
               {detalhes.valor}
             </p>
           </div>
-          <div>
+          <div className="flex flex-col space-y-2">
             <p>
               <strong>Unidade gestora responsável:</strong><br />
               {detalhes.unidadeGestora}
             </p>
-            <p className="mt-2">
+            <p>
               <strong>Situação:</strong><br />
               {detalhes.situacao}
             </p>
-            <p className="mt-2">
+            <p>
               <strong>Contato no órgão / Entidade responsável:</strong><br />
               {detalhes.contato}
             </p>
           </div>
-          <div>
+          <div className="flex flex-col space-y-2">
             <p>
               <strong>Número da licitação:</strong><br />
               {detalhes.numeroLicitacao}
             </p>
-            <p className="mt-2">
+            <p>
               <strong>Processo:</strong><br />
               {detalhes.processo}
             </p>
-            <p className="mt-2">
+            <p>
               <strong>Município / UF:</strong><br />
               {detalhes.municipioUf}
             </p>
@@ -107,6 +107,7 @@ const MenuDetalhar: React.FC<MenuDetalharProps> = ({ closeDetailMenu, obraDetalh
         </div>
       </div>
     </div>
+
   );
 };
 
