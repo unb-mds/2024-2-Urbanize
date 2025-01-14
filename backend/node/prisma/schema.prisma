@@ -39,7 +39,6 @@ model Projeto {
 model Tomador {
   id        Int     @id @default(autoincrement())
   nome      String
-  codigo    BigInt
   projetoId String
   projeto   Projeto @relation(fields: [projetoId], references: [id])
 }
@@ -47,7 +46,6 @@ model Tomador {
 model Executor {
   id        Int     @id @default(autoincrement())
   nome      String
-  codigo    BigInt 
   projetoId String
   projeto   Projeto @relation(fields: [projetoId], references: [id])
 }
@@ -55,7 +53,6 @@ model Executor {
 model Repassador {
   id        Int     @id @default(autoincrement())
   nome      String
-  codigo    BigInt 
   projetoId String
   projeto   Projeto @relation(fields: [projetoId], references: [id])
 }

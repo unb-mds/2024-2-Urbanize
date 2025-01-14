@@ -12,7 +12,6 @@ async function fetchWithRetry(url: string, retries: number = 5, delay: number = 
   } catch (error: unknown) {
     if (error instanceof Error && error.message.includes("429")) {
       if (retries > 0) {
-        console.log(`Limite de requisições excedido. Tentando novamente em ${delay}ms...`);
         await new Promise((resolve) => setTimeout(resolve, delay)); // Atraso
         return fetchWithRetry(url, retries - 1, delay * 2); // Atraso exponencial
       } else {
@@ -45,17 +44,30 @@ async function fetchGeometria(idUnico: string): Promise<any[]> {
 
 // Função para extrair latitude e longitude de uma geometria WKT
 function extractLatLong(geometriaWkt: string): { latitude: number; longitude: number } | null {
-  const match = geometriaWkt.match(/POINT \(([-\d.]+) ([-\d.]+)\)/);
-  if (match) {
+  // Regex para POINT
+  const pointMatch = geometriaWkt.match(/POINT \(([-\d.]+) ([-\d.]+)\)/);
+
+  if (pointMatch) {
     return {
-      longitude: parseFloat(match[1]),
-      latitude: parseFloat(match[2]),
+      longitude: parseFloat(pointMatch[1]),
+      latitude: parseFloat(pointMatch[2]),
     };
-  } else {
-    console.warn("Formato inesperado de geometria WKT:", geometriaWkt);
   }
+
+  // Regex para POLYGON (extrai o primeiro ponto do polígono)
+  const polygonMatch = geometriaWkt.match(/POLYGON \(\(\s*([-\d.]+) ([-\d.]+)/);
+
+  if (polygonMatch) {
+    return {
+      longitude: parseFloat(polygonMatch[1]),
+      latitude: parseFloat(polygonMatch[2]),
+    };
+  }
+
+  console.warn("Formato inesperado de geometria WKT:", geometriaWkt);
   return null;
 }
+
 
 // Função para salvar projetos no banco de dados
 async function saveProject(projeto: any): Promise<void> {
@@ -63,8 +75,7 @@ async function saveProject(projeto: any): Promise<void> {
     const geometriaData = await fetchGeometria(projeto.idUnico);
     const geometriasComLatLong = geometriaData.map((geometria: any) => {
       const latLong = extractLatLong(geometria.geometriaWkt);
-      console.log("Resultado da extração de Lat/Long:", latLong); // Log do resultado
-
+  
       return {
         geometria: geometria.geometriaWkt,
         dataCriacao: new Date(geometria.dataCriacao),
@@ -130,19 +141,16 @@ async function saveProject(projeto: any): Promise<void> {
             tomadores: {
               create: projeto.tomadores?.map((tomador: any) => ({
                 nome: tomador.nome,
-                codigo: tomador.codigo
               })) || []
             },
             executores: {
               create: projeto.executores?.map((executor: any) => ({
                 nome: executor.nome,
-                codigo: executor.codigo
               })) || []
             },
             repassadores: {
               create: projeto.repassadores?.map((repassador: any) => ({
                 nome: repassador.nome,
-                codigo: repassador.codigo
               })) || []
             },
             eixos: {

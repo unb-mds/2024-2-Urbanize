@@ -28,6 +28,9 @@ export class PrismaProjetosRepository implements ProjetosRepository {
       skip: params.offset,
       take: params.limit,
       include: {
+        executores: true,
+        repassadores: true,
+        tomadores: true,
         eixos: true,
         tipos: true,
         geometrias: true,
@@ -42,6 +45,9 @@ export class PrismaProjetosRepository implements ProjetosRepository {
     return prisma.projeto.findUnique({
       where: { id },
       include: {
+        executores: true,
+        repassadores: true,
+        tomadores: true,
         eixos: true,
         tipos: true,
         geometrias: true,
