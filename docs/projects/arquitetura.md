@@ -100,7 +100,7 @@ Siga os passos abaixo para executar o **backend** do [**Urbanize**](#):
 Para rodar o projeto é fundamental ter algumas dependências globais:
 
 - Node
-- Miniconda/Python
+- Docker
 
 Para visualizar versões, links e as instruções completas de configuração do ambiente: [**Ambiente e Pré-requisitos**](https://unb-mds.github.io/2024-1-EducaMinas-frontend/environment/)
 
@@ -128,42 +128,51 @@ Em seguida instale as dependências do Urbanize:
 npm install
 ```
 
-### **Scraper**
+### **Cron Job**
 
-Navegue até o diretório `WebScrapper`:
+## Automação com Cron Job
 
-```bash
-cd WebScrapper
-```
-Crie um ambiente virtual com conda:
+O projeto utiliza um **Cron Job** para automatizar a requisição de dados das obras diretamente da API do site do governo. Esta funcionalidade garante que as informações estejam sempre atualizadas sem a necessidade de intervenção manual.
 
-```bash
-conda create --name <my-env>
-```
+## Funcionamento do Cron Job
 
-Ative o ambiente criado:
+O Cron Job já está configurado no projeto para executar periodicamente o script de requisição de dados. Ele está integrado ao sistema, eliminando a necessidade de configurações adicionais. O script responsável por esta automação está localizado em:
 
-```bash
-conda activate <my-env>
+```plaintext
+<diretorio-do-projeto>/scripts/update_data.py
 ```
 
-Instale as dependências e bibliotecas dentro do ambiente virtual:
+Por padrão, o Cron Job é executado a cada 24 horas para assegurar que as informações estejam sempre atualizadas. Caso seja necessário verificar ou ajustar a frequência, a alteração dos marcadores pode ser feito diretamente no código do projeto.
 
-```bash
-conda install --yes --file requirements.txt
+# Documentação com Swagger
+
+O projeto utiliza o **Swagger** para documentar os Endpoints do backend e facilitar os testes. A interface interativa permite explorar os Endpoints, enviar requisições e visualizar as respostas diretamente pelo navegador.
+
+## Acessando o Swagger UI
+
+1. Certifique-se de que o servidor backend esteja em execução.
+2. Acesse o Swagger UI pelo navegador utilizando o endereço padrão:
+
+```plaintext
+https://two024-2-urbanize.onrender.com/api-docs/
 ```
 
-O script ETL acessa o banco de dados por meio de um `.env` encontrado no caminho
-`WebScrapper/DataETL/.env`. A sua estrutura está escrita abaixo:
+A interface exibirá todos os Endpoints disponíveis, junto com as seguintes informações:
 
-```bash
-DATABASE_USERNAME=<INSERIR AQUI>
-DATABASE_PASSWORD=<INSERIR AQUI>
-DATABASE_NAME=<INSERIR AQUI>
-DATABASE_PORT=<INSERIR AQUI>
-DATABASE_HOST=<INSERIR AQUI>
-```
-### ⚙️ Execução
+- Métodos HTTP suportados (**GET**, **POST**, **PUT**, **DELETE**, etc.).
+- Parâmetros necessários.
+- Exemplos de requisições e respostas.
+
+## Benefícios do Swagger
+
+- Facilita a compreensão da API para desenvolvedores e testers.
+- Auxilia na realização dos testes diretamente na interface, sem a necessidade de ferramentas externas.
+- Garante que a documentação esteja sincronizada com os Endpoints implementados.
+
+Certifique-se de que quaisquer alterações ou novos Endpoints no backend sejam devidamente documentados no Swagger para manter a consistência da documentação.
+
+
+### Execução
 
 ### **Express/API**
 
@@ -186,27 +195,7 @@ Com a api rodando localmente é possível acessar sua documentação e testá-la
 http://localhost:3001/api-docs
 ```
 
-### **Scraper**
 
-Com o ambiente ativado como instruído acima, para extrair os dados do Oracle Data com o selenium execute:
-
-```bash
-DataScraper/InepScrapper.py
-```
-
-### **ETL**
-
-Para tratar e carregar os dados extraídos, em modo debugger, acesse `WebScrapper/DataETL`, lembre-se de selecionar o ambiente conda que foi criado, e então para rodar o programa por partes, execute:
-
-```bash
-ETLDebugger.ipynb
-```
-
-Se preferir, e não precisar/quiser rodar em modo debugger(por partes), execute o código para produção:
-
-```bash
-python3 WebSrapper/DataETL/main.py
-```
 
 ---
 
@@ -215,28 +204,6 @@ python3 WebSrapper/DataETL/main.py
 **Para acessar o guia completo de contribuição**: [**Guia de Contribuição**](https://unb-mds.github.io/2024-2-Urbanize/)
 
 ---
-
-### Documentação 
-
-**Para acessar a documentação completa**: [**Documentação Urbanize**](https://unb-mds.github.io/2024-2-Urbanize/)
-
-Nela, você encontra os seguintes tópicos:
-
-- [Início](https://unb-mds.github.io/2024-2-Urbanize/)
-- [Sprints](https://unb-mds.github.io/2024-2-Urbanize/sprints/sprint-0/)
-- [Projeto](https://unb-mds.github.io/2024-2-Urbanize/project/personas/):
-    - [Personas](https://unb-mds.github.io/2024-2-Urbanize/project/personas/)
-    - [StoryMap](https://unb-mds.github.io/2024-2-Urbanize/project/storymap/)
-    - [Requisitos](https://unb-mds.github.io/2024-2-Urbanize/project/requirements/)
-    - [EAP](https://unb-mds.github.io/2024-2-Urbanize/project/eap/)
-    - [API](https://unb-mds.github.io/2024-2-Urbanize/project/servicos/)
-    - [Arquitetura e Tecnologias](https://unb-mds.github.io/2024-2-Urbanize/project/arquitetura/)
-    - [Protótipo](https://unb-mds.github.io/2024-2-Urbanize/project/prototipo/)
-- [Como contribuir](https://unb-mds.github.io/2024-2-Urbanize/environment/):
-    - [Ambiente de desenvolvimento](https://unb-mds.github.io/2024-2-Urbanize/environment/)
-    - [Primeiros passos - frotend](https://unb-mds.github.io/2024-2-Urbanize/contributing-frontend/)
-    - [Primeiros passos - backend](https://unb-mds.github.io/2024-2-Urbanize/contributing-backend/)
-- [Sobre](https://unb-mds.github.io/2024-2-Urbanize/about/)
 
 
 

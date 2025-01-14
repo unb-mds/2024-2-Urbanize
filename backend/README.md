@@ -106,7 +106,7 @@ Nesse projeto estou utilizando testes unitários e testes de ponta a ponta (e2e)
 $ npm run test
 
 # Testes de ponta a ponta
-$ npm run test:e2e
+$ npm run test:watch
 ```
 
 Demais comandos para execução de testes, builds e linter podem ser encontrados na guia _scripts_  do arquivo `package.json` na pasta raiz.
@@ -114,7 +114,7 @@ Demais comandos para execução de testes, builds e linter podem ser encontrados
 Com a api rodando localmente é possível acessar sua documentação e testá-la no **Swagger**, basta acessar:
 
 ```bash
-http://localhost:3001/api-docs
+https://two024-2-urbanize.onrender.com/api-docs/
 ```
 ---
 
