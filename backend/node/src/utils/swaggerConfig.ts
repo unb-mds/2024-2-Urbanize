@@ -13,11 +13,11 @@ const swaggerDefinition: SwaggerDefinition = {
   },
   servers: [
     {
-      url: 'https://localhost:3000/v1',
+      url: '',
       description: 'Ambiente de teste',
     },
     {
-      url: 'https://2024-2-urbanize.vercel.app',
+      url: 'https://two024-2-urbanize.onrender.com',
       description: 'Ambiente de produção',
     },
   ],

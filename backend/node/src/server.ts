@@ -23,7 +23,7 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 // inicializando o cron job para coleta de dados
 new CronJob( 
-  '*/30 * * * *', // atualiza a cada 7 dias
+  '0 0 * * *', // atualiza a cada 24 horas
   async () => { 
     await fetchAndSaveProjects(); 
   }, 
