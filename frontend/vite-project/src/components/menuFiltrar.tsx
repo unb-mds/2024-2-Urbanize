@@ -4,9 +4,15 @@ import TituloMenus from './tituloMenus';
 
 interface MenuFiltrarProps {
   closeFilterMenu: () => void; // Função para redirecionar ao menu principal
+  onSearchClick: () => void;
+  onListClick: () => void;
 }
 
-const MenuFiltrar: React.FC<MenuFiltrarProps> = ({ closeFilterMenu }) => {
+const MenuFiltrar: React.FC<MenuFiltrarProps> = ({ 
+  closeFilterMenu, 
+  onSearchClick, 
+  onListClick 
+}) => {
   const [value, setValue] = useState('');
 
   // Função para formatar o valor como moeda
@@ -93,14 +99,19 @@ const MenuFiltrar: React.FC<MenuFiltrarProps> = ({ closeFilterMenu }) => {
             <button
               type="button"
               onClick={handleFilter}
-              className="w-20 py-1 mt-1 bg-customBlue text-white font-bold rounded-[10px] hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400"
+              className="w-20 py-1 mb-1 bg-customBlue text-white font-bold rounded-[10px] hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400"
             >
               Filtrar
             </button>
           </div>
         </form>
 
-        <BotoesMenu className="w-full mt-0" />
+        <BotoesMenu 
+          className="w-full mt-[-10px]" 
+          onFilterClick={closeFilterMenu}
+          onSearchClick={onSearchClick}
+          onListClick={onListClick}
+        />
       </div>
     </div>
   );
