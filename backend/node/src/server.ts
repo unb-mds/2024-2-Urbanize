@@ -1,3 +1,4 @@
+import { options } from './utils/swaggerConfig.js';
 import express from 'express';
 import cors from 'cors';
 import 'express-async-errors'
@@ -7,7 +8,7 @@ import { CronJob } from 'cron';
 import { fetchAndSaveProjects } from './database/fetchAPI';
 import swaggerUi from 'swagger-ui-express';
 import swaggerJSDoc from 'swagger-jsdoc';
-import { options } from '../swaggerConfig';
+
 
 const app = express();
 const swaggerSpec = swaggerJSDoc(options);
