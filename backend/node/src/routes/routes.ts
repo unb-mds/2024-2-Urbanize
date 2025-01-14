@@ -30,13 +30,13 @@ const router = Router()
  *         required: false
  *         description: Situação do Projeto (Em Execução, Paralisada, Cancelada, Cadastrada, Concluída ou Inacabada)
  *       - in: query
- *         name: pagina
+ *         name: page
  *         schema:
  *           type: integer
  *         required: false
  *         description: Pagina Atual
  *       - in: query
- *         name: tamanhoDaPagina
+ *         name: pageSize
  *         schema:
  *           type: integer
  *         required: false
