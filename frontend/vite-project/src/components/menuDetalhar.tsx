@@ -44,7 +44,7 @@ const MenuDetalhar: React.FC<MenuDetalharProps> = ({ closeDetailMenu, obraDetalh
       </div>
     );
   }
-  
+
 
   if (!detalhes) {
     return (
@@ -68,32 +68,24 @@ const MenuDetalhar: React.FC<MenuDetalharProps> = ({ closeDetailMenu, obraDetalh
         </h1>
       </div>
 
-      <div className="w-full p-4 bg-white ml-[40px] mr-[20px]">
-        <p className="text-lg font-bold text-gray-900 mb-4">
-          Status da obra: <span className="font-bold text-gray-800">{detalhes.situacao}</span>
-        </p>
+      <div className="w-full p-3 bg-white">
+        <div className="grid grid-cols-1 gap-2 mb-2">
+          <p>
+            <strong>Nome: </strong>
+            {detalhes.nome}
+          </p>
+          <p>
+            <strong>Meta Global: </strong>
+            {detalhes.metaGlobal}
+          </p>
+          <p>
+            <strong>Descrição: </strong>
+            {detalhes.descricao}
+          </p>
+        </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 text-sm text-gray-800 leading-6">
-          <div className="flex flex-col space-y-2">
-            <p>
-              <strong>Nome: </strong><br />
-              {detalhes.nome}
-            </p>
-            <p>
-              <strong>Funcao Social: </strong><br />
-              {detalhes.funcaoSocial}
-            </p>
-            <p>
-              <strong>Meta Global: </strong><br />
-              {detalhes.metaGlobal}
-            </p>
-            <p>
-              <strong>Descricao: </strong><br />
-              {detalhes.descricao}
-            </p>
-          </div>
-
-          <div className="flex flex-col space-y-2 ">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm text-gray-800 leading-6">
+          <div className="space-y-2">
             <p>
               <strong>Data Inicial Prevista: </strong><br />
               {detalhes.dataInicialPrevista}
@@ -114,19 +106,23 @@ const MenuDetalhar: React.FC<MenuDetalharProps> = ({ closeDetailMenu, obraDetalh
               <strong>Valor: </strong><br />
               {detalhes.fontesDeRecurso[0]?.valorInvestimentoPrevisto}
             </p>
-          </div>
-
-          <div className="flex flex-col space-y-2">
             <p>
-              <strong>Unidade gestora responsável: </strong><br />
+              <strong>Função Social: </strong><br />
+              {detalhes.funcaoSocial}
+            </p>
+            <p>
+              <strong>Unidade Gestora Responsável: </strong><br />
               {detalhes.tomadores[0]?.nome}
             </p>
+          </div>
+
+          <div className="space-y-2">
             <p>
               <strong>Situação: </strong><br />
               {detalhes.situacao}
             </p>
             <p>
-              <strong>Especie: </strong><br />
+              <strong>Espécie: </strong><br />
               {detalhes.especie}
             </p>
             <p>
@@ -134,11 +130,11 @@ const MenuDetalhar: React.FC<MenuDetalharProps> = ({ closeDetailMenu, obraDetalh
               {detalhes.natureza}
             </p>
             <p>
-              <strong>Contato no órgão / Entidade responsável: </strong><br />
+              <strong>Contato no Órgão/Entidade Responsável: </strong><br />
               {detalhes.repassadores[0]?.nome}
             </p>
             <p>
-              <strong>Número da licitação: </strong><br />
+              <strong>Número da Licitação: </strong><br />
               {detalhes.idUnico}
             </p>
             <p>
@@ -146,15 +142,14 @@ const MenuDetalhar: React.FC<MenuDetalharProps> = ({ closeDetailMenu, obraDetalh
               {detalhes.idUnico}
             </p>
             <p>
-              <strong>Município / UF: </strong><br />
+              <strong>Município/UF: </strong><br />
               {detalhes.uf}
             </p>
-
-
           </div>
         </div>
+
       </div>
-    </div>
+    </div >
   );
 };
 
