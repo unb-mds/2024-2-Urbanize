@@ -12,6 +12,7 @@ interface Project {
   descricao: string;
   latitude: number;
   longitude: number;
+  situacao: string; // Adicionando a situação do projeto
 }
 
 const MapComponent: React.FC<MapComponentProps> = ({ openDetailMenu }) => {
@@ -30,6 +31,7 @@ const MapComponent: React.FC<MapComponentProps> = ({ openDetailMenu }) => {
             descricao: project.descricao,
             latitude: geo.latitude,
             longitude: geo.longitude,
+            situacao: project.situacao, // Adicionando situação ao projeto
           }))
         );
         setProjects(mappedProjects);
@@ -54,23 +56,26 @@ const MapComponent: React.FC<MapComponentProps> = ({ openDetailMenu }) => {
       attribution: '&copy; OpenStreetMap contributors',
     }).addTo(map);
 
-    const svgIcon = (size: number) =>
-      L.divIcon({
-        html: `
-          <svg width="${size}" height="${size}" viewBox="0 0 151 151" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="76" cy="78" r="23" fill="#00CD1F"/>
-            <circle cx="75.5" cy="75.5" r="73" stroke="#00CD1F" stroke-width="5"/>
-          </svg>
-        `,
-        className: '',
-        iconSize: [size, size],
+    // Função para criar o ícone baseado na situação do projeto
+    const svgIcon = (size: number, situacao: string) => {
+      // Definindo o caminho do ícone com base na situação
+      const iconPath =
+        ['Execução', 'Cadastrada', 'Concluída'].includes(situacao)
+          ? '/marcadorVerde.svg' // Ícone verde
+          : '/marcadorVermelho.svg'; // Ícone vermelho
+
+      return L.icon({
+        iconUrl: iconPath, // Usando o caminho do arquivo SVG
+        iconSize: [size, size], // Definindo o tamanho do ícone
+        iconAnchor: [size / 2, size], // Centralizando o ícone
       });
+    };
 
     // Adicionar marcadores ao mapa
     projects.forEach((project) => {
-      const marker = L.marker([project.latitude, project.longitude], { icon: svgIcon(25) }).addTo(map);
+      const marker = L.marker([project.latitude, project.longitude], { icon: svgIcon(25, project.situacao) }).addTo(map);
       marker.on('click', () => {
-        openDetailMenu(project.descricao); // Passar a descrição para o menu de detalhes
+        openDetailMenu(project.id); // Passar a descrição para o menu de detalhes
       });
     });
 

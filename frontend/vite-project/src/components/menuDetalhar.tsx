@@ -1,32 +1,50 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 interface MenuDetalharProps {
-  closeDetailMenu: () => void; // Função para fechar o menu
-  obraDetalhada: string; // Nome da obra detalhada
+  closeDetailMenu: () => void;
+  obraDetalhada: string; // Agora é o ID do projeto
 }
 
 const MenuDetalhar: React.FC<MenuDetalharProps> = ({ closeDetailMenu, obraDetalhada }) => {
-  // Exemplo de dados dinâmicos
-  const detalhes = {
-    status: "No prazo",
-    orgaoSuperior: "Ministério da Educação",
-    modalidade: "Pregão",
-    quantidadeItens: 140,
-    orgaoVinculado: "Ministério da Educação",
-    data: "00/00/0000",
-    valor: 140,
-    unidadeGestora: "Hospital da Educação",
-    situacao: "Publicado",
-    contato: "00",
-    numeroLicitacao: "0000000000000",
-    processo: "222222222222",
-    municipioUf: "Brasília / DF",
-    objeto: "Objeto - aquisição",
-  };
+  const [detalhes, setDetalhes] = useState<any>(null); // Estado para armazenar os detalhes do projeto
+  const [loading, setLoading] = useState<boolean>(true);
+
+  useEffect(() => {
+    const fetchProjectDetails = async () => {
+      try {
+        const response = await fetch(`https://two024-2-urbanize.onrender.com/api/projeto-investimento/${obraDetalhada}`);
+        const data = await response.json();
+        console.log('Resposta da API:', data); // Verifique os dados retornados
+  
+        // Verifique se o projeto existe, agora considerando que o objeto pode estar diretamente em 'data'
+        if (data && data.id) {
+          setDetalhes(data); // Armazene os detalhes diretamente
+        } else {
+          console.log('Projeto não encontrado.');
+          setDetalhes(null); // Caso não encontre, setDetalhes como null
+        }
+        setLoading(false);
+      } catch (error) {
+        console.error('Erro ao buscar os detalhes do projeto:', error);
+        setLoading(false);
+        setDetalhes(null); // Se ocorrer erro, setDetalhes como null
+      }
+    };
+  
+    fetchProjectDetails();
+  }, [obraDetalhada]); // Recarrega quando obraDetalhada mudar
+  
+
+  if (loading) {
+    return <div>Carregando...</div>;
+  }
+
+  if (!detalhes) {
+    return <div>Projeto não encontrado</div>; // Mensagem amigável
+  }
 
   return (
     <div className="bottom-0 left-0 w-full bg-white rounded-[10px] flex flex-col items-center fixed z-10 max-h-screen overflow-y-auto">
-      {/* Cabeçalho */}
       <div onClick={closeDetailMenu} className="cursor-pointer w-full">
         <div className="w-[92px] h-[9px] bg-customBlue mx-auto mt-3 rounded-md"></div>
       </div>
@@ -37,77 +55,93 @@ const MenuDetalhar: React.FC<MenuDetalharProps> = ({ closeDetailMenu, obraDetalh
         </h1>
       </div>
 
-      {/* Detalhamento da obra */}
       <div className="w-full p-4 bg-white ml-[40px] mr-[20px]">
         <p className="text-lg font-bold text-gray-900 mb-4">
-          Status da obra: <span className="font-bold text-gray-800">{detalhes.status}</span>
+          Status da obra: <span className="font-bold text-gray-800">{detalhes.situacao}</span>
         </p>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 text-sm text-gray-800 leading-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 text-sm text-gray-800 leading-6">
           <div className="flex flex-col space-y-2">
             <p>
-              <strong>Órgão superior:</strong><br />
-              {detalhes.orgaoSuperior}
+              <strong>Nome: </strong><br />
+              {detalhes.nome}
             </p>
             <p>
-              <strong>Modalidade:</strong><br />
-              {detalhes.modalidade}
+              <strong>Funcao Social: </strong><br />
+              {detalhes.funcaoSocial}
             </p>
             <p>
-              <strong>Quantidade de itens licitados:</strong><br />
-              {detalhes.quantidadeItens}
+              <strong>Meta Global: </strong><br />
+              {detalhes.metaGlobal}
             </p>
             <p>
-              <strong>Objeto:</strong><br />
-              {detalhes.objeto}
+              <strong>Descricao: </strong><br />
+              {detalhes.descricao}
             </p>
           </div>
-          <div className="flex flex-col space-y-2">
+
+          <div className="flex flex-col space-y-2 ">
             <p>
-              <strong>Órgão / Entidade vinculada:</strong><br />
-              {detalhes.orgaoVinculado}
+              <strong>Data Inicial Prevista: </strong><br />
+              {detalhes.dataInicialPrevista}
             </p>
             <p>
-              <strong>Data:</strong><br />
-              {detalhes.data}
+              <strong>Data Final Prevista: </strong><br />
+              {detalhes.dataFinalPrevista}
             </p>
             <p>
-              <strong>Valor:</strong><br />
-              {detalhes.valor}
+              <strong>Data Inicial Efetiva: </strong><br />
+              {detalhes.dataInicialEfetiva}
+            </p>
+            <p>
+              <strong>Data Final Efetiva: </strong><br />
+              {detalhes.dataFinalEfetiva}
+            </p>
+            <p>
+              <strong>Valor: </strong><br />
+              {detalhes.fontesDeRecurso[0]?.valorInvestimentoPrevisto}
             </p>
           </div>
+
           <div className="flex flex-col space-y-2">
             <p>
-              <strong>Unidade gestora responsável:</strong><br />
-              {detalhes.unidadeGestora}
+              <strong>Unidade gestora responsável: </strong><br />
+              {detalhes.tomadores[0]?.nome}
             </p>
             <p>
-              <strong>Situação:</strong><br />
+              <strong>Situação: </strong><br />
               {detalhes.situacao}
             </p>
             <p>
-              <strong>Contato no órgão / Entidade responsável:</strong><br />
-              {detalhes.contato}
-            </p>
-          </div>
-          <div className="flex flex-col space-y-2">
-            <p>
-              <strong>Número da licitação:</strong><br />
-              {detalhes.numeroLicitacao}
+              <strong>Especie: </strong><br />
+              {detalhes.especie}
             </p>
             <p>
-              <strong>Processo:</strong><br />
-              {detalhes.processo}
+              <strong>Natureza: </strong><br />
+              {detalhes.natureza}
             </p>
             <p>
-              <strong>Município / UF:</strong><br />
-              {detalhes.municipioUf}
+              <strong>Contato no órgão / Entidade responsável: </strong><br />
+              {detalhes.repassadores[0]?.nome}
             </p>
+            <p>
+              <strong>Número da licitação: </strong><br />
+              {detalhes.idUnico}
+            </p>
+            <p>
+              <strong>Processo: </strong><br />
+              {detalhes.idUnico}
+            </p>
+            <p>
+              <strong>Município / UF: </strong><br />
+              {detalhes.uf}
+            </p>
+          
+            
           </div>
         </div>
       </div>
     </div>
-
   );
 };
 
