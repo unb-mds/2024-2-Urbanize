@@ -15,7 +15,7 @@ const MenuDetalhar: React.FC<MenuDetalharProps> = ({ closeDetailMenu, obraDetalh
         const response = await fetch(`https://two024-2-urbanize.onrender.com/api/projeto-investimento/${obraDetalhada}`);
         const data = await response.json();
         console.log('Resposta da API:', data); // Verifique os dados retornados
-  
+
         // Verifique se o projeto existe, agora considerando que o objeto pode estar diretamente em 'data'
         if (data && data.id) {
           setDetalhes(data); // Armazene os detalhes diretamente
@@ -30,17 +30,30 @@ const MenuDetalhar: React.FC<MenuDetalharProps> = ({ closeDetailMenu, obraDetalh
         setDetalhes(null); // Se ocorrer erro, setDetalhes como null
       }
     };
-  
+
     fetchProjectDetails();
   }, [obraDetalhada]); // Recarrega quando obraDetalhada mudar
-  
+
 
   if (loading) {
-    return <div>Carregando...</div>;
+    return (
+      <div className="fixed inset-0 flex items-center justify-center z-10">
+        <div className="h-[60px] w-[200px] bg-customBlue text-white font-bold text-[25px] flex items-center justify-center rounded-[50px]">
+          <h2>Carregando...</h2>
+        </div>
+      </div>
+    );
   }
+  
 
   if (!detalhes) {
-    return <div>Projeto não encontrado</div>; // Mensagem amigável
+    return (
+      <div className="fixed inset-0 flex items-center justify-center z-10">
+        <div className="h-[60px] w-[200px] bg-customBlue text-white font-bold text-[25px] flex items-center justify-center rounded-[50px]">
+          <h2> Projeto não encontrado! </h2>
+        </div>
+      </div>
+    );
   }
 
   return (
@@ -136,8 +149,8 @@ const MenuDetalhar: React.FC<MenuDetalharProps> = ({ closeDetailMenu, obraDetalh
               <strong>Município / UF: </strong><br />
               {detalhes.uf}
             </p>
-          
-            
+
+
           </div>
         </div>
       </div>
