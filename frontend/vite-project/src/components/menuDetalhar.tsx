@@ -95,11 +95,11 @@ const MenuDetalhar: React.FC<MenuDetalharProps> = ({ closeDetailMenu, obraDetalh
 
       <div className="text-center border-b border-gray-300 w-full text-white">
         <h1 className="bg-customBlue text-[22px] font-medium mt-6 ml-[20px] mr-[20px] text-start">
-          <div className="ml-[10px]">Detalhamento da Licitação</div>
+          <div className="ml-[10px]">Detalhamento da Licitação {detalhes.idUnico}</div> {/* Numero da licitação */}
         </h1>
       </div>
 
-      <div className=" ml-[20px] p-2 bg-white">
+      <div className=" ml-[25px] p-2 bg-white">
         <p className="text-lg font-bold text-gray-900 mb-4">
           Status da obra: <span className="font-bold text-gray-800">{detalhes.situacao}</span>
         </p>
@@ -144,6 +144,10 @@ const MenuDetalhar: React.FC<MenuDetalharProps> = ({ closeDetailMenu, obraDetalh
               )}
             </p>
             <p>
+              <strong>População Beneficiada: </strong>
+              {detalhes.populacaoBeneficiada}
+            </p>
+            <p>
               <strong>Função Social: </strong>
               {detalhes.funcaoSocial}
             </p>
@@ -167,16 +171,31 @@ const MenuDetalhar: React.FC<MenuDetalharProps> = ({ closeDetailMenu, obraDetalh
               {detalhes.repassadores[0]?.nome}
             </p>
             <p>
-              <strong>Número da Licitação: </strong>
-              {detalhes.idUnico}
+              <strong>Executores: </strong>
+              {detalhes.executores[0]?.nome}
             </p>
             <p>
-              <strong>Processo: </strong>
-              {detalhes.idUnico}
+              <strong>Eixos: </strong>
+              {detalhes.eixos[0]?.descricao}
             </p>
             <p>
-              <strong>Município/UF: </strong>
-              {detalhes.uf}
+              <strong>Tipos: </strong>
+              {detalhes.tipos[0]?.descricao}
+            </p>
+
+            <p >
+              <strong>Fontes de recurso: </strong>
+              <div className='ml-[20px]'>
+                <p>
+                  <strong>Origem: </strong>{detalhes.fontesDeRecurso[0]?.origem}
+                </p>
+                <p>
+                  <strong>Valor investimento previsto: </strong>
+                  {formatarValor(
+                    detalhes.fontesDeRecurso[0]?.valorInvestimentoPrevisto || 0
+                  )}
+                </p>
+              </div>
             </p>
           </div>
         </div>
