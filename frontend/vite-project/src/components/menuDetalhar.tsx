@@ -86,6 +86,10 @@ const MenuDetalhar: React.FC<MenuDetalharProps> = ({ closeDetailMenu, obraDetalh
       </div>
 
       <div className="w-full p-5 bg-white">
+        <p className="text-lg font-bold text-gray-900 mb-4">
+          Status da obra: <span className="font-bold text-gray-800">{detalhes.situacao}</span>
+        </p>
+
         <div className="grid grid-cols-1 gap-2 mb-6">
           <p>
             <strong>Nome: </strong>
@@ -124,7 +128,7 @@ const MenuDetalhar: React.FC<MenuDetalharProps> = ({ closeDetailMenu, obraDetalh
               {detalhes.fontesDeRecurso[0]?.valorInvestimentoPrevisto}
             </p>
             <p>
-              <strong>Função Social: </strong><br />
+              <strong>Função Social: </strong>
               {detalhes.funcaoSocial}
             </p>
             <p>
@@ -134,10 +138,7 @@ const MenuDetalhar: React.FC<MenuDetalharProps> = ({ closeDetailMenu, obraDetalh
           </div>
 
           <div className="space-y-2">
-            <p>
-              <strong>Situação: </strong>
-              {detalhes.situacao}
-            </p>
+  
             <p>
               <strong>Espécie: </strong>
               {detalhes.especie}
