@@ -1,7 +1,4 @@
-
-  
-
-
+[![Maintainability](https://api.codeclimate.com/v1/badges/b8b4dc2e5c0c5a1cb0c9/maintainability)](https://codeclimate.com/github/unb-mds/2024-2-Urbanize/maintainability)
 ## Sumário
 - 🏗️ Urbanize
   - [Sumário](#sumário)
