@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 interface MenuDetalharProps {
   closeDetailMenu: () => void;
-  obraDetalhada: string; // Agora é o ID do projeto
+  obraDetalhada: string; 
 }
 
 const MenuDetalhar: React.FC<MenuDetalharProps> = ({ closeDetailMenu, obraDetalhada }) => {
@@ -20,7 +20,13 @@ const MenuDetalhar: React.FC<MenuDetalharProps> = ({ closeDetailMenu, obraDetalh
     return `${dia}/${mes}/${ano}`;
   };
 
-  useEffect(() => {
+  // Função para formatar valor como moeda BRL
+  const formatarValor = (value: number): string =>
+    new Intl.NumberFormat('pt-BR', {
+      style: 'currency',
+      currency: 'BRL',
+    }).format(value);
+
     const fetchProjectDetails = async () => {
       try {
         const response = await fetch(`https://two024-2-urbanize.onrender.com/api/projeto-investimento/${obraDetalhada}`);
@@ -41,8 +47,10 @@ const MenuDetalhar: React.FC<MenuDetalharProps> = ({ closeDetailMenu, obraDetalh
         setDetalhes(null); // Se ocorrer erro, setDetalhes como null
       }
     };
-    fetchProjectDetails();
-  }, [obraDetalhada]);
+
+    useEffect(() => {
+      fetchProjectDetails();
+    }, [obraDetalhada]);
 
   // Efeito para contagem regressiva
   useEffect(() => {
@@ -50,19 +58,19 @@ const MenuDetalhar: React.FC<MenuDetalharProps> = ({ closeDetailMenu, obraDetalh
       const timer = setInterval(() => {
         setSecondsLeft((prev) => prev - 1);
       }, 500);
-
       return () => clearInterval(timer); // Limpa o timer ao desmontar o componente
     } else if (secondsLeft === 0) {
       closeDetailMenu(); // Volta para a tela anterior após 15 segundos
     }
   }, [detalhes, secondsLeft, closeDetailMenu]);
 
-  // Função para formatar valor como moeda BRL
-  const formatarValor = (value: number): string =>
-    new Intl.NumberFormat('pt-BR', {
-      style: 'currency',
-      currency: 'BRL',
-    }).format(value);
+  const renderDetalhes = (label: string, value: any) => (
+    <p>
+      <strong>{label}: </strong>
+      {value}
+    </p>
+  );
+
 
   if (loading) {
     return (
@@ -95,106 +103,49 @@ const MenuDetalhar: React.FC<MenuDetalharProps> = ({ closeDetailMenu, obraDetalh
 
       <div className="text-center border-b border-gray-300 w-full text-white">
         <h1 className="bg-customBlue text-[22px] font-medium mt-6 ml-[20px] mr-[20px] text-start">
-          <div className="ml-[10px]">Detalhamento da Licitação {detalhes.idUnico}</div> {/* Numero da licitação */}
+          <div className="ml-[10px]">Detalhamento da Licitação {detalhes.idUnico}</div>
         </h1>
       </div>
 
-      <div className=" ml-[25px] p-2 bg-white">
+      <div className="ml-[25px] p-2 bg-white">
         <p className="text-lg font-bold text-gray-900 mb-4">
           Status da obra: <span className="font-bold text-gray-800">{detalhes.situacao}</span>
         </p>
 
         <div className="grid grid-cols-1 gap-2 mb-6">
-          <p>
-            <strong>Nome: </strong>
-            {detalhes.nome}
-          </p>
-          <p>
-            <strong>Meta Global: </strong>
-            {detalhes.metaGlobal}
-          </p>
-          <p>
-            <strong>Descrição: </strong>
-            {detalhes.descricao}
-          </p>
+          {renderDetalhes('Nome', detalhes.nome)}
+          {renderDetalhes('Meta Global', detalhes.metaGlobal)}
+          {renderDetalhes('Descrição', detalhes.descricao)}
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm text-gray-800 leading-6">
           <div className="space-y-2">
-            <p>
-              <strong>Data Inicial Prevista: </strong>
-              {formatarData(detalhes.dataInicialPrevista)}
-            </p>
-            <p>
-              <strong>Data Final Prevista: </strong>
-              {formatarData(detalhes.dataFinalPrevista)}
-            </p>
-            <p>
-              <strong>Data Inicial Efetiva: </strong>
-              {formatarData(detalhes.dataInicialEfetiva)}
-            </p>
-            <p>
-              <strong>Data Final Efetiva: </strong>
-              {formatarData(detalhes.dataFinalEfetiva)}
-            </p>
-            <p>
-              <strong>Função Social: </strong>
-              {detalhes.funcaoSocial}
-            </p>
-            <p>
-              <strong>Unidade Gestora Responsável: </strong>
-              {detalhes.tomadores[0]?.nome}
-            </p>
-            <p>
-              <strong>Contato no Órgão/Entidade Responsável: </strong>
-              {detalhes.repassadores[0]?.nome}
-            </p>
-            <p>
-              <strong>Executores: </strong>
-              {detalhes.executores[0]?.nome}
-            </p>
+            {renderDetalhes('Data Inicial Prevista', formatarData(detalhes.dataInicialPrevista))}
+            {renderDetalhes('Data Final Prevista', formatarData(detalhes.dataFinalPrevista))}
+            {renderDetalhes('Data Inicial Efetiva', formatarData(detalhes.dataInicialEfetiva))}
+            {renderDetalhes('Data Final Efetiva', formatarData(detalhes.dataFinalEfetiva))}
+            {renderDetalhes('Função Social', detalhes.funcaoSocial)}
+            {renderDetalhes('Unidade Gestora Responsável', detalhes.tomadores[0]?.nome)}
+            {renderDetalhes('Contato no Órgão/Entidade Responsável', detalhes.repassadores[0]?.nome)}
+            {renderDetalhes('Executores', detalhes.executores[0]?.nome)}
           </div>
 
           <div className="space-y-2">
-            <p>
-              <strong>População Beneficiada: </strong>
-              {detalhes.populacaoBeneficiada}
-            </p>
-            <p>
-              <strong>Espécie: </strong>
-              {detalhes.especie}
-            </p>
-            <p>
-              <strong>Natureza: </strong>
-              {detalhes.natureza}
-            </p>
-            <p>
-              <strong>Eixos: </strong>
-              {detalhes.eixos[0]?.descricao}
-            </p>
-            <p>
-              <strong>Tipos: </strong>
-              {detalhes.tipos[0]?.descricao}
-            </p>
-
-            <p >
-              <strong>Fontes de recurso: </strong>
+            {renderDetalhes('População Beneficiada', detalhes.populacaoBeneficiada)}
+            {renderDetalhes('Espécie', detalhes.especie)}
+            {renderDetalhes('Natureza', detalhes.natureza)}
+            {renderDetalhes('Eixos', detalhes.eixos[0]?.descricao)}
+            {renderDetalhes('Tipos', detalhes.tipos[0]?.descricao)}
+            <p><strong>Fontes de recurso: </strong>
               <div className='ml-[20px]'>
-                <p>
-                  <strong>Origem: </strong>{detalhes.fontesDeRecurso[0]?.origem}
-                </p>
-                <p>
-                  <strong>Valor investimento previsto: </strong>
-                  {formatarValor(
-                    detalhes.fontesDeRecurso[0]?.valorInvestimentoPrevisto || 0
-                  )}
-                </p>
+                <p><strong>Origem: </strong>{detalhes.fontesDeRecurso[0]?.origem}</p>
+                <p><strong>Valor investimento previsto: </strong>{formatarValor(detalhes.fontesDeRecurso[0]?.valorInvestimentoPrevisto || 0)}</p>
               </div>
             </p>
           </div>
         </div>
       </div>
-    </div >
+    </div>
   );
 };
 
