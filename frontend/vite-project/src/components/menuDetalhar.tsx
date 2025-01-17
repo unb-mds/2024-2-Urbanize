@@ -138,33 +138,12 @@ const MenuDetalhar: React.FC<MenuDetalharProps> = ({ closeDetailMenu, obraDetalh
               {formatarData(detalhes.dataFinalEfetiva)}
             </p>
             <p>
-              <strong>Valor: </strong>
-              {formatarValor(
-                detalhes.fontesDeRecurso[0]?.valorInvestimentoPrevisto || 0
-              )}
-            </p>
-            <p>
-              <strong>População Beneficiada: </strong>
-              {detalhes.populacaoBeneficiada}
-            </p>
-            <p>
               <strong>Função Social: </strong>
               {detalhes.funcaoSocial}
             </p>
             <p>
               <strong>Unidade Gestora Responsável: </strong>
               {detalhes.tomadores[0]?.nome}
-            </p>
-          </div>
-
-          <div className="space-y-2">
-            <p>
-              <strong>Espécie: </strong>
-              {detalhes.especie}
-            </p>
-            <p>
-              <strong>Natureza: </strong>
-              {detalhes.natureza}
             </p>
             <p>
               <strong>Contato no Órgão/Entidade Responsável: </strong>
@@ -173,6 +152,21 @@ const MenuDetalhar: React.FC<MenuDetalharProps> = ({ closeDetailMenu, obraDetalh
             <p>
               <strong>Executores: </strong>
               {detalhes.executores[0]?.nome}
+            </p>
+          </div>
+
+          <div className="space-y-2">
+            <p>
+              <strong>População Beneficiada: </strong>
+              {detalhes.populacaoBeneficiada}
+            </p>
+            <p>
+              <strong>Espécie: </strong>
+              {detalhes.especie}
+            </p>
+            <p>
+              <strong>Natureza: </strong>
+              {detalhes.natureza}
             </p>
             <p>
               <strong>Eixos: </strong>
