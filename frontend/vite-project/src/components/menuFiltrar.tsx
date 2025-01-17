@@ -14,6 +14,8 @@ const MenuFiltrar: React.FC<MenuFiltrarProps> = ({
   onListClick 
 }) => {
   const [value, setValue] = useState('');
+  const [name, setName] = useState('');
+  const [category, setCategory] = useState('');
 
   // Função para formatar o valor como moeda
   const formatCurrency = (value: string) => {
@@ -41,6 +43,13 @@ const MenuFiltrar: React.FC<MenuFiltrarProps> = ({
 
   const handleFilter = () => {
     alert('Filtrar botão clicado!');
+    handleClear(); // Clear the input values after filtering
+  };
+
+  const handleClear = () => {
+    setValue('');
+    setName('');
+    setCategory('');
   };
 
   return (
@@ -60,6 +69,8 @@ const MenuFiltrar: React.FC<MenuFiltrarProps> = ({
               type="text"
               id="name"
               placeholder="Nome"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
               className="w-full px-3 py-2 text-gray bg-customBlue text-white rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
             />
           </div>
@@ -72,6 +83,8 @@ const MenuFiltrar: React.FC<MenuFiltrarProps> = ({
               type="text"
               id="category"
               placeholder="Categoria"
+              value={category}
+              onChange={(e) => setCategory(e.target.value)}
               className="w-full px-4 py-2 mt-1 text-gray-700 bg-customBlue text-white rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
             />
           </div>
@@ -95,13 +108,20 @@ const MenuFiltrar: React.FC<MenuFiltrarProps> = ({
             </div>
           </div>
 
-          <div className="flex justify-center">
+          <div className="flex justify-center gap-2">
             <button
               type="button"
               onClick={handleFilter}
               className="w-20 py-1 mb-1 bg-customBlue text-white font-bold rounded-[10px] hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400"
             >
               Filtrar
+            </button>
+            <button
+              type="button"
+              onClick={handleClear}
+              className="w-20 py-1 mb-1 bg-customBlue text-white font-bold rounded-[10px] hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400"
+            >
+              Limpar
             </button>
           </div>
         </form>
