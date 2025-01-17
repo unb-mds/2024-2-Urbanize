@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import BotoesMenu from './botoesMenu';
 import TituloMenus from './tituloMenus';
 import MenuDetalhar from './menuDetalhar'; // Importe o novo componente
@@ -10,18 +10,22 @@ const MenuListar: React.FC<MenuListarProps> = ({
   isArrowUp 
 }) => {
   const [obraSelecionada, setObraSelecionada] = useState<string | null>(null);
+  const [obras, setObras] = useState<any[]>([]); // Estado para armazenar as obras
 
-  const obras = [
-    'Pavimentação - EPTG',
-    'Pavimentação - EPIA',
-    'Poda de árvores - Ceilândia SQL',
-    'Obra de drenagem - Vicente Pires',
-    'Pintura de vias - Guará 1',
-    'Pintura de vias - Guará 2',
-    'Obra de drenagem - Águas Claras',
-    'Obra de drenagem - Asa Sul',
-    'Nova obra - Samambaia',
-  ];
+  useEffect(() => {
+    const fetchObras = async () => {
+      try {
+        const response = await fetch('https://two024-2-urbanize.onrender.com/api/projeto-investimento');
+        const data = await response.json();
+        const sortedObras = data.projetos.sort((a: any, b: any) => a.nome.localeCompare(b.nome));
+        setObras(sortedObras);
+      } catch (error) {
+        console.error('Erro ao buscar as obras:', error);
+      }
+    };
+
+    fetchObras();
+  }, []);
 
   if (obraSelecionada) {
     return (
@@ -49,10 +53,10 @@ const MenuListar: React.FC<MenuListarProps> = ({
             {obras.map((obra, index) => (
               <li
                 key={index}
-                onClick={() => setObraSelecionada(obra)}
+                onClick={() => setObraSelecionada(obra.id)}
                 className="border-b border-gray-300 py-2 last:border-none cursor-pointer hover:bg-gray-100"
               >
-                {obra}
+                {obra.nome}
               </li>
             ))}
           </ul>
