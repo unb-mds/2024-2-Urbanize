@@ -1,32 +1,47 @@
 import axios from "axios";
 import { prisma } from "@/database";
+import NodeCache from "node-cache";
 
-const cache = new Map<string, any>(); // Cache local para armazenar geometrias já buscadas
+const cache = new NodeCache({ stdTTL: 3600 }); // Cache de 1 hora
 const falhas: string[] = []; // Lista de IDs com falhas
 
+// Função para aguardar um período de tempo
+function sleep(ms: number): Promise<void> {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
 // Função para fazer uma requisição com retentativa exponencial
-async function fetchWithRetry(url: string, retries: number = 5, delay: number = 1000): Promise<any> {
+async function fetchWithRetry(url: string, retries: number = 10, delay: number = 1000): Promise<any> {
   try {
     const response = await axios.get(url);
     return response.data;
-  } catch (error: unknown) {
-    if (error instanceof Error && error.message.includes("429")) {
+  } catch (error: any) {
+    if (error.response?.status === 429) {
+      const retryAfter = parseInt(error.response.headers["retry-after"], 10) || delay / 1000;
       if (retries > 0) {
-        await new Promise((resolve) => setTimeout(resolve, delay)); // Atraso
-        return fetchWithRetry(url, retries - 1, delay * 2); // Atraso exponencial
+        // Adiciona um componente de aleatoriedade (jitter) ao tempo de espera
+        const jitter = Math.random() * 1000; // Até 1 segundo adicional de espera
+        const waitTime = Math.max(retryAfter * 1000, delay) + jitter;
+
+        await sleep(waitTime);
+
+        // Chamada recursiva com aumento do tempo de espera
+        return fetchWithRetry(url, retries - 1, delay * 2);
       } else {
         throw new Error(`Limite de requisições excedido e tentativas esgotadas.`);
       }
-    } else {
-      throw error;
     }
+    throw error;
   }
 }
 
 // Função para buscar geometria com cache
 async function fetchGeometria(idUnico: string): Promise<any[]> {
   if (cache.has(idUnico)) {
-    return cache.get(idUnico);
+    const cachedData = cache.get(idUnico);
+    if (Array.isArray(cachedData)) {
+      return cachedData; // Garantimos que cachedData seja um array
+    }
   }
 
   const url = `https://api.obrasgov.gestao.gov.br/obrasgov/api/geometria?idUnico=${idUnico}`;
@@ -61,6 +76,24 @@ function extractLatLong(geometriaWkt: string): { latitude: number; longitude: nu
     return {
       longitude: parseFloat(polygonMatch[1]),
       latitude: parseFloat(polygonMatch[2]),
+    };
+  }
+
+  const multipointMatch = geometriaWkt.match(/MULTIPOINT \(\(\s*([-\d.]+) ([-\d.]+)/);
+
+  if (multipointMatch) {
+    return {
+      longitude: parseFloat(multipointMatch[1]),
+      latitude: parseFloat(multipointMatch[2]),
+    };
+  }
+
+  const multilinestringMatch = geometriaWkt.match(/MULTILINESTRING \(\(\s*([-\d.]+) ([-\d.]+)/);
+
+  if (multilinestringMatch) {
+    return {
+      longitude: parseFloat(multilinestringMatch[1]),
+      latitude: parseFloat(multilinestringMatch[2]),
     };
   }
 
