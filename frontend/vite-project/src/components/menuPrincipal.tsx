@@ -11,25 +11,21 @@ const MenuComponent: React.FC = () => {
   const [isArrowUp, setIsArrowUp] = useState(false); // Controla a rotação da seta do botão "Listar"
   const [showSearchMenu, setShowSearchMenu] = useState(false); // Controla o menu "Procurar"
 
-  const handleFilterClick = () => {
-    setShowFilterMenu((prevState) => !prevState);
-    setShowListMenu(false);
-    setShowSearchMenu(false);
-    setIsArrowUp(false);
-  };
+  // Função genérica para alternar menus
+  const toggleMenu = (menuType: string) => {
+    if (menuType === 'filter') {
+      setShowFilterMenu((prevState) => !prevState);
+    } else if (menuType === 'search') {
+      setShowSearchMenu((prevState) => !prevState);
+    } else if (menuType === 'list') {
+      setShowListMenu(true);
+    }
 
-  const handleListClick = () => {
-    setShowListMenu(true);  // Sempre abre o menu Listar
-    setShowFilterMenu(false);
-    setShowSearchMenu(false);
-    setIsArrowUp(true);     // Controla a direção da seta
-  };
-
-  const handleSearchClick = () => {
-    setShowSearchMenu((prevState) => !prevState);
-    setShowFilterMenu(false);
-    setShowListMenu(false);
-    setIsArrowUp(false);
+    // Fechar todos os outros menus
+    setShowFilterMenu(menuType === 'filter' ? !showFilterMenu : false);
+    setShowSearchMenu(menuType === 'search' ? !showSearchMenu : false);
+    setShowListMenu(menuType === 'list' ? true : false);
+    setIsArrowUp(menuType === 'list');
   };
 
   const closeListMenu = () => {
@@ -47,29 +43,29 @@ const MenuComponent: React.FC = () => {
 
           <BotoesMenu
             className="w-full"
-            onFilterClick={handleFilterClick}
-            onListClick={handleListClick}
-            onSearchClick={handleSearchClick} // Lógica para o menuProcurar
+            onFilterClick={() => toggleMenu('filter')}
+            onListClick={() => toggleMenu('list')}
+            onSearchClick={() => toggleMenu('search')} // Lógica para o menuProcurar
             isArrowUp={isArrowUp} // Inverte o estado da seta
           />
         </div>
       ) : showFilterMenu ? (
         <MenuFiltrar 
-          closeFilterMenu={handleFilterClick}
-          onSearchClick={handleSearchClick}
-          onListClick={handleListClick}  // Usa handleListClick ao invés de closeListMenu
+          closeFilterMenu={() => toggleMenu('filter')}
+          onSearchClick={() => toggleMenu('search')}
+          onListClick={() => toggleMenu('list')}  
         />
       ) : showSearchMenu ? (
         <MenuProcurar 
-          closeSearchMenu={handleSearchClick}
-          onFilterClick={handleFilterClick}
-          onListClick={handleListClick}   // Usa handleListClick ao invés de closeListMenu
+          closeSearchMenu={() => toggleMenu('search')}
+          onFilterClick={() => toggleMenu('filter')}
+          onListClick={() => toggleMenu('list')}   
         />
       ) : (
         <MenuListar 
-          closeListMenu={closeListMenu}   // Nova função específica para fechar
-          onFilterClick={handleFilterClick}
-          onSearchClick={handleSearchClick}
+          closeListMenu={closeListMenu}   
+          onFilterClick={() => toggleMenu('filter')}
+          onSearchClick={() => toggleMenu('search')}
           isArrowUp={isArrowUp}
         />
       )}

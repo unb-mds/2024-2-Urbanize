@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import BotoesMenu from './botoesMenu';
-import TituloMenus from './tituloMenus';
 import MenuDetalhar from './menuDetalhar'; // Importe o novo componente
 
 const MenuListar: React.FC<MenuListarProps> = ({ 

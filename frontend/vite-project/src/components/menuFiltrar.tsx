@@ -51,7 +51,7 @@ const MenuFiltrar: React.FC<MenuFiltrarProps> = ({
           <TituloMenus />
         </div>
 
-        <form className="w-full flex flex-col gap-2 p-3 bg-white mt-[-5px]">
+        <form className="w-full flex flex-col gap-2 p-3 text-white bg-white mt-[-5px]">
           <div>
             <label htmlFor="name" className="block text-gray-700 text-sm font-bold">
               Nome da obra:
@@ -60,7 +60,7 @@ const MenuFiltrar: React.FC<MenuFiltrarProps> = ({
               type="text"
               id="name"
               placeholder="Nome"
-              className="w-full px-3 py-2 text-gray bg-customBlue text-white rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
+              className="w-full px-3 py-2 text-gray bg-customBlue  rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
             />
           </div>
 
@@ -72,7 +72,7 @@ const MenuFiltrar: React.FC<MenuFiltrarProps> = ({
               type="text"
               id="category"
               placeholder="Categoria"
-              className="w-full px-4 py-2 mt-1 text-gray-700 bg-customBlue text-white rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
+              className="w-full px-4 py-2 mt-1  bg-customBlue  rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
             />
           </div>
 
@@ -81,7 +81,7 @@ const MenuFiltrar: React.FC<MenuFiltrarProps> = ({
               Valor da obra:
             </label>
             <div className="relative">
-              <span className="absolute inset-y-1 left-0 flex items-center pl-3  text-gray-400 text-sm font-bold">
+              <span className="absolute inset-y-1 left-0 flex items-center pl-3  text-sm font-bold">
                 R$
               </span>
               <input
@@ -90,7 +90,7 @@ const MenuFiltrar: React.FC<MenuFiltrarProps> = ({
                 value={value}
                 onChange={handleChange}
                 placeholder="0,00"
-                className="w-full pl-10 pr-4 py-2 mt-1 text-gray-700 bg-customBlue text-white rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
+                className="w-full pl-10 pr-4 py-2 mt-1  bg-customBlue rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
               />
             </div>
           </div>
