@@ -78,8 +78,8 @@ const MapComponent: React.FC<MapComponentProps> = ({ openDetailMenu }) => {
   
     const svgIcon = (size: number, situacao: string) => {
       const iconPath =
-        ['Em Execução', 'Cadastrada', 'Concluída'].includes(situacao)
-          ? '/public/marcadorVerde.svg'
+        ['Em Execução', 'Em execução', 'Cadastrada', 'Concluída'].includes(situacao)
+          ? '/marcadorVerde.svg'
           : '/marcadorVermelho.svg';
   
       return L.icon({
