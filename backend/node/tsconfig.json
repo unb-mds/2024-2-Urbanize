@@ -14,6 +14,8 @@
     "strict": true,
     "skipLibCheck": true
   },
-  "include": ["src/**/*.ts"],
+  "include": [
+    "src/**/*"  // Inclua os arquivos de teste também
+  ],
   "exclude": ["node_modules", "build"]
 }

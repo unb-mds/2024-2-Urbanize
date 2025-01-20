@@ -1,5 +1,5 @@
-import { projetosController } from "@/container/container";
-import { Router } from "express";
+import { projetosController } from '@/container/container'
+import { Router } from 'express'
 
 const router = Router()
 
@@ -7,7 +7,7 @@ const router = Router()
  * @swagger
  * /api/projeto-investimento:
  *   get:
- *     tags: [Projeto De Investimento]         
+ *     tags: [Projeto De Investimento]
  *     summary: Consulta Projetos de Investimento
  *     description: Retorna uma Lista Paginada com os dados de identificação da Obra com base nos filtros utilizados. Filtros não obrigatórios.
  *     parameters:
@@ -217,7 +217,7 @@ router.get('/api/projeto-investimento', projetosController.index)
  * @swagger
  * /api/projeto-investimento/{id}:
  *   get:
- *     tags: [Projeto De Investimento]   
+ *     tags: [Projeto De Investimento]
  *     summary: Consulta um Único Projeto
  *     description: Retorna um projeto com seu respectivo id. Filtros não obrigatórios.
  *     parameters:

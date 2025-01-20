@@ -1,5 +1,5 @@
 import { defineConfig } from 'vitest/config'
-import path from 'path';
+import path from 'path'
 
 // configurando o vitest com os paths @/nome_arquivo do ts
 export default defineConfig({
@@ -10,6 +10,6 @@ export default defineConfig({
   },
   test: {
     environment: 'node',
-    globals: true
+    globals: true,
   }
 })

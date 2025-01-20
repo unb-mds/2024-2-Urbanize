@@ -1,7 +1,8 @@
-import { InMemoryProjectRepository } from '@/repositories/In-memory/in-memory-project-repository'
-import { beforeEach, describe, expect, it } from 'vitest'
-import { ProjetosService } from '../ProjetosService'
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { genericData } from '@/repositories/In-memory/data/projectsMemoryData'
+import { InMemoryProjectRepository } from '@/repositories/In-memory/in-memory-project-repository'
+import { ProjetosService } from '@/use-cases/ProjetosService'
+import { beforeEach, describe, expect, it } from 'vitest'
 
 let projectRepository: InMemoryProjectRepository
 let projetosService: ProjetosService
@@ -42,7 +43,9 @@ describe('Projects services', () => {
     const result = await projetosService.getAllProjetosPaginated(params)
 
     expect(result.projetos).toHaveLength(1)
-    expect(result.projetos[0].nome).toBe('Sistema de Tratamento de esgoto das edificações')
+    expect(result.projetos[0].nome).toBe(
+      'Sistema de Tratamento de esgoto das edificações',
+    )
     expect(result.meta.page).toBe(1)
     expect(result.meta.pageSize).toBe(1)
   })
