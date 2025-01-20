@@ -17,7 +17,7 @@ const MenuFiltrar: React.FC<MenuFiltrarProps> = ({
   const [value, setValue] = useState('');
   const [name, setName] = useState('');
   const [category, setCategory] = useState('');
-  const [rangeValues, setRangeValues] = useState([0, 1000000]);
+  const [rangeValues, setRangeValues] = useState([0, 33500000]);
 
   // Função para formatar o valor como moeda
   const formatCurrency = (value: string) => {
@@ -34,6 +34,13 @@ const MenuFiltrar: React.FC<MenuFiltrarProps> = ({
 
     return formattedValue;
   };
+
+  function formatNumber(value: number): string {
+    return value.toLocaleString('pt-BR', {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    });
+  }
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = event.target.value;
@@ -52,7 +59,7 @@ const MenuFiltrar: React.FC<MenuFiltrarProps> = ({
     setValue('');
     setName('');
     setCategory('');
-    setRangeValues([0, 1000000]);
+    setRangeValues([0, 33500000]);
   };
 
   return (
@@ -99,7 +106,7 @@ const MenuFiltrar: React.FC<MenuFiltrarProps> = ({
             <Range
               step={100}
               min={0}
-              max={1000000}
+              max={33500000}
               values={rangeValues}
               onChange={(values) => setRangeValues(values)}
               renderTrack={({ props, children }) => (
@@ -112,8 +119,8 @@ const MenuFiltrar: React.FC<MenuFiltrarProps> = ({
               )}
             />
             <div className="flex justify-between mt-1">
-              <span>{rangeValues[0]}</span>
-              <span>{rangeValues[1]}</span>
+              <span>{formatNumber(rangeValues[0])}</span>
+              <span>{formatNumber(rangeValues[1])}</span>
             </div>
           </div>
 
