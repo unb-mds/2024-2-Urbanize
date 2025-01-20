@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { genericData } from '@/repositories/In-memory/data/projectsMemoryData';
+import { genericData } from '@/repositories/In-memory/data/projectsMemoryData'
 import { InMemoryProjectRepository } from '@/repositories/In-memory/in-memory-project-repository'
-import { ProjetosService } from '@/use-cases/ProjetosService';
+import { ProjetosService } from '@/use-cases/ProjetosService'
 import { beforeEach, describe, expect, it } from 'vitest'
 
 let projectRepository: InMemoryProjectRepository
@@ -10,7 +10,7 @@ let projetosService: ProjetosService
 describe('Projects services', () => {
   beforeEach(() => {
     projectRepository = new InMemoryProjectRepository()
-    projectRepository.items = genericData as any;
+    projectRepository.items = genericData as any
     projetosService = new ProjetosService(projectRepository)
   })
 

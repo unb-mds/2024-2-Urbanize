@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { HttpError } from '@/error/HttpError';
+import { HttpError } from '@/error/HttpError'
 import { beforeEach, describe, expect, it } from 'vitest'
 
 import { InMemoryProjectRepository } from '@/repositories/In-memory/in-memory-project-repository'
-import { ProjetosService } from '@/use-cases/ProjetosService';
+import { ProjetosService } from '@/use-cases/ProjetosService'
 
 
 interface Projeto {

@@ -24,12 +24,12 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec))
 new CronJob( 
   '* * * * *', // atualiza a cada 24 horas
   async () => { 
-    await fetchAndSaveProjects(); 
+    await fetchAndSaveProjects() 
   }, 
   null, 
   true, 
   'America/Sao_Paulo' // fuso do Brasil
-); 
+) 
 
 const PORT = process.env.PORT || 3333
 app.listen(PORT, () => {

@@ -1,134 +1,59 @@
-import axios, { AxiosResponse } from 'axios';
-import { prisma } from '@/database';
+import axios, { AxiosResponse } from 'axios'
+import { prisma } from '@/database'
+import { Projeto, Tomador, Eixo, Executor, FonteDeRecurso, Geometria, Repassador, Tipo } from '@/@types/fetchAPI'
+import NodeCache from 'node-cache'
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const cache = new Map<string, any[]>(); // Cache local para armazenar geometrias já buscadas
-const falhas: string[] = []; // Lista de IDs com falhas
+const cache = new NodeCache({ stdTTL: 3600 }) // Cache de 1 hora
+const falhas: string[] = [] // Lista de IDs com falhas
 
-// Tipos auxiliares
-export interface Projeto {
-  idUnico: string;
-  nome: string;
-  cep?: string | null;
-  endereco?: string | null;
-  descricao?: string | null;
-  funcaoSocial?: string | null;
-  metaGlobal?: string | null;
-  dataInicialPrevista: Date;
-  dataFinalPrevista: Date;
-  dataInicialEfetiva?: Date | null;
-  dataFinalEfetiva?: Date | null;
-  dataCadastro: Date;
-  especie?: string | null;
-  natureza: string;
-  situacao: string;
-  uf: string;
-  populacaoBeneficiada: string;
-  tomadores: Tomador[];
-  executores: Executor[];
-  repassadores: Repassador[];
-  eixos: Eixo[];
-  tipos: Tipo[];
-  geometrias: Geometria[];
-  fontesDeRecurso: FonteDeRecurso[];
-  createdAt: Date;
-  updatedAt: Date;
-}
-
-export interface Tomador {
-  id: number;
-  nome: string;
-  projetoId: string;
-  projeto?: Projeto; // Relacionamento opcional para evitar dependência circular
-}
-
-export interface Executor {
-  id: number;
-  nome: string;
-  projetoId: string;
-  projeto?: Projeto;
-}
-
-export interface Repassador {
-  id: number;
-  nome: string;
-  projetoId: string;
-  projeto?: Projeto;
-}
-
-export interface Eixo {
-  id: number;
-  descricao: string;
-  projetoId: string;
-  projeto?: Projeto;
-}
-
-export interface Tipo {
-  id: number;
-  descricao: string;
-  idEixo: number;
-  projetoId: string;
-  projeto?: Projeto;
-}
-
-export interface Geometria {
-  id: number;
-  geometriaWkt: string;
-  dataCriacao: Date;
-  origem: string;
-  latitude?: number | null;
-  longitude?: number | null;
-  projetoId: string;
-  projeto?: Projeto;
-}
-
-export interface FonteDeRecurso {
-  id: number;
-  origem: string;
-  valorInvestimentoPrevisto: string; // Decimal em Prisma é convertido para string no cliente
-  projetoId: string;
-  projeto?: Projeto;
+// Função para aguardar um período de tempo
+function sleep(ms: number): Promise<void> {
+  return new Promise((resolve) => setTimeout(resolve, ms))
 }
 
 // Função para fazer uma requisição com retentativa exponencial
-async function fetchWithRetry<T>(
-  url: string,
-  retries: number = 5,
-  delay: number = 1000
-): Promise<T> {
+async function fetchWithRetry<T>(url: string, retries: number = 10, delay: number = 1000): Promise<T> {
   try {
-    const response: AxiosResponse<T> = await axios.get(url);
-    return response.data;
+    const response: AxiosResponse<T> = await axios.get(url)
+    return response.data
   } catch (error: unknown) {
     if (axios.isAxiosError(error) && error.response?.status === 429) {
+      const retryAfter = parseInt(error.response.headers['retry-after'], 10) || delay / 1000
       if (retries > 0) {
-        await new Promise((resolve) => setTimeout(resolve, delay)); // Atraso
-        return fetchWithRetry<T>(url, retries - 1, delay * 2); // Atraso exponencial
+        // Adiciona um componente de aleatoriedade (jitter) ao tempo de espera
+        const jitter = Math.random() * 1000 // Até 1 segundo adicional de espera
+        const waitTime = Math.max(retryAfter * 1000, delay) + jitter
+
+        await sleep(waitTime)
+
+        // Chamada recursiva com aumento do tempo de espera
+        return fetchWithRetry<T>(url, retries - 1, delay * 2)
       } else {
-        throw new Error('Limite de requisições excedido e tentativas esgotadas.');
+        throw new Error('Limite de requisições excedido e tentativas esgotadas.')
       }
-    } else {
-      throw error;
     }
+    throw error
   }
 }
-
 // Função para buscar geometria com cache
 async function fetchGeometria(idUnico: string): Promise<Geometria[]> {
   if (cache.has(idUnico)) {
-    return cache.get(idUnico) || [];
+    const cachedData = cache.get(idUnico)
+    if (Array.isArray(cachedData)) {
+      return cachedData // Garantimos que cachedData seja um array
+    }
   }
 
-  const url = `https://api.obrasgov.gestao.gov.br/obrasgov/api/geometria?idUnico=${idUnico}`;
+  const url = `https://api.obrasgov.gestao.gov.br/obrasgov/api/geometria?idUnico=${idUnico}`
   try {
-    const geometria = await fetchWithRetry<Geometria[]>(url);
-    if (geometria.length > 0) {
-      cache.set(idUnico, geometria);
+    const geometria = await fetchWithRetry<Geometria[]>(url)
+    if (geometria && geometria[0]) {
+      cache.set(idUnico, geometria)
     }
-    return geometria;
+    return geometria
   } catch (error) {
-    falhas.push(idUnico);
-    throw new Error(`Erro ao buscar geometria para ID ${idUnico}: ${error}`);
+    falhas.push(idUnico)
+    throw new Error(`Erro ao buscar geometria para ID ${idUnico}: ${error}`)
   }
 }
 
@@ -136,26 +61,41 @@ async function fetchGeometria(idUnico: string): Promise<Geometria[]> {
 function extractLatLong(
   geometriaWkt: string
 ): { latitude: number; longitude: number } | null {
-  const pointMatch = geometriaWkt.match(/POINT \(([-\d.]+) ([-\d.]+)\)/);
+  const pointMatch = geometriaWkt.match(/POINT \(([-\d.]+) ([-\d.]+)\)/)
 
   if (pointMatch) {
     return {
       longitude: parseFloat(pointMatch[1]),
       latitude: parseFloat(pointMatch[2]),
-    };
+    }
   }
   
-  const polygonMatch = geometriaWkt.match(/POLYGON \(\(\s*([-\d.]+) ([-\d.]+)/);
+  const polygonMatch = geometriaWkt.match(/POLYGON \(\(\s*([-\d.]+) ([-\d.]+)/)
 
   if (polygonMatch) {
     return {
       longitude: parseFloat(polygonMatch[1]),
       latitude: parseFloat(polygonMatch[2]),
-    };
+    }
   }
 
-  console.warn('Formato inesperado de geometria WKT:', geometriaWkt);
-  return null;
+  const multipointMatch = geometriaWkt.match(/MULTIPOINT \(\(\s*([-\d.]+) ([-\d.]+)/)
+  if (multipointMatch) {
+    return {
+      longitude: parseFloat(multipointMatch[1]),
+      latitude: parseFloat(multipointMatch[2]),
+    }
+  }
+  const multilinestringMatch = geometriaWkt.match(/MULTILINESTRING \(\(\s*([-\d.]+) ([-\d.]+)/)
+  if (multilinestringMatch) {
+    return {
+      longitude: parseFloat(multilinestringMatch[1]),
+      latitude: parseFloat(multilinestringMatch[2]),
+    }
+  }
+
+  console.warn('Formato inesperado de geometria WKT:', geometriaWkt)
+  return null
 }
 
 // Função para salvar projetos no banco de dados
