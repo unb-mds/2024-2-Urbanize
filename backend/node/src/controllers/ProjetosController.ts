@@ -1,6 +1,6 @@
-import { ProjetosService } from "@/use-cases/ProjetosService";
-import { Handler } from "express";
-import { GetProjetosRequestSchema } from "./schemas/ProjetosRequestSchema";
+import { ProjetosService } from '@/use-cases/ProjetosService'
+import { Handler } from 'express'
+import { GetProjetosRequestSchema } from './schemas/ProjetosRequestSchema'
 
 export class ProjetosController {
   constructor(private readonly projetosService: ProjetosService) {}
@@ -8,7 +8,7 @@ export class ProjetosController {
   index: Handler = async (req, res, next) => {
     try {
       const query = GetProjetosRequestSchema.parse(req.query)
-      const { page = "1", pageSize = "10"} = query
+      const { page = '1', pageSize = '10' } = query
 
       const result = await this.projetosService.getAllProjetosPaginated({
         ...query,

@@ -1,27 +1,27 @@
-import { Projeto } from "@prisma/client";
+import { Projeto } from '@prisma/client'
 
 export interface ProjetoWhereParams {
   situacao?: {
-    like: string;
-    equals?: string;
-    mode?: "default" | "insensitive"
+    like: string
+    equals?: string
+    mode?: 'default' | 'insensitive'
   }
   nome?: {
-    like: string;
-    equals?: string;
-    mode?: "default" | "insensitive"
+    like: string
+    equals?: string
+    mode?: 'default' | 'insensitive'
   }
   natureza?: {
-    like: string;
-    equals?: string;
-    mode?: "default" | "insensitive"
+    like: string
+    equals?: string
+    mode?: 'default' | 'insensitive'
   }
 }
 
 export interface FindProjetosParams {
   where?: ProjetoWhereParams
-  sortBy?: "natureza"| "situacao" | "nome" | "createdAt" 
-  order?: "asc" | "desc"
+  sortBy?: 'natureza' | 'situacao' | 'nome' | 'createdAt'
+  order?: 'asc' | 'desc'
   limit?: number
   offset?: number
   include?: {
@@ -37,5 +37,5 @@ export interface FindProjetosParams {
 
 export interface ProjetosRepository {
   find: (params: FindProjetosParams) => Promise<Projeto[]>
-  findById: (id: string) => Promise<Projeto | null> 
+  findById: (id: string) => Promise<Projeto | null>
 }
