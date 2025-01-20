@@ -21,15 +21,15 @@ app.use(errorHandling)
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec))
 
 // inicializando o cron job para coleta de dados
-new CronJob(
+new CronJob( 
   '* * * * *', // atualiza a cada 24 horas
-  async () => {
-    await fetchAndSaveProjects()
-  },
-  null,
-  true,
-  'America/Sao_Paulo', // fuso do Brasil
-)
+  async () => { 
+    await fetchAndSaveProjects(); 
+  }, 
+  null, 
+  true, 
+  'America/Sao_Paulo' // fuso do Brasil
+); 
 
 const PORT = process.env.PORT || 3333
 app.listen(PORT, () => {
