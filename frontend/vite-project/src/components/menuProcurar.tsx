@@ -49,8 +49,11 @@ const MenuProcurar: React.FC<MenuProcurarProps> = ({
     <div className="">
       <div className="bottom-5 left-10 w-64 h-[400px] bg-white rounded-[10px] shadow-lg flex flex-col items-center fixed max-w-xs mx-auto my-1 z-10">
         {/* Cabeçalho */}
-        <div onClick={closeSearchMenu} className="cursor-pointer w-full flex items-center justify-center">
-          <TituloMenus />
+        <div className="w-full">
+          <div className="text-center">
+            <div onClick={closeSearchMenu} className="w-[92px] h-[9px] bg-customBlue mx-auto mt-3 rounded-md cursor-pointer"></div>
+            <h1 className="text-[40px] font-mono font-medium mt-2">URBANIZE</h1>
+          </div>
         </div>
 
         {/* Campo de busca */}

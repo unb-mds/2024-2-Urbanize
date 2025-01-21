@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import BotoesMenu from './botoesMenu';
 import TituloMenus from './tituloMenus';
 import { Range } from 'react-range';
@@ -16,8 +16,24 @@ const MenuFiltrar: React.FC<MenuFiltrarProps> = ({
 }) => {
   const [value, setValue] = useState('');
   const [name, setName] = useState('');
-  const [category, setCategory] = useState('');
+  const [natureza, setNatureza] = useState('');
   const [rangeValues, setRangeValues] = useState([0, 33500000]);
+  const [naturezas, setNaturezas] = useState<string[]>([]); // Estado para armazenar as naturezas
+
+  useEffect(() => {
+    const fetchNaturezas = async () => {
+      try {
+        const response = await fetch('https://two024-2-urbanize.onrender.com/api/projeto-investimento');
+        const data = await response.json();
+        const uniqueNaturezas = [...new Set(data.projetos.map((obra: any) => obra.natureza || 'Vazio'))];
+        setNaturezas(uniqueNaturezas);
+      } catch (error) {
+        console.error('Erro ao buscar as naturezas:', error);
+      }
+    };
+
+    fetchNaturezas();
+  }, []);
 
   // Função para formatar o valor como moeda
   const formatCurrency = (value: string) => {
@@ -58,19 +74,21 @@ const MenuFiltrar: React.FC<MenuFiltrarProps> = ({
   const handleClear = () => {
     setValue('');
     setName('');
-    setCategory('');
+    setNatureza('');
     setRangeValues([0, 33500000]);
   };
 
   return (
     <div className="">
-      <div className="bottom-5 left-10 w-64 h-[400px] bg-white rounded-[10px] shadow-lg flex flex-col items-center fixed max-w-xs mx-auto my-6 z-10">
-        <div onClick={closeFilterMenu} className="cursor-pointer w-full">
-          {/* O clique na div redireciona ao menu principal */}
-          <TituloMenus />
+      <div className="bottom-5 left-10 w-64 h-[400px] bg-white rounded-[10px] shadow-lg flex flex-col fixed max-w-xs mx-auto my-1 z-10">
+        <div className="w-full">
+          <div className="text-center">
+            <div onClick={closeFilterMenu} className="w-[92px] h-[9px] bg-customBlue mx-auto mt-3 rounded-md cursor-pointer"></div>
+            <h1 className="text-[40px] font-mono font-medium mt-2">URBANIZE</h1>
+          </div>
         </div>
 
-        <form className="w-full flex flex-col gap-2 p-3 bg-white mt-[-5px]">
+        <form className="w-full flex-grow flex flex-col gap-1 p-3 bg-white mt-[-5px]">
           <div>
             <label htmlFor="name" className="block text-gray-700 text-sm font-bold">
               Nome da obra:
@@ -81,25 +99,28 @@ const MenuFiltrar: React.FC<MenuFiltrarProps> = ({
               placeholder="Nome"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className="w-full px-3 py-2 text-gray bg-customBlue text-white rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
+              className="w-full px-2 py-1 text-gray bg-customBlue text-white rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
             />
           </div>
 
           <div>
-            <label htmlFor="category" className="block text-gray-700 text-sm font-bold">
-              Categoria:
+            <label htmlFor="natureza" className="block text-gray-700 text-sm font-bold">
+              Natureza:
             </label>
-            <input
-              type="text"
-              id="category"
-              placeholder="Categoria"
-              value={category}
-              onChange={(e) => setCategory(e.target.value)}
-              className="w-full px-4 py-2 mt-1 text-gray-700 bg-customBlue text-white rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
-            />
+            <select
+              id="natureza"
+              value={natureza}
+              onChange={(e) => setNatureza(e.target.value)}
+              className="w-full px-2 py-1 text-gray bg-customBlue text-white rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
+            >
+              <option value="" className="text-gray-400">Todas</option>
+              {naturezas.map((natureza, index) => (
+                <option key={index} value={natureza}>{natureza}</option>
+              ))}
+            </select>
           </div>
 
-          <div className="p-3">
+          <div className="p-2">
             <label className="block text-gray-700 text-sm font-bold">
               Valor da obra:
             </label>
@@ -115,7 +136,7 @@ const MenuFiltrar: React.FC<MenuFiltrarProps> = ({
                 </div>
               )}
               renderThumb={({ props }) => (
-                <div {...props} className="h-4 w-4 rounded-full bg-customBlue shadow" />
+                <div {...props} className="h-3 w-3 rounded-full bg-customBlue shadow" />
               )}
             />
             <div className="flex justify-between mt-1">
@@ -128,26 +149,28 @@ const MenuFiltrar: React.FC<MenuFiltrarProps> = ({
             <button
               type="button"
               onClick={handleFilter}
-              className="w-20 py-1 mb-1 bg-customBlue text-white font-bold rounded-[10px] hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400"
+              className="w-20 py-0.5 mb-0.5 bg-customBlue text-white font-bold rounded-[10px] hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400"
             >
               Filtrar
             </button>
             <button
               type="button"
               onClick={handleClear}
-              className="w-20 py-1 mb-1 bg-customBlue text-white font-bold rounded-[10px] hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400"
+              className="w-20 py-0.5 mb-0.5 bg-customBlue text-white font-bold rounded-[10px] hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400"
             >
               Limpar
             </button>
           </div>
         </form>
 
-        <BotoesMenu 
-          className="w-full mt-[-10px]" 
-          onFilterClick={closeFilterMenu}
-          onSearchClick={onSearchClick}
-          onListClick={onListClick}
-        />
+        <div className="w-full mt-auto">
+          <BotoesMenu 
+            className="w-full"
+            onFilterClick={closeFilterMenu}
+            onSearchClick={onSearchClick}
+            onListClick={onListClick}
+          />
+        </div>
       </div>
     </div>
   );
