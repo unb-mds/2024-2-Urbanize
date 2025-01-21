@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import MapComponent from './components/Mapa';
 import MenuDetalhar from './components/menuDetalhar';
 import MenuComponent from './components/menuPrincipal';
+import Legenda from './components/legenda';
 
 const App: React.FC = () => {
   const [isDetailMenuOpen, setIsDetailMenuOpen] = useState(false);
@@ -27,7 +28,10 @@ const App: React.FC = () => {
       {isDetailMenuOpen && (
         <MenuDetalhar closeDetailMenu={closeDetailMenu} obraDetalhada={selectedDetail!} />
       )}
+            <Legenda />
+
     </div>
+    
   );
 };
 

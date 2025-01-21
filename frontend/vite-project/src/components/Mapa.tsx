@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 
+
 interface MapComponentProps {
   openDetailMenu: (detail: string) => void; // Função para abrir o menu detalhar
 }
