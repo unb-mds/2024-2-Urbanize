@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import BotoesMenu from './botoesMenu';
 import TituloMenus from './tituloMenus';
 import { Range } from 'react-range';
@@ -16,8 +16,24 @@ const MenuFiltrar: React.FC<MenuFiltrarProps> = ({
 }) => {
   const [value, setValue] = useState('');
   const [name, setName] = useState('');
-  const [category, setCategory] = useState('');
+  const [natureza, setNatureza] = useState('');
   const [rangeValues, setRangeValues] = useState([0, 33500000]);
+  const [naturezas, setNaturezas] = useState<string[]>([]); // Estado para armazenar as naturezas
+
+  useEffect(() => {
+    const fetchNaturezas = async () => {
+      try {
+        const response = await fetch('https://two024-2-urbanize.onrender.com/api/projeto-investimento');
+        const data = await response.json();
+        const uniqueNaturezas = [...new Set(data.projetos.map((obra: any) => obra.natureza || 'Vazio'))];
+        setNaturezas(uniqueNaturezas);
+      } catch (error) {
+        console.error('Erro ao buscar as naturezas:', error);
+      }
+    };
+
+    fetchNaturezas();
+  }, []);
 
   // Função para formatar o valor como moeda
   const formatCurrency = (value: string) => {
@@ -58,7 +74,7 @@ const MenuFiltrar: React.FC<MenuFiltrarProps> = ({
   const handleClear = () => {
     setValue('');
     setName('');
-    setCategory('');
+    setNatureza('');
     setRangeValues([0, 33500000]);
   };
 
@@ -86,17 +102,20 @@ const MenuFiltrar: React.FC<MenuFiltrarProps> = ({
           </div>
 
           <div>
-            <label htmlFor="category" className="block text-gray-700 text-sm font-bold">
-              Categoria:
+            <label htmlFor="natureza" className="block text-gray-700 text-sm font-bold">
+              Natureza:
             </label>
-            <input
-              type="text"
-              id="category"
-              placeholder="Categoria"
-              value={category}
-              onChange={(e) => setCategory(e.target.value)}
-              className="w-full px-4 py-2 mt-1 text-gray-700 bg-customBlue text-white rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
-            />
+            <select
+              id="natureza"
+              value={natureza}
+              onChange={(e) => setNatureza(e.target.value)}
+              className="w-full px-3 py-2 text-gray bg-customBlue text-white rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
+            >
+              <option value="" className="text-gray-500">Todas</option>
+              {naturezas.map((natureza, index) => (
+                <option key={index} value={natureza}>{natureza}</option>
+              ))}
+            </select>
           </div>
 
           <div className="p-3">
