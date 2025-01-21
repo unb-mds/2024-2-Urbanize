@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import TituloMenus from './tituloMenus';
 import BotoesMenu from './botoesMenu';
 import MenuDetalhar from './menuDetalhar';
@@ -15,17 +15,25 @@ const MenuProcurar: React.FC<MenuProcurarProps> = ({
   onListClick 
 }) => {
   const [searchTerm, setSearchTerm] = useState('');
+  const [obras, setObras] = useState<any[]>([]);
   const [obraSelecionada, setObraSelecionada] = useState<string | null>(null);
 
-  const obras = [
-    'Pavimentação - EPTG',
-    'Pavimentação - EPIA',
-    'Poda de árvores - Ceilândia',
-    'Obra de drenagem - Vicente Pires'
-  ];
+  useEffect(() => {
+    const fetchObras = async () => {
+      try {
+        const response = await fetch('https://two024-2-urbanize.onrender.com/api/projeto-investimento');
+        const data = await response.json();
+        setObras(data.projetos);
+      } catch (error) {
+        console.error('Erro ao buscar as obras:', error);
+      }
+    };
+
+    fetchObras();
+  }, []);
 
   const filteredObras = obras.filter((obra) =>
-    obra.toLowerCase().includes(searchTerm.toLowerCase())
+    obra.nome.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   if (obraSelecionada) {
@@ -63,15 +71,17 @@ const MenuProcurar: React.FC<MenuProcurarProps> = ({
           {/* Resultados filtrados */}
           {searchTerm && (
             <div className="mt-4">
-              {filteredObras.map((obra, index) => (
-                <div
-                  key={index}
-                  onClick={() => setObraSelecionada(obra)}
-                  className="border-b border-gray-300 py-2 last:border-none cursor-pointer"
-                >
-                  {obra}
-                </div>
-              ))}
+              <ul className="space-y-1 text-sm text-gray-700">
+                {filteredObras.map((obra, index) => (
+                  <li
+                    key={index}
+                    onClick={() => setObraSelecionada(obra.id)}
+                    className="border-b border-gray-300 py-2 last:border-none cursor-pointer hover:bg-gray-100"
+                  >
+                    {obra.nome}
+                  </li>
+                ))}
+              </ul>
             </div>
           )}
         </div>
