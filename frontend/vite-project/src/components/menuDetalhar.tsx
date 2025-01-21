@@ -95,7 +95,7 @@ const MenuDetalhar: React.FC<MenuDetalharProps> = ({ closeDetailMenu, obraDetalh
 
       <div className="text-center border-b border-gray-300 w-full text-white">
         <h1 className="bg-customBlue text-[22px] font-medium mt-6 ml-[20px] mr-[20px] text-start">
-          <div className="ml-[10px]">Detalhamento da Licitação {detalhes.idUnico}</div> {/* Numero da licitação */}
+          <div className="ml-[10px]">Detalhamento da Obra {detalhes.idUnico}</div> {/* Numero da obra */}
         </h1>
       </div>
 
