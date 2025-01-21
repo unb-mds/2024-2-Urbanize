@@ -1,21 +1,32 @@
-import { HttpError } from "@/error/HttpError";
-import { ProjetosRepository, ProjetoWhereParams } from "@/repositories/projetoRepository";
+import { HttpError } from '@/error/HttpError'
+import {
+  ProjetosRepository,
+  ProjetoWhereParams,
+} from '@/repositories/projetoRepository'
 
 interface GetProjetosWithPaginationParams {
-	page?: number
-	pageSize?: number
+  page?: number
+  pageSize?: number
   natureza?: string
-	situacao?: string
+  situacao?: string
   nome?: string
-	sortBy?: "natureza" | "situacao" | "nome" | "createdAt"
-	order?: "asc" | "desc"
+  sortBy?: 'natureza' | 'situacao' | 'nome' | 'createdAt'
+  order?: 'asc' | 'desc'
 }
 
 export class ProjetosService {
   constructor(private readonly projetosRepository: ProjetosRepository) {}
 
   async getAllProjetosPaginated(params: GetProjetosWithPaginationParams) {
-    const { natureza, situacao, nome, page = 1, pageSize = 10, sortBy, order } = params
+    const {
+      natureza,
+      situacao,
+      nome,
+      page = 1,
+      pageSize = 10,
+      sortBy,
+      order,
+    } = params
 
     const limit = pageSize
     const offset = (page - 1) * limit
@@ -25,7 +36,7 @@ export class ProjetosService {
     if (situacao) where.situacao = { like: situacao, mode: 'insensitive' }
     if (natureza) where.natureza = { like: natureza, mode: 'insensitive' }
     if (nome) where.nome = { like: nome, mode: 'insensitive' }
-    
+
     const projetos = await this.projetosRepository.find({
       where,
       sortBy,
@@ -39,7 +50,7 @@ export class ProjetosService {
       meta: {
         page: Number(page),
         pageSize: limit,
-      }
+      },
     }
   }
 

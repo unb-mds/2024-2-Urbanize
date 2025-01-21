@@ -1,16 +1,27 @@
-import { beforeEach, describe, expect, it } from 'vitest'
-import { ProjetosService } from '../ProjetosService'
-import { InMemoryProjectRepository } from '@/repositories/In-memory/in-memory-project-repository'
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { HttpError } from '@/error/HttpError'
+import { beforeEach, describe, expect, it } from 'vitest'
+
+import { InMemoryProjectRepository } from '@/repositories/In-memory/in-memory-project-repository'
+import { ProjetosService } from '@/use-cases/ProjetosService'
+
+
+interface Projeto {
+  id: string;
+  nome: string;
+  situacao: string;
+  natureza: string;
+  uf: string;
+}
 
 // Dados fictícios para simular os projetos
-const mockProjetosData = [
+const mockProjetosData: Projeto[] = [
   {
     id: '50379.53-54',
     nome: 'DL - 304/2024 - Projeto Exemplo',
     situacao: 'Ativo',
     natureza: 'Construção',
-    uf: 'SP'
+    uf: 'SP',
   },
   // Adicione mais projetos de exemplo conforme necessário
 ]
@@ -38,9 +49,8 @@ describe('ProjetosService - getProjetoById', () => {
   it('Should throw 404 if the project is not found', async () => {
     const projetoId = 'INEXISTENTE-123'
 
-    await expect(projetosService.getProjetoById(projetoId)).rejects.toThrowError(
-      new HttpError(404, 'Projeto não encontrado!')
-    )
-    
+    await expect(
+      projetosService.getProjetoById(projetoId),
+    ).rejects.toThrowError(new HttpError(404, 'Projeto não encontrado!'))
   })
 })

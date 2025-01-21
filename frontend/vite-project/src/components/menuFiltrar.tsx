@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import BotoesMenu from './botoesMenu';
 import TituloMenus from './tituloMenus';
+import { Range } from 'react-range';
 
 interface MenuFiltrarProps {
   closeFilterMenu: () => void; // Função para redirecionar ao menu principal
@@ -14,6 +15,9 @@ const MenuFiltrar: React.FC<MenuFiltrarProps> = ({
   onListClick 
 }) => {
   const [value, setValue] = useState('');
+  const [name, setName] = useState('');
+  const [category, setCategory] = useState('');
+  const [rangeValues, setRangeValues] = useState([0, 33500000]);
 
   // Função para formatar o valor como moeda
   const formatCurrency = (value: string) => {
@@ -31,6 +35,13 @@ const MenuFiltrar: React.FC<MenuFiltrarProps> = ({
     return formattedValue;
   };
 
+  function formatNumber(value: number): string {
+    return value.toLocaleString('pt-BR', {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    });
+  }
+
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = event.target.value;
     const formattedValue = formatCurrency(inputValue);
@@ -41,6 +52,14 @@ const MenuFiltrar: React.FC<MenuFiltrarProps> = ({
 
   const handleFilter = () => {
     alert('Filtrar botão clicado!');
+    handleClear(); // Clear the input values after filtering
+  };
+
+  const handleClear = () => {
+    setValue('');
+    setName('');
+    setCategory('');
+    setRangeValues([0, 33500000]);
   };
 
   return (
@@ -51,7 +70,7 @@ const MenuFiltrar: React.FC<MenuFiltrarProps> = ({
           <TituloMenus />
         </div>
 
-        <form className="w-full flex flex-col gap-2 p-3 text-white bg-white mt-[-5px]">
+        <form className="w-full flex flex-col gap-2 p-3 bg-white mt-[-5px]">
           <div>
             <label htmlFor="name" className="block text-gray-700 text-sm font-bold">
               Nome da obra:
@@ -60,7 +79,9 @@ const MenuFiltrar: React.FC<MenuFiltrarProps> = ({
               type="text"
               id="name"
               placeholder="Nome"
-              className="w-full px-3 py-2 text-gray bg-customBlue  rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              className="w-full px-3 py-2 text-gray bg-customBlue text-white rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
             />
           </div>
 
@@ -72,36 +93,51 @@ const MenuFiltrar: React.FC<MenuFiltrarProps> = ({
               type="text"
               id="category"
               placeholder="Categoria"
-              className="w-full px-4 py-2 mt-1  bg-customBlue  rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
+              value={category}
+              onChange={(e) => setCategory(e.target.value)}
+              className="w-full px-4 py-2 mt-1 text-gray-700 bg-customBlue text-white rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
             />
           </div>
 
-          <div>
-            <label htmlFor="value" className="block text-gray-700 text-sm font-bold">
+          <div className="p-3">
+            <label className="block text-gray-700 text-sm font-bold">
               Valor da obra:
             </label>
-            <div className="relative">
-              <span className="absolute inset-y-1 left-0 flex items-center pl-3  text-sm font-bold">
-                R$
-              </span>
-              <input
-                type="text"
-                id="value"
-                value={value}
-                onChange={handleChange}
-                placeholder="0,00"
-                className="w-full pl-10 pr-4 py-2 mt-1  bg-customBlue rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
-              />
+            <Range
+              step={100}
+              min={0}
+              max={33500000}
+              values={rangeValues}
+              onChange={(values) => setRangeValues(values)}
+              renderTrack={({ props, children }) => (
+                <div {...props} className="bg-gray-200 h-2 rounded-md">
+                  {children}
+                </div>
+              )}
+              renderThumb={({ props }) => (
+                <div {...props} className="h-4 w-4 rounded-full bg-customBlue shadow" />
+              )}
+            />
+            <div className="flex justify-between mt-1">
+              <span>{formatNumber(rangeValues[0])}</span>
+              <span>{formatNumber(rangeValues[1])}</span>
             </div>
           </div>
 
-          <div className="flex justify-center">
+          <div className="flex justify-center gap-2">
             <button
               type="button"
               onClick={handleFilter}
               className="w-20 py-1 mb-1 bg-customBlue text-white font-bold rounded-[10px] hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400"
             >
               Filtrar
+            </button>
+            <button
+              type="button"
+              onClick={handleClear}
+              className="w-20 py-1 mb-1 bg-customBlue text-white font-bold rounded-[10px] hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400"
+            >
+              Limpar
             </button>
           </div>
         </form>
