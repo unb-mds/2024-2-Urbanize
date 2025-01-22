@@ -72,7 +72,7 @@ const MenuFiltrar: React.FC<MenuFiltrarProps> = ({
 
   const handleFilter = () => {
     onFilterChange(natureza); // Apply the filter
-    closeFilterMenu();
+    // Removed closeFilterMenu() to keep menu open
   };
 
   const handleClear = () => {
