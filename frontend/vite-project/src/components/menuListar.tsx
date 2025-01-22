@@ -4,8 +4,11 @@ import TituloMenus from './tituloMenus';
 import MenuDetalhar from './menuDetalhar'; // Importe o novo componente
 
 interface MenuListarProps {
-  // ...existing props...
-  filterNatureza: string;
+  closeListMenu: () => void;
+  onFilterClick: () => void;
+  onSearchClick: () => void;
+  isArrowUp: boolean;
+  projects: Project[];
 }
 
 const MenuListar: React.FC<MenuListarProps> = ({ 
@@ -13,63 +16,25 @@ const MenuListar: React.FC<MenuListarProps> = ({
   onFilterClick, 
   onSearchClick, 
   isArrowUp,
-  filterNatureza 
+  projects
 }) => {
   const [obraSelecionada, setObraSelecionada] = useState<string | null>(null);
-  const [obras, setObras] = useState<any[]>([]); // Estado para armazenar as obras
-  const [filteredObras, setFilteredObras] = useState<any[]>([]); // Estado para armazenar as obras filtradas
+  const [filteredObras, setFilteredObras] = useState(projects); // Estado para armazenar as obras filtradas
   const [especies, setEspecies] = useState<string[]>([]); // Estado para armazenar as espécies
   const [eixos, setEixos] = useState<string[]>([]); // Estado para armazenar os eixos
   const [selectedEspecie, setSelectedEspecie] = useState<string>(''); // Estado para a espécie selecionada
   const [selectedEixo, setSelectedEixo] = useState<string>(''); // Estado para o eixo selecionado
 
   useEffect(() => {
-    const fetchObras = async () => {
-      let allObras: any[] = [];
-      let page = 1;
-      const pageSize = 464;
-      let hasMoreData = true;
-
-      while (hasMoreData) {
-        try {
-          const response = await fetch(`https://two024-2-urbanize.onrender.com/api/projeto-investimento?page=${page}&pageSize=${pageSize}`);
-          const data = await response.json();
-
-          if (data.projetos.length === 0) {
-            hasMoreData = false;
-            break;
-          }
-
-          allObras = [...allObras, ...data.projetos];
-          page += 1;
-        } catch (error) {
-          console.error('Erro ao buscar as obras:', error);
-          hasMoreData = false;
-        }
-      }
-
-      const sortedObras = allObras.sort((a, b) => a.nome.trim().toLowerCase().localeCompare(b.nome.trim().toLowerCase()));
-      setObras(sortedObras);
-      setFilteredObras(sortedObras);
-
-      const uniqueEspecies = [...new Set(allObras.map((obra) => obra.especie || 'Vazio'))];
-      const uniqueEixos = [...new Set(allObras.flatMap((obra) => (obra.eixos.length ? obra.eixos.map((eixo) => eixo.descricao) : ['Vazio'])))];
-      setEspecies(uniqueEspecies);
-      setEixos(uniqueEixos);
-    };
-
-    fetchObras();
-  }, []);
+    const uniqueEspecies = [...new Set(projects.map((obra) => obra.especie || 'Vazio'))];
+    const uniqueEixos = [...new Set(projects.flatMap((obra) => (obra.eixos.length ? obra.eixos.map((eixo) => eixo.descricao) : ['Vazio'])))];
+    setEspecies(uniqueEspecies);
+    setEixos(uniqueEixos);
+  }, [projects]);
 
   useEffect(() => {
-    let filtered = obras;
+    let filtered = projects;
 
-    // Apply natureza filter from parent component
-    if (filterNatureza) {
-      filtered = filtered.filter((obra) => obra.natureza === filterNatureza);
-    }
-
-    // Apply local filters
     if (selectedEspecie) {
       filtered = filtered.filter((obra) => (obra.especie || 'Vazio') === selectedEspecie);
     }
@@ -79,7 +44,7 @@ const MenuListar: React.FC<MenuListarProps> = ({
     }
 
     setFilteredObras(filtered.sort((a, b) => a.nome.trim().toLowerCase().localeCompare(b.nome.trim().toLowerCase())));
-  }, [selectedEspecie, selectedEixo, obras, filterNatureza]); // Add filterNatureza to dependencies
+  }, [selectedEspecie, selectedEixo, projects]);
 
   if (obraSelecionada) {
     return (

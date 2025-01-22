@@ -7,6 +7,18 @@ import MenuProcurar from './menuProcurar';
 import MapComponent from './Mapa';
 import MenuDetalhar from './menuDetalhar'; // Add this import
 
+interface Project {
+  id: string;
+  nome: string;
+  descricao: string;
+  latitude: number;
+  longitude: number;
+  situacao: string;
+  natureza: string;
+  eixos: Array<{ descricao: string }>;
+  especie: string;
+}
+
 const MenuComponent: React.FC = () => {
   const [showFilterMenu, setShowFilterMenu] = useState(false);
   const [showListMenu, setShowListMenu] = useState(false);
@@ -16,11 +28,10 @@ const MenuComponent: React.FC = () => {
   const [showDetailMenu, setShowDetailMenu] = useState(false);
   const [selectedObraId, setSelectedObraId] = useState<string | null>(null);
   const [allProjects, setAllProjects] = useState<Project[]>([]);
-  const [filteredProjects, setFilteredProjects] = useState<Project[]>([]);
 
-  // Fetch projects once when component mounts
+  // Fetch data when component mounts
   useEffect(() => {
-    const fetchAllProjects = async () => {
+    const fetchProjects = async () => {
       let projects: Project[] = [];
       let page = 1;
       const pageSize = 464;
@@ -47,7 +58,8 @@ const MenuComponent: React.FC = () => {
               longitude: geo.longitude,
               situacao: project.situacao,
               natureza: project.natureza,
-              // ... other properties
+              eixos: project.eixos,
+              especie: project.especie,
             }))
           );
 
@@ -60,19 +72,15 @@ const MenuComponent: React.FC = () => {
       }
 
       setAllProjects(projects);
-      setFilteredProjects(projects);
     };
 
-    fetchAllProjects();
+    fetchProjects();
   }, []);
 
-  // Filter projects when natureza changes
-  useEffect(() => {
-    const filtered = filterNatureza
-      ? allProjects.filter(p => p.natureza === filterNatureza)
-      : allProjects;
-    setFilteredProjects(filtered);
-  }, [filterNatureza, allProjects]);
+  // Filter projects based on natureza
+  const filteredProjects = allProjects.filter(project => 
+    !filterNatureza || project.natureza === filterNatureza
+  );
 
   const handleFilterClick = () => {
     setShowFilterMenu((prevState) => !prevState);
