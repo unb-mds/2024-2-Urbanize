@@ -17,6 +17,12 @@ interface Project {
   natureza: string;
   eixos: Array<{ descricao: string }>;
   especie: string;
+  fontesDeRecurso?: Array<{ valorInvestimentoPrevisto: number }>;
+}
+
+interface FilterOptions {
+  natureza: string;
+  valueRange: [number, number];
 }
 
 const MenuComponent: React.FC = () => {
@@ -38,6 +44,11 @@ const MenuComponent: React.FC = () => {
   const [previousSearchState, setPreviousSearchState] = useState('');
   const [searchTermState, setSearchTermState] = useState(''); // Add this state
   const [lastSearchTerm, setLastSearchTerm] = useState('');
+  const [filterOptions, setFilterOptions] = useState<FilterOptions>({
+    natureza: '',
+    valueRange: [0, 33500000]
+  });
+  const [maxProjectValue, setMaxProjectValue] = useState(33500000);
 
   // Fetch data when component mounts
   useEffect(() => {
@@ -70,6 +81,7 @@ const MenuComponent: React.FC = () => {
               natureza: project.natureza,
               eixos: project.eixos,
               especie: project.especie,
+              fontesDeRecurso: project.fontesDeRecurso
             }))
           );
 
@@ -81,16 +93,39 @@ const MenuComponent: React.FC = () => {
         }
       }
 
+      // Calculate maximum project value
+      const maxValue = projects.reduce((max, project) => {
+        const projectValue = project.fontesDeRecurso?.[0]?.valorInvestimentoPrevisto || 0;
+        return Math.max(max, projectValue);
+      }, 0);
+
+      setMaxProjectValue(maxValue);
+      setFilterOptions(prev => ({
+        ...prev,
+        valueRange: [0, maxValue]
+      }));
+
       setAllProjects(projects);
     };
 
     fetchProjects();
   }, []);
 
-  // Filter projects based on natureza
-  const filteredProjects = allProjects.filter(project => 
-    !filterNatureza || project.natureza === filterNatureza
-  );
+  // Filter projects based on all filters
+  const filteredProjects = allProjects.filter(project => {
+    // Check natureza filter
+    if (filterOptions.natureza && project.natureza !== filterOptions.natureza) {
+      return false;
+    }
+    
+    // Check value range filter
+    const projectValue = project.fontesDeRecurso?.[0]?.valorInvestimentoPrevisto || 0;
+    if (projectValue < filterOptions.valueRange[0] || projectValue > filterOptions.valueRange[1]) {
+      return false;
+    }
+
+    return true;
+  });
 
   const handleFilterClick = () => {
     setShowFilterMenu((prevState) => !prevState);
@@ -147,6 +182,10 @@ const MenuComponent: React.FC = () => {
     setIsArrowUp(previousMenuState.isArrowUp);
   };
 
+  const handleFilterChange = (newFilters: FilterOptions) => {
+    setFilterOptions(newFilters);
+  };
+
   return (
     <div className="relative w-full h-full">
       <div className="absolute inset-0">
@@ -177,8 +216,9 @@ const MenuComponent: React.FC = () => {
           closeFilterMenu={handleFilterClick}
           onSearchClick={handleSearchClick}
           onListClick={handleListClick}
-          onFilterChange={setFilterNatureza}
-          currentNatureza={filterNatureza} // Add this prop
+          onFilterChange={handleFilterChange}
+          currentFilters={filterOptions}
+          maxValue={maxProjectValue}
         />
       ) : showSearchMenu ? (
         <MenuProcurar 

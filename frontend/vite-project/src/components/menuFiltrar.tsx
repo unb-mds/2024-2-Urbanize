@@ -3,12 +3,18 @@ import BotoesMenu from './botoesMenu';
 import TituloMenus from './tituloMenus';
 import { Range } from 'react-range';
 
+interface FilterOptions {
+  natureza: string;
+  valueRange: [number, number];
+}
+
 interface MenuFiltrarProps {
   closeFilterMenu: () => void; // Função para redirecionar ao menu principal
   onSearchClick: () => void;
   onListClick: () => void;
-  onFilterChange: (natureza: string) => void; // Add this prop
-  currentNatureza: string; // Add this prop
+  onFilterChange: (filters: FilterOptions) => void; // Update this prop
+  currentFilters: FilterOptions; // Update this prop
+  maxValue: number;
 }
 
 const MenuFiltrar: React.FC<MenuFiltrarProps> = ({ 
@@ -16,12 +22,13 @@ const MenuFiltrar: React.FC<MenuFiltrarProps> = ({
   onSearchClick, 
   onListClick,
   onFilterChange,
-  currentNatureza // Add this
+  currentFilters, // Update this
+  maxValue
 }) => {
   const [value, setValue] = useState('');
   const [name, setName] = useState('');
-  const [natureza, setNatureza] = useState(currentNatureza); // Initialize with currentNatureza
-  const [rangeValues, setRangeValues] = useState([0, 33500000]);
+  const [natureza, setNatureza] = useState(currentFilters.natureza); // Initialize with currentFilters.natureza
+  const [rangeValues, setRangeValues] = useState(currentFilters.valueRange); // Initialize with currentFilters.valueRange
   const [naturezas, setNaturezas] = useState<string[]>([]); // Estado para armazenar as naturezas
 
   useEffect(() => {
@@ -56,10 +63,22 @@ const MenuFiltrar: React.FC<MenuFiltrarProps> = ({
   };
 
   function formatNumber(value: number): string {
-    return value.toLocaleString('pt-BR', {
+    // Updated formatting to handle large numbers
+    return new Intl.NumberFormat('pt-BR', {
+      style: 'currency',
+      currency: 'BRL',
       minimumFractionDigits: 2,
       maximumFractionDigits: 2,
-    });
+    }).format(value);
+  }
+
+  function formatCompactNumber(value: number): string {
+    if (value >= 1000000) {
+      return `R$ ${(value / 1000000).toFixed(1)}M`;
+    } else if (value >= 1000) {
+      return `R$ ${(value / 1000).toFixed(1)}K`;
+    }
+    return `R$ ${value.toFixed(0)}`;
   }
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -71,7 +90,10 @@ const MenuFiltrar: React.FC<MenuFiltrarProps> = ({
   };
 
   const handleFilter = () => {
-    onFilterChange(natureza); // Apply the filter
+    onFilterChange({
+      natureza,
+      valueRange: rangeValues
+    }); // Apply the filter
     // Removed closeFilterMenu() to keep menu open
   };
 
@@ -80,7 +102,7 @@ const MenuFiltrar: React.FC<MenuFiltrarProps> = ({
     setValue('');
     setName('');
     setNatureza('');
-    setRangeValues([0, 33500000]);
+    setRangeValues([0, maxValue]);
   };
 
   return (
@@ -130,9 +152,9 @@ const MenuFiltrar: React.FC<MenuFiltrarProps> = ({
               Valor da obra:
             </label>
             <Range
-              step={100}
+              step={10000} // Ajustado para melhor granularidade
               min={0}
-              max={33500000}
+              max={maxValue}
               values={rangeValues}
               onChange={(values) => setRangeValues(values)}
               renderTrack={({ props, children }) => (
@@ -144,9 +166,9 @@ const MenuFiltrar: React.FC<MenuFiltrarProps> = ({
                 <div {...props} className="h-3 w-3 rounded-full bg-customBlue shadow" />
               )}
             />
-            <div className="flex justify-between mt-1">
-              <span>{formatNumber(rangeValues[0])}</span>
-              <span>{formatNumber(rangeValues[1])}</span>
+            <div className="flex justify-between mt-1 text-sm font-medium"> {/* Updated size and weight */}
+              <span>{formatCompactNumber(rangeValues[0])}</span>
+              <span>{formatCompactNumber(rangeValues[1])}</span>
             </div>
           </div>
 
