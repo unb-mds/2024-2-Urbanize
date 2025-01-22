@@ -100,7 +100,7 @@ const MenuListar: React.FC<MenuListarProps> = ({
         </div>
 
         {/* Lista de Obras */}
-        <div className="w-full flex-grow flex flex-col p-3 bg-white mt-[-5px] overflow-y-auto scroll-container">
+        <div className="w-full flex-grow flex flex-col p-3 bg-white mt-[-5px] overflow-y-auto custom-scrollbar">
           <ul className="space-y-1 text-sm text-gray-700">
             {filteredObras.map((obra, index) => (
               <li
