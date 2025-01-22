@@ -7,16 +7,20 @@ interface MenuFiltrarProps {
   closeFilterMenu: () => void; // Função para redirecionar ao menu principal
   onSearchClick: () => void;
   onListClick: () => void;
+  onFilterChange: (natureza: string) => void; // Add this prop
+  currentNatureza: string; // Add this prop
 }
 
 const MenuFiltrar: React.FC<MenuFiltrarProps> = ({ 
   closeFilterMenu, 
   onSearchClick, 
-  onListClick 
+  onListClick,
+  onFilterChange,
+  currentNatureza // Add this
 }) => {
   const [value, setValue] = useState('');
   const [name, setName] = useState('');
-  const [natureza, setNatureza] = useState('');
+  const [natureza, setNatureza] = useState(currentNatureza); // Initialize with currentNatureza
   const [rangeValues, setRangeValues] = useState([0, 33500000]);
   const [naturezas, setNaturezas] = useState<string[]>([]); // Estado para armazenar as naturezas
 
@@ -67,11 +71,12 @@ const MenuFiltrar: React.FC<MenuFiltrarProps> = ({
   };
 
   const handleFilter = () => {
-    alert('Filtrar botão clicado!');
-    handleClear(); // Clear the input values after filtering
+    onFilterChange(natureza); // Apply the filter
+    closeFilterMenu();
   };
 
   const handleClear = () => {
+    // Just clear the form fields without affecting the active filter
     setValue('');
     setName('');
     setNatureza('');

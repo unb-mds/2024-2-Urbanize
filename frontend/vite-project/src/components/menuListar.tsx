@@ -3,11 +3,17 @@ import BotoesMenu from './botoesMenu';
 import TituloMenus from './tituloMenus';
 import MenuDetalhar from './menuDetalhar'; // Importe o novo componente
 
+interface MenuListarProps {
+  // ...existing props...
+  filterNatureza: string;
+}
+
 const MenuListar: React.FC<MenuListarProps> = ({ 
   closeListMenu, 
   onFilterClick, 
   onSearchClick, 
-  isArrowUp 
+  isArrowUp,
+  filterNatureza 
 }) => {
   const [obraSelecionada, setObraSelecionada] = useState<string | null>(null);
   const [obras, setObras] = useState<any[]>([]); // Estado para armazenar as obras
@@ -58,6 +64,12 @@ const MenuListar: React.FC<MenuListarProps> = ({
   useEffect(() => {
     let filtered = obras;
 
+    // Apply natureza filter from parent component
+    if (filterNatureza) {
+      filtered = filtered.filter((obra) => obra.natureza === filterNatureza);
+    }
+
+    // Apply local filters
     if (selectedEspecie) {
       filtered = filtered.filter((obra) => (obra.especie || 'Vazio') === selectedEspecie);
     }
@@ -67,7 +79,7 @@ const MenuListar: React.FC<MenuListarProps> = ({
     }
 
     setFilteredObras(filtered.sort((a, b) => a.nome.trim().toLowerCase().localeCompare(b.nome.trim().toLowerCase())));
-  }, [selectedEspecie, selectedEixo, obras]);
+  }, [selectedEspecie, selectedEixo, obras, filterNatureza]); // Add filterNatureza to dependencies
 
   if (obraSelecionada) {
     return (
