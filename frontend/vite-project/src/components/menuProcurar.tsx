@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import TituloMenus from './tituloMenus';
 import BotoesMenu from './botoesMenu';
 import MenuDetalhar from './menuDetalhar';
@@ -27,36 +27,43 @@ const MenuProcurar: React.FC<MenuProcurarProps> = ({
   const [obraSelecionada, setObraSelecionada] = useState<string | null>(null);
   const [previousSearch, setPreviousSearch] = useState('');
 
-  useEffect(() => {
-    const fetchObras = async () => {
-      let allObras: any[] = [];
-      let page = 1;
-      const pageSize = 464;
-      let hasMoreData = true;
+  // Memoize the fetch function
+  const fetchObras = useCallback(async () => {
+    let allObras: any[] = [];
+    let page = 1;
+    const pageSize = 464;
+    let hasMoreData = true;
 
-      while (hasMoreData) {
-        try {
-          const response = await fetch(`https://two024-2-urbanize.onrender.com/api/projeto-investimento?page=${page}&pageSize=${pageSize}`);
-          const data = await response.json();
+    while (hasMoreData) {
+      try {
+        const response = await fetch(`https://two024-2-urbanize.onrender.com/api/projeto-investimento?page=${page}&pageSize=${pageSize}`);
+        const data = await response.json();
 
-          if (data.projetos.length === 0) {
-            hasMoreData = false;
-            break;
-          }
-
-          allObras = [...allObras, ...data.projetos];
-          page += 1;
-        } catch (error) {
-          console.error('Erro ao buscar as obras:', error);
+        if (data.projetos.length === 0) {
           hasMoreData = false;
+          break;
         }
+
+        // Pre-process the data for faster searching
+        const processedObras = data.projetos.map((obra: any) => ({
+          ...obra,
+          searchableName: obra.nome.toLowerCase()
+        }));
+
+        allObras = [...allObras, ...processedObras];
+        page += 1;
+      } catch (error) {
+        console.error('Erro ao buscar as obras:', error);
+        hasMoreData = false;
       }
+    }
 
-      setObras(allObras);
-    };
-
-    fetchObras();
+    setObras(allObras);
   }, []);
+
+  useEffect(() => {
+    fetchObras();
+  }, [fetchObras]);
 
   useEffect(() => {
     if (savedSearchState) {
@@ -72,9 +79,22 @@ const MenuProcurar: React.FC<MenuProcurarProps> = ({
     setSearchTerm(currentSearchTerm);
   }, [currentSearchTerm]);
 
-  const filteredObras = obras.filter((obra) =>
-    obra.nome.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  // Memoize filtered results
+  const filteredObras = useMemo(() => {
+    const searchTermLower = searchTerm.toLowerCase();
+    return searchTerm
+      ? obras
+          .filter(obra => obra.searchableName.includes(searchTermLower))
+          .sort((a, b) => a.nome.localeCompare(b.nome))
+      : [];
+  }, [obras, searchTerm]);
+
+  // Debounce search input
+  const handleInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    const newTerm = e.target.value;
+    setSearchTerm(newTerm);
+    onSearchChange(newTerm);
+  }, [onSearchChange]);
 
   const handleSelectObra = (id: string) => {
     setPreviousSearch(searchTerm);
@@ -84,12 +104,6 @@ const MenuProcurar: React.FC<MenuProcurarProps> = ({
   const handleCloseDetail = () => {
     setObraSelecionada(null);
     setSearchTerm(previousSearch);
-  };
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newTerm = e.target.value;
-    setSearchTerm(newTerm);
-    onSearchChange(newTerm);
   };
 
   if (obraSelecionada) {
@@ -126,11 +140,11 @@ const MenuProcurar: React.FC<MenuProcurarProps> = ({
       </div>
 
       <div className="flex-grow overflow-y-auto custom-scrollbar px-3 pt-2">
-        {searchTerm && (
+        {searchTerm && filteredObras.length > 0 && (
           <ul className="space-y-1 text-sm text-gray-700">
-            {filteredObras.map((obra, index) => (
+            {filteredObras.map((obra) => (
               <li
-                key={index}
+                key={obra.id}
                 onClick={() => handleSelectObra(obra.id)}
                 className="border-b border-gray-300 py-2 last:border-none cursor-pointer hover:bg-gray-100"
               >
@@ -153,4 +167,4 @@ const MenuProcurar: React.FC<MenuProcurarProps> = ({
   );
 };
 
-export default MenuProcurar;
+export default React.memo(MenuProcurar);
