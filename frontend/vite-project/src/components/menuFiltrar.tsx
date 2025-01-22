@@ -114,6 +114,12 @@ const MenuFiltrar: React.FC<MenuFiltrarProps> = ({
     setRangeValues([0, maxValue]);
   };
 
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault(); // Previne o comportamento padrão do formulário
+    handleFilter(); // Aplica o filtro
+    return false; // Garante que o formulário não será enviado
+  };
+
   return (
     <div className="">
       <div className="bottom-5 left-10 w-64 h-[400px] bg-white rounded-[10px] shadow-lg flex flex-col fixed max-w-xs mx-auto my-1 z-10">
@@ -124,7 +130,12 @@ const MenuFiltrar: React.FC<MenuFiltrarProps> = ({
           </div>
         </div>
 
-        <form className="w-full flex-grow flex flex-col gap-1 p-3 bg-white mt-[-5px]">
+        <form 
+          onSubmit={handleSubmit} 
+          className="w-full flex-grow flex flex-col gap-1 p-3 bg-white mt-[-5px]"
+          action="#" // Previne redirecionamento
+          method="post" // Define método POST para evitar parâmetros na URL
+        >
           <div>
             <label htmlFor="name" className="block text-gray-700 text-sm font-bold">
               Nome da obra:
@@ -183,8 +194,7 @@ const MenuFiltrar: React.FC<MenuFiltrarProps> = ({
 
           <div className="flex justify-center gap-2">
             <button
-              type="button"
-              onClick={handleFilter}
+              type="submit"
               className="w-20 py-0.5 mb-0.5 bg-customBlue text-white font-bold rounded-[10px] hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400"
             >
               Filtrar
