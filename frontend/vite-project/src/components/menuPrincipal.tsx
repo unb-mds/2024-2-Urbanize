@@ -23,6 +23,7 @@ interface Project {
 interface FilterOptions {
   natureza: string;
   valueRange: [number, number];
+  searchTerm: string;
 }
 
 const MenuComponent: React.FC = () => {
@@ -46,9 +47,15 @@ const MenuComponent: React.FC = () => {
   const [lastSearchTerm, setLastSearchTerm] = useState('');
   const [filterOptions, setFilterOptions] = useState<FilterOptions>({
     natureza: '',
-    valueRange: [0, 33500000]
+    valueRange: [0, 33500000],
+    searchTerm: ''
   });
   const [maxProjectValue, setMaxProjectValue] = useState(33500000);
+  const [previousFilters, setPreviousFilters] = useState<FilterOptions>({
+    natureza: '',
+    valueRange: [0, 33500000],
+    searchTerm: ''
+  });
 
   // Fetch data when component mounts
   useEffect(() => {
@@ -113,6 +120,12 @@ const MenuComponent: React.FC = () => {
 
   // Filter projects based on all filters
   const filteredProjects = allProjects.filter(project => {
+    // Check name search filter
+    if (filterOptions.searchTerm && 
+        !project.nome.toLowerCase().includes(filterOptions.searchTerm.toLowerCase())) {
+      return false;
+    }
+
     // Check natureza filter
     if (filterOptions.natureza && project.natureza !== filterOptions.natureza) {
       return false;
@@ -167,6 +180,7 @@ const MenuComponent: React.FC = () => {
       setLastSearchTerm(searchTermState);
     }
     
+    setPreviousFilters(filterOptions);
     setSelectedObraId(id);
     setShowDetailMenu(true);
   };
@@ -180,6 +194,7 @@ const MenuComponent: React.FC = () => {
     setShowListMenu(previousMenuState.showListMenu);
     setShowSearchMenu(previousMenuState.showSearchMenu);
     setIsArrowUp(previousMenuState.isArrowUp);
+    setFilterOptions(previousFilters);
   };
 
   const handleFilterChange = (newFilters: FilterOptions) => {

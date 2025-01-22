@@ -6,6 +6,7 @@ import { Range } from 'react-range';
 interface FilterOptions {
   natureza: string;
   valueRange: [number, number];
+  searchTerm: string; // Add this
 }
 
 interface MenuFiltrarProps {
@@ -26,7 +27,7 @@ const MenuFiltrar: React.FC<MenuFiltrarProps> = ({
   maxValue
 }) => {
   const [value, setValue] = useState('');
-  const [name, setName] = useState('');
+  const [name, setName] = useState(currentFilters.searchTerm); // Initialize with currentFilters.searchTerm
   const [natureza, setNatureza] = useState(currentFilters.natureza); // Initialize with currentFilters.natureza
   const [rangeValues, setRangeValues] = useState(currentFilters.valueRange); // Initialize with currentFilters.valueRange
   const [naturezas, setNaturezas] = useState<string[]>([]); // Estado para armazenar as naturezas
@@ -45,6 +46,13 @@ const MenuFiltrar: React.FC<MenuFiltrarProps> = ({
 
     fetchNaturezas();
   }, []);
+
+  // Update local state when currentFilters changes
+  useEffect(() => {
+    setName(currentFilters.searchTerm);
+    setNatureza(currentFilters.natureza);
+    setRangeValues(currentFilters.valueRange);
+  }, [currentFilters]);
 
   // Função para formatar o valor como moeda
   const formatCurrency = (value: string) => {
@@ -92,7 +100,8 @@ const MenuFiltrar: React.FC<MenuFiltrarProps> = ({
   const handleFilter = () => {
     onFilterChange({
       natureza,
-      valueRange: rangeValues
+      valueRange: rangeValues,
+      searchTerm: name // Include the search term in the filter
     }); // Apply the filter
     // Removed closeFilterMenu() to keep menu open
   };
