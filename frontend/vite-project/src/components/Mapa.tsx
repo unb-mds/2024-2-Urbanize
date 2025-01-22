@@ -39,13 +39,12 @@ const MapComponent: React.FC<MapComponentProps> = ({ openDetailMenu, projects })
     };
   }, []);
 
-  // Update markers when projects change
+  // Update markers when projects or map changes
   useEffect(() => {
     if (!map) return;
 
     // Clear existing markers
     markers.forEach(marker => marker.remove());
-    setMarkers([]);
 
     const svgIcon = (size: number, situacao: string) => {
       const iconPath =
@@ -70,16 +69,23 @@ const MapComponent: React.FC<MapComponentProps> = ({ openDetailMenu, projects })
       .map(project => {
         const marker = L.marker([project.latitude, project.longitude], {
           icon: svgIcon(25, project.situacao),
-        }).addTo(map);
-
-        marker.on('click', () => {
-          openDetailMenu(project.id);
         });
 
+        marker.on('click', () => {
+          if (openDetailMenu) {
+            openDetailMenu(project.id);
+          }
+        });
+
+        marker.addTo(map);
         return marker;
       });
 
     setMarkers(newMarkers);
+
+    return () => {
+      newMarkers.forEach(marker => marker.remove());
+    };
   }, [map, projects, openDetailMenu]);
 
   return (

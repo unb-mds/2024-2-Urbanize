@@ -28,6 +28,16 @@ const MenuComponent: React.FC = () => {
   const [showDetailMenu, setShowDetailMenu] = useState(false);
   const [selectedObraId, setSelectedObraId] = useState<string | null>(null);
   const [allProjects, setAllProjects] = useState<Project[]>([]);
+  const [previousMenuState, setPreviousMenuState] = useState({
+    showFilterMenu: false,
+    showListMenu: false,
+    showSearchMenu: false,
+    isArrowUp: false,
+    selectedObraId: null as string | null
+  });
+  const [previousSearchState, setPreviousSearchState] = useState('');
+  const [searchTermState, setSearchTermState] = useState(''); // Add this state
+  const [lastSearchTerm, setLastSearchTerm] = useState('');
 
   // Fetch data when component mounts
   useEffect(() => {
@@ -109,21 +119,37 @@ const MenuComponent: React.FC = () => {
   };
 
   const handleOpenDetail = (id: string) => {
+    setPreviousMenuState({
+      showFilterMenu,
+      showListMenu,
+      showSearchMenu,
+      isArrowUp,
+      selectedObraId: id
+    });
+    
+    // Save current search term regardless of how we got here
+    if (showSearchMenu) {
+      setLastSearchTerm(searchTermState);
+    }
+    
     setSelectedObraId(id);
     setShowDetailMenu(true);
-    setShowFilterMenu(false);
-    setShowListMenu(false);
-    setShowSearchMenu(false);
   };
 
   const handleCloseDetail = () => {
     setShowDetailMenu(false);
     setSelectedObraId(null);
+    
+    // Restore previous menu state
+    setShowFilterMenu(previousMenuState.showFilterMenu);
+    setShowListMenu(previousMenuState.showListMenu);
+    setShowSearchMenu(previousMenuState.showSearchMenu);
+    setIsArrowUp(previousMenuState.isArrowUp);
   };
 
   return (
-    <>
-      <div className="h-screen w-full">
+    <div className="relative w-full h-full">
+      <div className="absolute inset-0">
         <MapComponent 
           openDetailMenu={handleOpenDetail}
           projects={filteredProjects}
@@ -141,6 +167,11 @@ const MenuComponent: React.FC = () => {
             isArrowUp={isArrowUp}
           />
         </div>
+      ) : showDetailMenu && selectedObraId ? (
+        <MenuDetalhar 
+          obraDetalhada={selectedObraId}
+          closeDetailMenu={handleCloseDetail}
+        />
       ) : showFilterMenu ? (
         <MenuFiltrar 
           closeFilterMenu={handleFilterClick}
@@ -154,11 +185,14 @@ const MenuComponent: React.FC = () => {
           closeSearchMenu={handleSearchClick}
           onFilterClick={handleFilterClick}
           onListClick={handleListClick}
-        />
-      ) : showDetailMenu && selectedObraId ? (
-        <MenuDetalhar 
-          obraDetalhada={selectedObraId}
-          closeDetailMenu={handleCloseDetail}
+          onDetailClick={handleOpenDetail}
+          onDetailClose={handleCloseDetail}
+          savedSearchState={previousSearchState} // Pass the saved search state
+          currentSearchTerm={lastSearchTerm}
+          onSearchChange={(term) => {
+            setLastSearchTerm(term);
+            setSearchTermState(term);
+          }}
         />
       ) : (
         <MenuListar 
@@ -170,7 +204,7 @@ const MenuComponent: React.FC = () => {
           projects={filteredProjects}
         />
       )}
-    </>
+    </div>
   );
 };
 

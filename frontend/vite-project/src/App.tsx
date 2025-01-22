@@ -4,7 +4,7 @@ import Legenda from './components/legenda';
 
 const App: React.FC = () => {
   return (
-    <div className="h-screen w-full relative">
+    <div className="flex h-screen w-full">
       <MenuComponent />
       <Legenda />
     </div>
