@@ -19,21 +19,37 @@ const MenuListar: React.FC<MenuListarProps> = ({
 
   useEffect(() => {
     const fetchObras = async () => {
-      try {
-        const response = await fetch('https://two024-2-urbanize.onrender.com/api/projeto-investimento');
-        const data = await response.json();
-        const sortedObras = data.projetos.sort((a: any, b: any) => a.nome.localeCompare(b.nome));
-        setObras(sortedObras);
-        setFilteredObras(sortedObras);
+      let allObras: any[] = [];
+      let page = 1;
+      const pageSize = 464;
+      let hasMoreData = true;
 
-        // Extrair espécies e eixos únicos
-        const uniqueEspecies = [...new Set(data.projetos.map((obra: any) => obra.especie || 'Vazio'))];
-        const uniqueEixos = [...new Set(data.projetos.flatMap((obra: any) => (obra.eixos.length ? obra.eixos.map((eixo: any) => eixo.descricao) : ['Vazio'])))];
-        setEspecies(uniqueEspecies);
-        setEixos(uniqueEixos);
-      } catch (error) {
-        console.error('Erro ao buscar as obras:', error);
+      while (hasMoreData) {
+        try {
+          const response = await fetch(`https://two024-2-urbanize.onrender.com/api/projeto-investimento?page=${page}&pageSize=${pageSize}`);
+          const data = await response.json();
+
+          if (data.projetos.length === 0) {
+            hasMoreData = false;
+            break;
+          }
+
+          allObras = [...allObras, ...data.projetos];
+          page += 1;
+        } catch (error) {
+          console.error('Erro ao buscar as obras:', error);
+          hasMoreData = false;
+        }
       }
+
+      const sortedObras = allObras.sort((a, b) => a.nome.trim().toLowerCase().localeCompare(b.nome.trim().toLowerCase()));
+      setObras(sortedObras);
+      setFilteredObras(sortedObras);
+
+      const uniqueEspecies = [...new Set(allObras.map((obra) => obra.especie || 'Vazio'))];
+      const uniqueEixos = [...new Set(allObras.flatMap((obra) => (obra.eixos.length ? obra.eixos.map((eixo) => eixo.descricao) : ['Vazio'])))];
+      setEspecies(uniqueEspecies);
+      setEixos(uniqueEixos);
     };
 
     fetchObras();
@@ -50,7 +66,7 @@ const MenuListar: React.FC<MenuListarProps> = ({
       filtered = filtered.filter((obra) => (obra.eixos.length ? obra.eixos.some((eixo: any) => eixo.descricao === selectedEixo) : selectedEixo === 'Vazio'));
     }
 
-    setFilteredObras(filtered);
+    setFilteredObras(filtered.sort((a, b) => a.nome.trim().toLowerCase().localeCompare(b.nome.trim().toLowerCase())));
   }, [selectedEspecie, selectedEixo, obras]);
 
   if (obraSelecionada) {

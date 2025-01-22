@@ -20,13 +20,30 @@ const MenuProcurar: React.FC<MenuProcurarProps> = ({
 
   useEffect(() => {
     const fetchObras = async () => {
-      try {
-        const response = await fetch('https://two024-2-urbanize.onrender.com/api/projeto-investimento');
-        const data = await response.json();
-        setObras(data.projetos);
-      } catch (error) {
-        console.error('Erro ao buscar as obras:', error);
+      let allObras: any[] = [];
+      let page = 1;
+      const pageSize = 464;
+      let hasMoreData = true;
+
+      while (hasMoreData) {
+        try {
+          const response = await fetch(`https://two024-2-urbanize.onrender.com/api/projeto-investimento?page=${page}&pageSize=${pageSize}`);
+          const data = await response.json();
+
+          if (data.projetos.length === 0) {
+            hasMoreData = false;
+            break;
+          }
+
+          allObras = [...allObras, ...data.projetos];
+          page += 1;
+        } catch (error) {
+          console.error('Erro ao buscar as obras:', error);
+          hasMoreData = false;
+        }
       }
+
+      setObras(allObras);
     };
 
     fetchObras();
