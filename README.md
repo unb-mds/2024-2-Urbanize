@@ -1,4 +1,16 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/b8b4dc2e5c0c5a1cb0c9/maintainability)](https://codeclimate.com/github/unb-mds/2024-2-Urbanize/maintainability)
+[![GitHub license](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)](https://github.com/Naereen/StrapDown.js/blob/master/LICENSE)
+
+![GitHub contributors](https://img.shields.io/github/contributors/unb-mds/2024-2-Urbanize)
+![GitHub commits since latest release](https://img.shields.io/github/commits-since/unb-mds/2024-2-Urbanize/latest)
+[![GitHub Issues](https://img.shields.io/github/issues/unb-mds/2024-2-Urbanize)](https://github.com/unb-mds/2024-2-Urbanize/issues)
+![Visualizações do repositório](https://views.whatilearened.today/views/github/unb-mds/2024-2-Urbanize.svg)
+
+![GitHub top language](https://img.shields.io/github/languages/top/unb-mds/2024-2-Urbanize)
+![NPM Version](https://img.shields.io/npm/v/vite)
+[![Docker](https://badgen.net/badge/icon/docker?icon=docker&label)](https://https://docker.com/)
+[![Open Source Love svg1](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badges/)
+
 ## Sumário
 - 🏗️ Urbanize
   - [Sumário](#sumário)
