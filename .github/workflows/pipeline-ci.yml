@@ -4,13 +4,9 @@ on:
   push:
     branches: 
       - main # Executa o workflow ao push na branch 'main'
-    paths:
-      - 'backend/node/**' # Executa o workflow ao push em arquivos dentro da pasta
   pull_request:
     branches: 
       - main # Executa o workflow ao abrir um PR na branch 'main'
-    paths:
-      - 'backend/node/**' # Executa o workflow ao abrir um PR em arquivos dentro da pasta
 
 jobs:
   lint:
@@ -25,13 +21,17 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          key: ${{ runner.os }}-node-${{ hashFiles('**/backend/node/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
       - name: Instala as dependências
-        run: npm ci
+        run: |
+          cd backend/node
+          npm ci
       - name: Roda o linter
-        run: npm run lint
+        run: |
+          cd backend/node
+          npm run lint
 
   test:
     name: Test
@@ -45,10 +45,14 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          key: ${{ runner.os }}-node-${{ hashFiles('**/backend/node/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
       - name: Instala as dependências
-        run: npm ci
+        run: |
+          cd backend/node
+          npm ci
       - name: Roda os testes
-        run: npm test
+        run: |
+          cd backend/node
+          npm test
