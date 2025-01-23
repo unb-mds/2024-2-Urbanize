@@ -1,14 +1,15 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/b8b4dc2e5c0c5a1cb0c9/maintainability)](https://codeclimate.com/github/unb-mds/2024-2-Urbanize/maintainability)
-[![Npm package version](https://badgen.net/npm/v/express)](https://npmjs.com/package/express)
 [![GitHub license](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)](https://github.com/Naereen/StrapDown.js/blob/master/LICENSE)
-[![GitHub release](https://img.shields.io/github/release/Naereen/StrapDown.js.svg)](https://GitHub.com/Naereen/StrapDown.js/releases/)
-[![GitHub commits](https://badgen.net/github/commits/Naereen/Strapdown.js)](https://GitHub.com/Naereen/StrapDown.js/commit/)
-[![GitHub issues-open](https://badgen.net/github/open-issues/Naereen/StrapDown.js)](https://github.com/Naereen/StrapDown.js/issues?q=is%3Aopen)
-[![TypeScript](https://img.shields.io/badge/--3178C6?logo=typescript&logoColor=ffffff)](https://www.typescriptlang.org/)
-[![Figma](https://img.shields.io/badge/--F24E1E?logo=figma&logoColor=ffffff)](https://www.figma.com/)
+
+![GitHub contributors](https://img.shields.io/github/contributors/unb-mds/2024-2-Urbanize)
+![GitHub commits since latest release](https://img.shields.io/github/commits-since/unb-mds/2024-2-Urbanize/latest)
+[![GitHub Issues](https://img.shields.io/github/issues/unb-mds/2024-2-Urbanize)](https://github.com/unb-mds/2024-2-Urbanize/issues)
+![Visualizações do repositório](https://views.whatilearened.today/views/github/unb-mds/2024-2-Urbanize.svg)
+
+![GitHub top language](https://img.shields.io/github/languages/top/unb-mds/2024-2-Urbanize)
+![NPM Version](https://img.shields.io/npm/v/vite)
 [![Docker](https://badgen.net/badge/icon/docker?icon=docker&label)](https://https://docker.com/)
 [![Open Source Love svg1](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badges/)
-
 
 ## Sumário
 - 🏗️ Urbanize
