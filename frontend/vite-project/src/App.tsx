@@ -28,10 +28,10 @@ const App: React.FC = () => {
       {isDetailMenuOpen && (
         <MenuDetalhar closeDetailMenu={closeDetailMenu} obraDetalhada={selectedDetail!} />
       )}
-            <Legenda />
+      <Legenda isDetailMenuOpen={isDetailMenuOpen} />
 
     </div>
-    
+
   );
 };
 
