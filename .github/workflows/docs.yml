@@ -1,5 +1,4 @@
-name: ci 
-
+name: mkdocs-material
 
 on:
   push:

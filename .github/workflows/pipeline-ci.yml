@@ -1,0 +1,54 @@
+name: pipeline-ci
+
+on:
+  push:
+    branches: 
+      - main # Executa o workflow ao push na branch 'main'
+    paths:
+      - 'backend/node/**' # Executa o workflow ao push em arquivos dentro da pasta
+  pull_request:
+    branches: 
+      - main # Executa o workflow ao abrir um PR na branch 'main'
+    paths:
+      - 'backend/node/**' # Executa o workflow ao abrir um PR em arquivos dentro da pasta
+
+jobs:
+  lint:
+    name: Linter
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Cache node_modules
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+      - name: Instala as dependências
+        run: npm ci
+      - name: Roda o linter
+        run: npm run lint
+
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Cache node_modules
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+      - name: Instala as dependências
+        run: npm ci
+      - name: Roda os testes
+        run: npm test
