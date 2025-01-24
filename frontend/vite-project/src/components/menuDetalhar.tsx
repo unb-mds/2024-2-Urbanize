@@ -88,8 +88,8 @@ const MenuDetalhar: React.FC<MenuDetalharProps> = ({ closeDetailMenu, obraDetalh
   }
 
   return (
-    <div className="bottom-0 left-0 w-full bg-white rounded-[10px] flex flex-col items-center fixed z-10 max-h-screen overflow-y-auto">
-      <div onClick={closeDetailMenu} className="cursor-pointer w-full">
+<div className="bottom-0 left-0 w-full bg-white rounded-[10px] flex flex-col items-center fixed z-50 max-h-screen overflow-y-auto">
+<div onClick={closeDetailMenu} className="cursor-pointer w-full">
         <div className="w-[92px] h-[9px] bg-customBlue mx-auto mt-3 rounded-md"></div>
       </div>
 

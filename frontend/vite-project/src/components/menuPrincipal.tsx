@@ -211,7 +211,7 @@ const MenuComponent: React.FC = () => {
       </div>
 
       {!showFilterMenu && !showListMenu && !showSearchMenu && !showDetailMenu ? (
-        <div className="fixed bottom-5 left-10 bg-white w-64 mx-auto my-1 rounded-[10px] shadow-lg z-10">
+        <div className="fixed bottom-5 left-10 bg-white w-64  my-1 rounded-[10px] shadow-lg z-10">
           <TituloMenus />
           <BotoesMenu
             className="w-full"

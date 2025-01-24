@@ -13,8 +13,10 @@ const Legenda: React.FC = () => {
   ];
 
   return (
-    <div className="fixed z-50 bottom-5 right-4 p-4 bg-white shadow-md rounded-md border border-gray-300 font-mono">
-      <h2 className="text-lg font-semibold mb-2">Legenda</h2>
+    <div className="fixed z-10 bottom-[720px] right-2 p-4 bg-white shadow-md rounded-md border border-gray-300 font-mono
+    md:bottom-5 md:right-5 lg:right-10
+    ">
+      <h2 className="text-lg font-semibold mb-2">Tipos de marcadores de obras</h2>
       <ul>
         {LegendaItems.map((item, index) => (
           <li key={index} className="flex items-center mb-1">
