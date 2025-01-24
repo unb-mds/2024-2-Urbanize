@@ -9,7 +9,9 @@ interface MenuListarProps {
   onSearchClick: () => void;
   isArrowUp: boolean;
   projects: Project[];
+  filterNatureza: string; // Adicione esta linha
 }
+
 
 const MenuListar: React.FC<MenuListarProps> = ({ 
   closeListMenu, 
