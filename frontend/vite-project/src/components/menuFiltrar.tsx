@@ -54,32 +54,6 @@ const MenuFiltrar: React.FC<MenuFiltrarProps> = ({
     setRangeValues(currentFilters.valueRange);
   }, [currentFilters]);
 
-  // Função para formatar o valor como moeda
-  const formatCurrency = (value: string) => {
-    // Remove tudo que não seja número
-    const numericValue = value.replace(/[^\d]/g, '');
-
-    if (!numericValue) return '';
-
-    // Adiciona os separadores de milhares e vírgula para decimais
-    const formattedValue = (parseFloat(numericValue) / 100)
-      .toFixed(2) // Garante duas casas decimais
-      .replace('.', ',') // Troca ponto por vírgula
-      .replace(/\B(?=(\d{3})+(?!\d))/g, '.'); // Adiciona pontos para milhares
-
-    return formattedValue;
-  };
-
-  function formatNumber(value: number): string {
-    // Updated formatting to handle large numbers
-    return new Intl.NumberFormat('pt-BR', {
-      style: 'currency',
-      currency: 'BRL',
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 2,
-    }).format(value);
-  }
-
   function formatCompactNumber(value: number): string {
     if (value >= 1000000) {
       return `R$ ${(value / 1000000).toFixed(1)}M`;
@@ -88,14 +62,6 @@ const MenuFiltrar: React.FC<MenuFiltrarProps> = ({
     }
     return `R$ ${value.toFixed(0)}`;
   }
-
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const inputValue = event.target.value;
-    const formattedValue = formatCurrency(inputValue);
-
-    // Aplica a formatação no estado
-    setValue(formattedValue);
-  };
 
   const handleFilter = () => {
     onFilterChange({
