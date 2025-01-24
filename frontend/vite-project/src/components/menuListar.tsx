@@ -3,44 +3,37 @@ import BotoesMenu from './botoesMenu';
 import TituloMenus from './tituloMenus';
 import MenuDetalhar from './menuDetalhar'; // Importe o novo componente
 
+interface MenuListarProps {
+  closeListMenu: () => void;
+  onFilterClick: () => void;
+  onSearchClick: () => void;
+  isArrowUp: boolean;
+  projects: Project[];
+}
+
 const MenuListar: React.FC<MenuListarProps> = ({ 
   closeListMenu, 
   onFilterClick, 
   onSearchClick, 
-  isArrowUp 
+  isArrowUp,
+  projects
 }) => {
   const [obraSelecionada, setObraSelecionada] = useState<string | null>(null);
-  const [obras, setObras] = useState<any[]>([]); // Estado para armazenar as obras
-  const [filteredObras, setFilteredObras] = useState<any[]>([]); // Estado para armazenar as obras filtradas
+  const [filteredObras, setFilteredObras] = useState(projects); // Estado para armazenar as obras filtradas
   const [especies, setEspecies] = useState<string[]>([]); // Estado para armazenar as espécies
   const [eixos, setEixos] = useState<string[]>([]); // Estado para armazenar os eixos
   const [selectedEspecie, setSelectedEspecie] = useState<string>(''); // Estado para a espécie selecionada
   const [selectedEixo, setSelectedEixo] = useState<string>(''); // Estado para o eixo selecionado
 
   useEffect(() => {
-    const fetchObras = async () => {
-      try {
-        const response = await fetch('https://two024-2-urbanize.onrender.com/api/projeto-investimento');
-        const data = await response.json();
-        const sortedObras = data.projetos.sort((a: any, b: any) => a.nome.localeCompare(b.nome));
-        setObras(sortedObras);
-        setFilteredObras(sortedObras);
-
-        // Extrair espécies e eixos únicos
-        const uniqueEspecies = [...new Set(data.projetos.map((obra: any) => obra.especie || 'Vazio'))];
-        const uniqueEixos = [...new Set(data.projetos.flatMap((obra: any) => (obra.eixos.length ? obra.eixos.map((eixo: any) => eixo.descricao) : ['Vazio'])))];
-        setEspecies(uniqueEspecies);
-        setEixos(uniqueEixos);
-      } catch (error) {
-        console.error('Erro ao buscar as obras:', error);
-      }
-    };
-
-    fetchObras();
-  }, []);
+    const uniqueEspecies = [...new Set(projects.map((obra) => obra.especie || 'Vazio'))];
+    const uniqueEixos = [...new Set(projects.flatMap((obra) => (obra.eixos.length ? obra.eixos.map((eixo) => eixo.descricao) : ['Vazio'])))];
+    setEspecies(uniqueEspecies);
+    setEixos(uniqueEixos);
+  }, [projects]);
 
   useEffect(() => {
-    let filtered = obras;
+    let filtered = projects;
 
     if (selectedEspecie) {
       filtered = filtered.filter((obra) => (obra.especie || 'Vazio') === selectedEspecie);
@@ -50,8 +43,8 @@ const MenuListar: React.FC<MenuListarProps> = ({
       filtered = filtered.filter((obra) => (obra.eixos.length ? obra.eixos.some((eixo: any) => eixo.descricao === selectedEixo) : selectedEixo === 'Vazio'));
     }
 
-    setFilteredObras(filtered);
-  }, [selectedEspecie, selectedEixo, obras]);
+    setFilteredObras(filtered.sort((a, b) => a.nome.trim().toLowerCase().localeCompare(b.nome.trim().toLowerCase())));
+  }, [selectedEspecie, selectedEixo, projects]);
 
   if (obraSelecionada) {
     return (
@@ -107,7 +100,7 @@ const MenuListar: React.FC<MenuListarProps> = ({
         </div>
 
         {/* Lista de Obras */}
-        <div className="w-full flex-grow flex flex-col p-3 bg-white mt-[-5px] overflow-y-auto scroll-container">
+        <div className="w-full flex-grow flex flex-col p-3 bg-white mt-[-5px] overflow-y-auto custom-scrollbar">
           <ul className="space-y-1 text-sm text-gray-700">
             {filteredObras.map((obra, index) => (
               <li
