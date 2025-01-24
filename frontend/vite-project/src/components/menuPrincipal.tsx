@@ -5,7 +5,7 @@ import MenuFiltrar from './menuFiltrar';
 import MenuListar from './menuListar';
 import MenuProcurar from './menuProcurar';
 import MapComponent from './Mapa';
-import MenuDetalhar from './menuDetalhar'; // Add this import
+import MenuDetalhar from './menuDetalhar'; 
 
 interface Project {
   id: string;
@@ -210,8 +210,8 @@ const MenuComponent: React.FC = () => {
         />
       </div>
 
-      {!showFilterMenu && !showListMenu && !showSearchMenu && !showDetailMenu ? (
-        <div className="fixed bottom-5 left-10 bg-white w-64 mx-auto my-1 rounded-[10px] shadow-lg z-10">
+      {!showFilterMenu && !showListMenu && !showSearchMenu ? (
+        <div className="fixed bottom-5 left-10 bg-white w-64  my-1 rounded-[10px] shadow-lg z-10">
           <TituloMenus />
           <BotoesMenu
             className="w-full"

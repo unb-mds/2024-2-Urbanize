@@ -4,9 +4,15 @@ import Legenda from './components/legenda';
 
 const App: React.FC = () => {
   return (
-    <div className="flex h-screen w-full">
-      <MenuComponent />
-      <Legenda />
+    <div className="flex items-center justify-center h-screen bg-gray-100">
+      <MapComponent openDetailMenu={openDetailMenu} />
+      {/* Renderiza o MenuPrincipal apenas quando o menu de detalhamento não está aberto */}
+      {!isDetailMenuOpen && <MenuComponent />}
+      {isDetailMenuOpen && (
+        <MenuDetalhar closeDetailMenu={closeDetailMenu} obraDetalhada={selectedDetail!} />
+      )}
+      <Legenda isDetailMenuOpen={isDetailMenuOpen} />
+
     </div>
   );
 };
