@@ -25,7 +25,6 @@ const MenuFiltrar: React.FC<MenuFiltrarProps> = ({
   currentFilters,
   maxValue
 }) => {
-  const [value, setValue] = useState('');
   const [name, setName] = useState(currentFilters.searchTerm); // Initialize with currentFilters.searchTerm
   const [natureza, setNatureza] = useState(currentFilters.natureza); // Initialize with currentFilters.natureza
   const [rangeValues, setRangeValues] = useState(currentFilters.valueRange); // Initialize with currentFilters.valueRange
@@ -74,7 +73,6 @@ const MenuFiltrar: React.FC<MenuFiltrarProps> = ({
 
   const handleClear = () => {
     // Just clear the form fields without affecting the active filter
-    setValue('');
     setName('');
     setNatureza('');
     setRangeValues([0, maxValue]);
