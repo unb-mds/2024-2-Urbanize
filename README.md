@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/8e3116f2-ca09-4204-9019-510d42ae9b41" alt="Imagem Centralizada" />
+</p>
+
 [![Maintainability](https://api.codeclimate.com/v1/badges/b8b4dc2e5c0c5a1cb0c9/maintainability)](https://codeclimate.com/github/unb-mds/2024-2-Urbanize/maintainability)
 [![GitHub license](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)](https://github.com/Naereen/StrapDown.js/blob/master/LICENSE)
 
