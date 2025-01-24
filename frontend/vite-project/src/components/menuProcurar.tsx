@@ -79,14 +79,32 @@ const MenuProcurar: React.FC<MenuProcurarProps> = ({
     setSearchTerm(currentSearchTerm);
   }, [currentSearchTerm]);
 
-  // Memoize filtered results
+  // Função auxiliar para normalizar texto para ordenação
+  const normalizeText = (text: string): string => {
+    return text
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .trim();
+  };
+
+  // Memoize filtered results com ordenação aprimorada
   const filteredObras = useMemo(() => {
+    if (!searchTerm) return [];
+
     const searchTermLower = searchTerm.toLowerCase();
-    return searchTerm
-      ? obras
-          .filter(obra => obra.searchableName.includes(searchTermLower))
-          .sort((a, b) => a.nome.localeCompare(b.nome))
-      : [];
+    return obras
+      .filter(obra => obra.searchableName.includes(searchTermLower))
+      .sort((a, b) => {
+        const nameA = normalizeText(a.nome);
+        const nameB = normalizeText(b.nome);
+        
+        // Remove artigos e palavras comuns do início para melhor ordenação
+        const cleanNameA = nameA.replace(/^(a |o |as |os |um |uma |uns |umas |de |da |do |das |dos )/g, '');
+        const cleanNameB = nameB.replace(/^(a |o |as |os |um |uma |uns |umas |de |da |do |das |dos )/g, '');
+        
+        return cleanNameA.localeCompare(cleanNameB, 'pt-BR');
+      });
   }, [obras, searchTerm]);
 
   // Debounce search input
