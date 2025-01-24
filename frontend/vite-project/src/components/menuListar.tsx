@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import BotoesMenu from './botoesMenu';
-import TituloMenus from './tituloMenus';
-import MenuDetalhar from './menuDetalhar'; // Importe o novo componente
+import MenuDetalhar from './menuDetalhar'; 
 
 interface MenuListarProps {
   closeListMenu: () => void;
@@ -9,9 +8,19 @@ interface MenuListarProps {
   onSearchClick: () => void;
   isArrowUp: boolean;
   projects: Project[];
-  filterNatureza: string; // Adicione esta linha
+  filterNatureza: string; 
 }
 
+interface Eixo {
+  descricao: string;
+}
+
+interface Project {
+  id: string;
+  nome: string;
+  especie: string;
+  eixos: Eixo[];
+}
 
 const MenuListar: React.FC<MenuListarProps> = ({ 
   closeListMenu, 
@@ -42,8 +51,11 @@ const MenuListar: React.FC<MenuListarProps> = ({
     }
 
     if (selectedEixo) {
-      filtered = filtered.filter((obra) => (obra.eixos.length ? obra.eixos.some((eixo: any) => eixo.descricao === selectedEixo) : selectedEixo === 'Vazio'));
+      filtered = filtered.filter((obra) => 
+        obra.eixos.length ? obra.eixos.some((eixo: Eixo) => eixo.descricao === selectedEixo) : selectedEixo === 'Vazio'
+      );
     }
+    
 
     setFilteredObras(filtered.sort((a, b) => a.nome.trim().toLowerCase().localeCompare(b.nome.trim().toLowerCase())));
   }, [selectedEspecie, selectedEixo, projects]);
