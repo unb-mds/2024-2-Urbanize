@@ -13,11 +13,11 @@ const Legenda: React.FC = () => {
   ];
 
   return (
-    <div className="fixed z-10 bottom-[720px] right-2 p-4 bg-white shadow-md rounded-md border border-gray-300 font-mono
+    <div className="fixed z-10 bottom-[720px] right-0 p-4 bg-white shadow-md rounded-md border border-gray-300 font-mono
     md:bottom-5 
     md:right-10
-    lg:right-50
-    xl:right-80
+    xl:right-30
+
     ">
       <h2 className="text-lg font-semibold mb-2">Tipos de marcadores de obras</h2>
       <ul>
