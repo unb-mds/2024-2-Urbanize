@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
-import TituloMenus from './tituloMenus';
 import BotoesMenu from './botoesMenu';
 import MenuDetalhar from './menuDetalhar';
 
@@ -150,7 +149,7 @@ const MenuProcurar: React.FC<MenuProcurarProps> = ({
           <input
             type="text"
             placeholder="Cidade, tipo de obra"
-            className="w-full text-gray-100 bg-customBlue text-white focus:outline-none ml-3"
+            className="w-full text-gray-100 bg-customBlue focus:outline-none ml-3"
             value={searchTerm}
             onChange={handleInputChange}
           />
