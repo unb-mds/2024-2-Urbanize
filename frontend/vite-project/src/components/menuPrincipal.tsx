@@ -42,7 +42,7 @@ const MenuComponent: React.FC = () => {
       <div id="map" className="relative h-screen w-full"></div>
 
       {!showFilterMenu && !showListMenu && !showSearchMenu ? (
-        <div className="fixed bottom-5 left-10 bg-white w-64 mx-auto my-1 rounded-[10px] shadow-lg z-10">
+        <div className="fixed bottom-5 left-10 bg-white w-64  my-1 rounded-[10px] shadow-lg z-10">
           <TituloMenus />
 
           <BotoesMenu
