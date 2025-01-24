@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import BotoesMenu from './botoesMenu';
-import TituloMenus from './tituloMenus';
 import { Range } from 'react-range';
 
 interface FilterOptions {
   natureza: string;
   valueRange: [number, number];
-  searchTerm: string; // Add this
+  searchTerm: string;
 }
 
 interface MenuFiltrarProps {
@@ -18,12 +17,12 @@ interface MenuFiltrarProps {
   maxValue: number;
 }
 
-const MenuFiltrar: React.FC<MenuFiltrarProps> = ({ 
-  closeFilterMenu, 
-  onSearchClick, 
+const MenuFiltrar: React.FC<MenuFiltrarProps> = ({
+  closeFilterMenu,
+  onSearchClick,
   onListClick,
   onFilterChange,
-  currentFilters, // Update this
+  currentFilters,
   maxValue
 }) => {
   const [value, setValue] = useState('');
@@ -37,8 +36,9 @@ const MenuFiltrar: React.FC<MenuFiltrarProps> = ({
       try {
         const response = await fetch('https://two024-2-urbanize.onrender.com/api/projeto-investimento');
         const data = await response.json();
-        const uniqueNaturezas = [...new Set(data.projetos.map((obra: any) => obra.natureza || 'Vazio'))];
+        const uniqueNaturezas = [...new Set(data.projetos.map((obra: any) => obra.natureza || 'Vazio'))] as string[];
         setNaturezas(uniqueNaturezas);
+
       } catch (error) {
         console.error('Erro ao buscar as naturezas:', error);
       }
@@ -124,7 +124,7 @@ const MenuFiltrar: React.FC<MenuFiltrarProps> = ({
           </div>
         </div>
 
-        <form 
+        <form
           onSubmit={(e) => e.preventDefault()} // Just prevent default form submission
           className="w-full flex-grow flex flex-col gap-1 p-3 bg-white mt-[-5px]"
           action="#" // Previne redirecionamento
@@ -166,11 +166,11 @@ const MenuFiltrar: React.FC<MenuFiltrarProps> = ({
               Valor da obra:
             </label>
             <Range
-              step={10000} // Ajustado para melhor granularidade
+              step={10000} 
               min={0}
               max={maxValue}
               values={rangeValues}
-              onChange={(values) => setRangeValues(values)}
+              onChange={(values) => setRangeValues([values[0], values[1]])}  
               renderTrack={({ props, children }) => (
                 <div {...props} className="bg-gray-200 h-2 rounded-md">
                   {children}
@@ -205,7 +205,7 @@ const MenuFiltrar: React.FC<MenuFiltrarProps> = ({
         </form>
 
         <div className="w-full mt-auto">
-          <BotoesMenu 
+          <BotoesMenu
             className="w-full"
             onFilterClick={closeFilterMenu}
             onSearchClick={onSearchClick}
