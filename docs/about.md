@@ -1,4 +1,4 @@
-# Sobre 
+# Equipe
 
 ## Sobre os integrantes
 

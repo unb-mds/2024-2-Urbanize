@@ -17,12 +17,15 @@ nav:
     - Sprint 11: sprints/sprint-11.md
     - Sprint 12: sprints/sprint-12.md
     
-  - Projeto:
-    - Arquitetura e Tecnologias: projects/arquitetura.md
-    - Padronização:    # Novo link de navegação
+  - Execução do projeto: arquitetura.md
+  - Padronização:    # Novo link de navegação
       - Git: padronizacaoGit.md  # Primeiro arquivo
-      - Issues: padronizacaoIssues.md  # Segundo arquivo                             
-  - Sobre: about.md
+      - Issues: padronizacaoIssues.md  # Segundo arquivo  
+  - Material de estudo: material.md                           
+  - Equipe: about.md
+  - Arquitetura e tecnologias: tecnologia.md
+  
+  
 
 theme:
   font:
