@@ -6,8 +6,8 @@ Este documento tem o objetivo de consolidar padrões de uso do Git no desenvolvi
 
 Para garantir um fluxo de trabalho contínuo e de forma padronizada, possibilitando o rastreamento das funcionalidades desenvolvidas e facilitando o desenvolvimento contínuo. Os conceitos-chave para implementação da estratégia serão:
 
-- Main: Branch de produção, responsável por abrigar o código da última release.
-- Feature: Branch de desenvolvimento de funcionalidade, representa a branch de trabalho sob uma determinada funcionalidade, tarefa, correção de bugs e afins.
+- *Main:* Branch de produção, responsável por abrigar o código da última release.
+- *Feature:* Branch de desenvolvimento de funcionalidade, representa a branch de trabalho sob uma determinada funcionalidade, tarefa, correção de bugs e afins.
 
 É importante que a branch de funcionalidade seja criada seguindo o padrão:
 
@@ -30,15 +30,17 @@ As informações abaixo referem-se aos padrões de escrita de commits do nosso r
 1. Sempre dividir o trabalho em pequenos e significativos commits, de maneira que cada commit implemente apenas uma funcionalidade.
 2. A anatomia do commit deve seguir o formato determinado abaixo:
 
-
+```bash 
 [tipo](#número da issue): assunto 
-
+```
 > As opções permitidas para o campo tipo são:
 
 - feat: nova funcionalidade
 - docs: relacionado à documentação
 - refact: refatoração de código
 - fix: correções
+- test: Para criação ou atualização de testes.
+- chore: Para mudanças que não impactam diretamente o código da aplicação (ex.: atualizações de dependências, configurações
 
 > As opções permitidas para o campo tipo são:
 
@@ -47,10 +49,10 @@ As informações abaixo referem-se aos padrões de escrita de commits do nosso r
 - Deve conter o que
 
 Exemplo de commit: 
-
+```bash 
 [refact](#25): ajustando página de login  
-
+```
 
 ## Pull Request
 
-Por meio do processo de pull request, realizado no GitHub, toda nova funcionalidade deve ser integrada à branch Main. Mas isso semente será feito após todos os critérios de sucesso para a feature estarem atendidos.
+Por meio do processo de pull request, realizado no GitHub, toda nova funcionalidade deve ser integrada à branch Main. Mas isso somente será feito após todos os critérios de sucesso para a feature estarem atendidos.

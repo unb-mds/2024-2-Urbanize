@@ -77,10 +77,10 @@ http://localhost:3001/api-docs
 O Cron Job já está configurado no projeto para executar periodicamente o script de requisição de dados. Ele está integrado ao sistema, eliminando a necessidade de configurações adicionais. O script responsável por esta automação está localizado em:
 
 ```plaintext
-<diretorio-do-projeto>/scripts/update_data.py
+2024-2-Urbanize/backend/node/src/server.ts
 ```
 
-Por padrão, o Cron Job é executado a cada 24 horas para assegurar que as informações estejam sempre atualizadas. Caso seja necessário verificar ou ajustar a frequência, a alteração dos marcadores pode ser feito diretamente no código do projeto.
+Por padrão, o Cron Job é executado a cada 24 horas para assegurar que as informações estejam sempre atualizadas. Caso seja necessário verificar ou **ajustar** a frequência, a alteração dos marcadores pode ser feito **diretamente no código** do projeto.
 
 
 ### Acessando o Swagger UI
@@ -182,20 +182,21 @@ http://localhost:3000
 <br>
 **ESTRUTURA DAS PASTAS:**
 
-*/public:* Contém as imagens usadas no projeto. 
+<span style="color: #4A90E2;">*/public*</span>: Contém as imagens usadas no projeto. 
 	- marcadorVerde.svg 
 
-- marcadorVermelho.svg
-/src: Contém o código-fonte do projeto.
 
-*/components:* Pasta destinada aos componentes.
+<span style="color: #32CD32;">*/src*</span> Contém o código-fonte do projeto.
+
+
+<span style="color: #90EE90;">*/componentes*</span>: Pasta destinada aos componentes.
 	- MapComponent.tsx
 
-*App.tsx:* Arquivo principal.
+<span style="color: #4A90E2;">*App.tsx:*</span>: Arquivo principal.
 
-*index.css:* Configuração do Tailwind. 
+<span style="color: #4A90E2;">*index.css:*</span>: Configuração do Tailwind. 
 
-*tailwind.config.js:* Arquivo de configuração do Tailwind CSS
+<span style="color: #4A90E2;">*tailwind.config.js:*</span>: Arquivo de configuração do Tailwind CSS
 
 ---
 
