@@ -28,6 +28,21 @@ O **frontend** é interface visual do Urbanize, composto por três páginas prin
 
 **Tecnologias utilizadas:**
 
+- **Vite:** Para build e desenvolvimento
+
+- **TypeScript:** Linguagem principal.
+
+- **Tailwind CSS:** Estilização.
+
+- **Component Libraries:**
+
+    Material UI
+    
+    DaisyUI
+    
+    Mamba UI
+
+
 - **Next.js:** Framework React para renderização no lado do servidor (SSR) e geração de sites estáticos, proporcionando uma performance melhorada e SEO otimizado.
 - **Tailwind CSS:** Framework de utilitários CSS que permite um design responsivo e customizável.
 - **TypeScript:** Linguagem que adiciona tipagem estática ao JavaScript, aumentando segurança e previsibilidade do código.
