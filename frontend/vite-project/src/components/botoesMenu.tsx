@@ -16,10 +16,10 @@ const BotoesMenu: React.FC<BotoesMenuProps> = ({
   isArrowUp 
 }) => {
   return (
-    <div className={`bg-customBlue text-white grid grid-cols-3 py-3 rounded-md ${className}`}>
+    <div className={`bg-customBlue text-white grid grid-cols-3 py-3 rounded-md ${className} sm:w-[500px] lg:w-64 `}>
       {/* Botão Procurar */}
-      <div className="flex items-center justify-center">
-        <button onClick={onSearchClick} className="flex flex-col items-center space-y-1">
+      <div className="flex items-center justify-center ">
+        <button onClick={onSearchClick} className="flex flex-col items-center space-y-1 ">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
             <path
               fillRule="evenodd"
@@ -31,7 +31,6 @@ const BotoesMenu: React.FC<BotoesMenuProps> = ({
         </button>
       </div>
 
-      {/* Botão Listar - Removida as classes border-l border-r border-white/20 */}
       <div className="flex items-center justify-center">
         <button onClick={onListClick} className="flex flex-col items-center space-y-1">
           <svg
@@ -52,7 +51,6 @@ const BotoesMenu: React.FC<BotoesMenuProps> = ({
         </button>
       </div>
 
-      {/* Botão Filtrar */}
       <div className="flex items-center justify-center">
         <button onClick={onFilterClick} className="flex flex-col items-center space-y-1">
           <svg

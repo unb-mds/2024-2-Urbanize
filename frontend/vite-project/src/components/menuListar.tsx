@@ -71,8 +71,7 @@ const MenuListar: React.FC<MenuListarProps> = ({
 
   return (
     <div>
-      <div className="bottom-5 left-10 w-64 h-[400px] bg-white rounded-[10px] shadow-lg flex flex-col fixed max-w-xs mx-auto my-1 z-10">
-        {/* Cabeçalho */}
+      <div className="bottom-5 left-10 w-64 h-[400px] bg-white rounded-[10px] shadow-lg flex flex-col fixed sm:w-[500px] lg:w-64 my-1 z-10">
         <div className="w-full">
           <div className="text-center">
             <div onClick={closeListMenu} className="w-[92px] h-[9px] bg-customBlue mx-auto mt-3 rounded-md cursor-pointer"></div>
@@ -114,7 +113,7 @@ const MenuListar: React.FC<MenuListarProps> = ({
         </div>
 
         {/* Lista de Obras */}
-        <div className="w-full flex-grow flex flex-col p-3 bg-white mt-[-5px] overflow-y-auto custom-scrollbar">
+        <div className="w-full flex-grow flex flex-col p-3 bg-white mt-[-5px] overflow-y-auto custom-scrollbar sm:w-[500px] lg:w-64">
           <ul className="space-y-1 text-sm text-gray-700">
             {filteredObras.map((obra, index) => (
               <li
@@ -130,7 +129,7 @@ const MenuListar: React.FC<MenuListarProps> = ({
 
         {/* Navbar com navegação */}
         <BotoesMenu 
-          className="w-full"
+          className="w-full sm:h-[200px] md:h-[80px] lg:h-20"
           onListClick={closeListMenu}
           onFilterClick={onFilterClick}
           onSearchClick={onSearchClick}

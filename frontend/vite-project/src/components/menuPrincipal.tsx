@@ -5,7 +5,7 @@ import MenuFiltrar from './menuFiltrar';
 import MenuListar from './menuListar';
 import MenuProcurar from './menuProcurar';
 import MapComponent from './Mapa';
-import MenuDetalhar from './menuDetalhar'; // Add this import
+import MenuDetalhar from './menuDetalhar'; 
 
 interface Project {
   id: string;
@@ -202,7 +202,7 @@ const MenuComponent: React.FC = () => {
   };
 
   return (
-    <div className="relative w-full h-full">
+    <div className="relative w-full h-full ">
       <div className="absolute inset-0">
         <MapComponent 
           openDetailMenu={handleOpenDetail}
@@ -211,10 +211,10 @@ const MenuComponent: React.FC = () => {
       </div>
 
       {!showFilterMenu && !showListMenu && !showSearchMenu && !showDetailMenu ? (
-        <div className="fixed bottom-5 left-10 bg-white w-64  my-1 rounded-[10px] shadow-lg z-10">
+        <div className="fixed bottom-5 left-10 bg-white  my-1 rounded-[10px] shadow-lg z-10 sm:w-[500px] lg:w-64">
           <TituloMenus />
           <BotoesMenu
-            className="w-full"
+            className="w-full sm:h-[200px] md:h-[80px] lg:h-20"
             onFilterClick={handleFilterClick}
             onListClick={handleListClick}
             onSearchClick={handleSearchClick}
@@ -225,6 +225,7 @@ const MenuComponent: React.FC = () => {
         <MenuDetalhar 
           obraDetalhada={selectedObraId}
           closeDetailMenu={handleCloseDetail}
+          
         />
       ) : showFilterMenu ? (
         <MenuFiltrar 

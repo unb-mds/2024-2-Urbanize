@@ -133,7 +133,7 @@ const MenuProcurar: React.FC<MenuProcurarProps> = ({
   }
 
   return (
-    <div className="fixed bottom-5 left-10 w-64 h-[400px] bg-white rounded-[10px] shadow-lg flex flex-col mx-auto my-1 z-10">
+    <div className="fixed bottom-5 left-10 w-64 h-[400px] bg-white rounded-[10px] shadow-lg flex flex-col mx-auto my-1 z-10 sm:w-[500px] lg:w-64">
       <div className="w-full">
         <div className="text-center">
           <div onClick={closeSearchMenu} className="w-[92px] h-[9px] bg-customBlue mx-auto mt-3 rounded-md cursor-pointer"></div>

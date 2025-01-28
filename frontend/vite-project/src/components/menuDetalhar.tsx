@@ -88,7 +88,7 @@ const MenuDetalhar: React.FC<MenuDetalharProps> = ({ closeDetailMenu, obraDetalh
   }
 
   return (
-<div className="bottom-0 left-0 w-full bg-white rounded-[10px] flex flex-col items-center fixed z-50 max-h-screen overflow-y-auto">
+<div className="bottom-0 left-0 w-full bg-white rounded-[10px] flex flex-col items-center fixed z-50 max-h-screen overflow-y-auto ">
 <div onClick={closeDetailMenu} className="cursor-pointer w-full">
         <div className="w-[92px] h-[9px] bg-customBlue mx-auto mt-3 rounded-md"></div>
       </div>
@@ -104,7 +104,7 @@ const MenuDetalhar: React.FC<MenuDetalharProps> = ({ closeDetailMenu, obraDetalh
           Status da obra: <span className="font-bold text-gray-800">{detalhes.situacao}</span>
         </p>
 
-        <div className="grid grid-cols-1 gap-2 mb-6">
+        <div className="grid grid-cols-1 gap-2 mb-6  sm:text-[22px] lg:text-[15px]">
           <p>
             <strong>Nome: </strong>
             {detalhes.nome}
@@ -119,7 +119,7 @@ const MenuDetalhar: React.FC<MenuDetalharProps> = ({ closeDetailMenu, obraDetalh
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm text-gray-800 leading-6">
+        <div className="sm:text-[22px] lg:text-[15px] grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 gap-4 text-sm text-gray-800 leading-6 ">
           <div className="space-y-2">
             <p>
               <strong>Data Inicial Prevista: </strong>
