@@ -3,11 +3,11 @@ import React from 'react';
 const Legenda: React.FC = () => {
   const LegendaItems = [
     {
-      iconPath: '/public/marcadorVerde.svg',
+      iconPath: 'marcadorVerde.svg',
       label: 'Em Execução, Cadastrada e Concluída',
     },
     {
-      iconPath: '/public/marcadorVermelho.svg',
+      iconPath: 'marcadorVermelho.svg',
       label: 'Paralisada, Cancelada e Inacabada',
     },
   ];
