@@ -28,11 +28,26 @@ O **frontend** é interface visual do Urbanize, composto por três páginas prin
 
 **Tecnologias utilizadas:**
 
+- **React.js:** Biblioteca principal para criar interfaces de usuário baseadas em componentes.  
+
+- **TypeScript:** Superset do JavaScript que adiciona tipagem estática e facilita a manutenção do 
+código.  
+
+- **Leaflet:** Biblioteca para criação de mapas interativos e integração com camadas de geolocalização.  
+
+- **React-Range:** Utilizada para criar controles deslizantes leves e customizáveis.  
+
+- **TailwindCSS:** Ferramenta para estilizar os componentes e o layout da aplicação.  
+
+- **Bibliotecas de Ícones:** `react-icons` ou SVGs personalizados (como os ícones de marcadores no mapa).  
+
+
+
+
 - **Vite:** Para build e desenvolvimento
 
 - **TypeScript:** Linguagem principal.
 
-- **Tailwind CSS:** Estilização.
 
 - **Component Libraries:**
 
@@ -44,14 +59,25 @@ O **frontend** é interface visual do Urbanize, composto por três páginas prin
 
 
 - **Next.js:** Framework React para renderização no lado do servidor (SSR) e geração de sites estáticos, proporcionando uma performance melhorada e SEO otimizado.
-- **Tailwind CSS:** Framework de utilitários CSS que permite um design responsivo e customizável.
-- **TypeScript:** Linguagem que adiciona tipagem estática ao JavaScript, aumentando segurança e previsibilidade do código.
+
+
 - **Axios:** Biblioteca para requisições HTTP, estabelecendo a comunicação com a API.
 - **Vitest:** Ferramenta de testes unitários JavaScript, permitindo a execução rápida e eficiente dos testes.
 - **Testing Library:** Conjunto de utilitários que possibilita renderizar os componentes em ambiente de teste.
 - **ESLint:** Ferramenta de linting que identifica e corrige problemas de estilo e padrões no código, garantindo a qualidade e consistência.
 - **Sonner:** Biblioteca para exibição de notificações na interface, tornando mensagens de erro e alertas amigáveis.
 - **ApexCharts:** Biblioteca para criação de gráficos interativos e visualizações de dados, proporcionando uma apresentação rica e personalizável das informações.
+
+---
+*Ferramentas de build e desenvolvimennto*
+
+**Vite ou Create React App**
+
+- Ferramenta para configurar e rodar o ambiente React rapidamente.
+
+**Gerenciamento de Estado e Dados**
+
+- useState / useEffect -> Hooks nativos do React para gerenciamento de estado e efeitos colaterais.
 
 ---
 
@@ -80,7 +106,7 @@ O **backend/API** é responsável pela busca, regras de negócio e tratamento do
 
 ---
 
-## API
+# API
 
 Uma **API** (Application Programming Interface, ou Interface de Programação de Aplicações) é um conjunto de definições e protocolos que permite que diferentes sistemas ou softwares se comuniquem entre si de maneira estruturada e padronizada..
 
@@ -92,7 +118,7 @@ A fonte dos dados extraídos pelo api: [Obrasgov](https://api.obrasgov.gestao.go
 
 ---
 
-## Banco de Dados
+# Banco de Dados
 
 O **banco de dados** armazena de forma dinâmica e inteligente todos os dados necessários para abastecer o **Urbanize**. Ele é o repositório central onde os dados coletados e processados são mantidos, garantindo que estejam acessíveis e organizados para consultas e análises.
 
@@ -111,4 +137,5 @@ Veja sua modelagem:
 ## Documentos importantes
 
 
-A equipe utilizou o **Miro** como ferramenta principal para organizar o projeto de forma colaborativa e eficiente. Por meio dele, conseguimos criar fluxogramas, mapas mentais e painéis visuais que facilitaram a comunicação e o alinhamento das ideias. Além disso, o Miro nos permitiu documentar as etapas do desenvolvimento e acompanhar o progresso de cada tarefa em tempo real, promovendo maior integração entre os membros do time.
+A equipe utilizou o **[Miro](https://miro.com/app/board/uXjVL093sYc=/)** como ferramenta principal para organizar o projeto de forma colaborativa e eficiente. Por meio dele, conseguimos criar fluxogramas, mapas mentais e painéis visuais que facilitaram a comunicação e o alinhamento das ideias. Além disso, o Miro nos permitiu documentar as etapas do desenvolvimento e acompanhar o progresso de cada tarefa em tempo real, promovendo maior integração entre os membros do time.
+

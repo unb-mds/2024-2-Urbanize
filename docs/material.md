@@ -7,6 +7,15 @@
 - [Curso de Figma - Tutorial Avançado](https://www.youtube.com/playlist?list=PL_8_NYhldq7T7p3dM_Z5-5E4XDTcpPclH)  
   Aprenda a criar protótipos avançados, usar auto-layout, componentes e mais com Figma.
 
+
+## Experiência e Interfaces de Usuário (UI/UX)
+
+- [UI Patterns] - Uma coleção de padrões de interface de usuário para inspirar e informar seu design.
+Mapping User Stories in Agile - Artigo explicando sobre o que é e qual a importância do User Stories Mapping.
+
+
+
+
 ## Front-End com TypeScript, HTML, CSS e Vue.js
 - [Introdução ao TypeScript](https://www.typescriptlang.org/docs/)  
   Documentação oficial com tutorial para iniciantes e conceitos de TypeScript.
@@ -66,3 +75,16 @@
 
 - [Git Actions - Automatizando Fluxos de Trabalho](https://docs.github.com/en/actions)  
   Aprenda a configurar Git Actions para automação de processos de CI/CD.
+
+
+
+# Ferramentas para o projeto
+
+
+**Acesso a Dados Abertos**
+
+Para acessar a base de dados abertos, utilize o seguinte link:
+
+**Base de Dados - DOU**
+
+Essa ferramenta é essencial para obter informações governamentais de forma transparente e acessível.
