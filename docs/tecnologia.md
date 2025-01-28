@@ -58,20 +58,10 @@ código.
     Mamba UI
 
 
-- **Next.js:** Framework React para renderização no lado do servidor (SSR) e geração de sites estáticos, proporcionando uma performance melhorada e SEO otimizado.
-
-
-- **Axios:** Biblioteca para requisições HTTP, estabelecendo a comunicação com a API.
-- **Vitest:** Ferramenta de testes unitários JavaScript, permitindo a execução rápida e eficiente dos testes.
-- **Testing Library:** Conjunto de utilitários que possibilita renderizar os componentes em ambiente de teste.
-- **ESLint:** Ferramenta de linting que identifica e corrige problemas de estilo e padrões no código, garantindo a qualidade e consistência.
-- **Sonner:** Biblioteca para exibição de notificações na interface, tornando mensagens de erro e alertas amigáveis.
-- **ApexCharts:** Biblioteca para criação de gráficos interativos e visualizações de dados, proporcionando uma apresentação rica e personalizável das informações.
-
 ---
-*Ferramentas de build e desenvolvimennto*
+**Ferramentas de build e desenvolvimennto**
 
-**Vite ou Create React App**
+*Vite ou Create React App*
 
 - Ferramenta para configurar e rodar o ambiente React rapidamente.
 
