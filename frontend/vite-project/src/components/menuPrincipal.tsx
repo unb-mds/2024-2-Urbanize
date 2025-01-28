@@ -31,7 +31,7 @@ const MenuComponent: React.FC = () => {
   const [showListMenu, setShowListMenu] = useState(false);
   const [isArrowUp, setIsArrowUp] = useState(false);
   const [showSearchMenu, setShowSearchMenu] = useState(false);
-  const [filterNatureza, setFilterNatureza] = useState('');
+  const [filterNatureza] = useState('');
   const [showDetailMenu, setShowDetailMenu] = useState(false);
   const [selectedObraId, setSelectedObraId] = useState<string | null>(null);
   const [allProjects, setAllProjects] = useState<Project[]>([]);
@@ -42,7 +42,7 @@ const MenuComponent: React.FC = () => {
     isArrowUp: false,
     selectedObraId: null as string | null
   });
-  const [previousSearchState, setPreviousSearchState] = useState('');
+  const [previousSearchState] = useState('');
   const [searchTermState, setSearchTermState] = useState(''); // Add this state
   const [lastSearchTerm, setLastSearchTerm] = useState('');
   const [filterOptions, setFilterOptions] = useState<FilterOptions>({
