@@ -20,14 +20,16 @@
   - [Sumário](#sumário)
   - [📝 Descrição do Projeto](#-descrição-do-projeto)
   - [✅ Funcionalidades](#-funcionalidades)
+    - [🖼️ Interface Principal](#interface-principal)
+    - [📊 Detalhes de Obras](#detalhes-de-obras)
   - [📱 Tecnologias](#-tecnologias)
   - [🧑‍🏭 Executando a aplicação](#-executando-a-aplicação)
     - [📋 Pré-requisitos](#-pré-requisitos)
+    - [🛠️ Instalação](#instalação)
   - [💻 Front-End](#-front-end)
   - [🤖 Back-End](#-back-end)
   - [📚 Documentação](#-documentação)
   - [👥 Colaboradores](#-colaboradores)
-
 
 ## 📝 Descrição do Projeto
 
@@ -36,30 +38,57 @@ Este projeto realiza o mapeamento de obras e serviços, proporcionando uma visã
 > Este projeto faz parte da disciplina de Métodos de Desenvolvimento de Software da Universidade de Brasília de 2024.
 
 ## ✅ Funcionalidades 
-- Mapa interativo com obras públicas
 - Pesquisa e filtragem (Pelo órgão solicitante) de obras que aparecem no mapa
 - Visualização de dados e informações sobre as obras
+- Mapa Interativo: Visualize obras em andamento.
+- Filtragem Avançada: Pesquise obras por nome da obra, natureza  e valor da obra.
+- Listagem das obras: Selecione o eixo e a especie das obras e confira a lista.
+- Pesquisa: Digite os dados que procura e confira al ista de resultados. 
+- Dados Detalhados: Veja informações completas sobre cada obra.
+- Atualização em Tempo Real: Sincronização contínua com o backend.
+
+  # Interface Principal
+  ![image](https://github.com/user-attachments/assets/e4769869-d8e8-447f-b7f4-1d40ea6b965e)
+
+  # Detalhes de Obras
+  ![image](https://github.com/user-attachments/assets/ad500e43-b551-4b50-9b52-ae9a3bfe752f)
+
 
 ## 📱 Tecnologias 
-- Express.js
-- Docker
-- Python
-- TypeScript
-- Tailwind
+- Frontend: React, TypeScript, Tailwind CSS.
+- Backend: Swagger, Cron Job, TypeScript.
+- DevOps: Docker.
 
 ## 🧑‍🏭 Executando a aplicação
+### 📋 Pré-requisitos
+Para rodar o projeto, você precisa das seguintes ferramentas:
+- **Node.js** v20 ou superior
+- **Python** 3.12.3
 
-Clone o repositório do projeto usando o seguinte comando:
+### 🛠️ Instalação
+  
+1. Clone o repositório do projeto usando o seguinte comando:
 
 ```bash
 git clone https://github.com/unb-mds/2024-2-Urbanize.git
 ```
-
-### 📋 Pré-requisitos
-
-Para rodar o projeto, você precisa das seguintes ferramentas:
-- **Node.js** v20 ou superior
-- **Python** 3.12.3
+2. Acesse a pasta do projeto:
+```bash
+cd 2024-2-Urbanize
+```
+3. Instale as dependências:
+```bash
+npm install
+```
+4. Inicie o backend:
+```bash
+python backend/server.py
+```
+5. Inicie o frontend:
+```bash
+npm run dev
+```
+O site estará disponível em http://localhost:5173/
 
 ## 💻 Front-End
 
@@ -121,3 +150,6 @@ Acesse a documentação completa [**aqui**](https://github.com/unb-mds/2024-2-Ur
         
 </table>
 </center>
+
+## 📝Licença
+Este projeto é licenciado sob a Licença MIT. Consulte o arquivo LICENSE para mais informações.
