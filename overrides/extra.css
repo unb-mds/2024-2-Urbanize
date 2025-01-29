@@ -1,0 +1,4 @@
+.md-header__button.md-logo img {
+    height: 110px !important; /* Ajuste a altura conforme necessário */
+    width: auto !important; /* Mantém a proporção da imagem */
+}
