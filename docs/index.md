@@ -32,4 +32,8 @@ O **Urbanize** tem como objetivos principais:
 
 ---
 
+## Acesso ao Link do projeto [Urbanize](https://urbanizemds.netlify.app/)
+
+
+
 
