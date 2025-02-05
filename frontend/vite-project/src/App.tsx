@@ -1,7 +1,7 @@
 import React from 'react';
 import MenuComponent from './components/menuPrincipal';
 import Legenda from './components/legenda';
-import BotaoSaibaMais from './components/botaoSaibamais';
+import BotaoSaibaMais from './components/botaoMais';
 
 const App: React.FC = () => {
   return (
