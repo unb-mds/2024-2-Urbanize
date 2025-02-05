@@ -56,6 +56,12 @@ Este projeto realiza o mapeamento de obras e serviços, proporcionando uma visã
   # Detalhes de Obras
   ![image](https://github.com/user-attachments/assets/ad500e43-b551-4b50-9b52-ae9a3bfe752f)
 
+  # Gif do Software
+  <div align="center">
+    
+    https://github.com/user-attachments/assets/37a39228-7319-4ee2-aa41-643ffee8e51a
+  
+  </div>
 
 ## 📱 Tecnologias 
 - Frontend: React, TypeScript, Tailwind CSS.
