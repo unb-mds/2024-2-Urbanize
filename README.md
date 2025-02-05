@@ -51,10 +51,10 @@ Este projeto realiza o mapeamento de obras e serviços, proporcionando uma visã
 - Atualização em Tempo Real: Sincronização contínua com o backend.
 
   # Interface Principal
-  ![image](https://github.com/user-attachments/assets/e4769869-d8e8-447f-b7f4-1d40ea6b965e)
+![image](https://github.com/user-attachments/assets/6e3ed08c-dea4-42fd-acf9-07ac43e82a35)
 
   # Detalhes de Obras
-  ![image](https://github.com/user-attachments/assets/ad500e43-b551-4b50-9b52-ae9a3bfe752f)
+![image](https://github.com/user-attachments/assets/9e663b66-fa41-4a8d-9695-d0cae904b858)
 
   # Gif do Software
   <div align="center">
