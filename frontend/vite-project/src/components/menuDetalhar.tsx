@@ -88,8 +88,8 @@ const MenuDetalhar: React.FC<MenuDetalharProps> = ({ closeDetailMenu, obraDetalh
   }
 
   return (
-<div className="bottom-0 left-0 w-full bg-white rounded-[10px] flex flex-col items-center fixed z-50 max-h-screen overflow-y-auto ">
-<div onClick={closeDetailMenu} className="cursor-pointer w-full">
+    <div className="bottom-0 left-0 w-full bg-white rounded-[10px] flex flex-col items-center fixed z-50 max-h-screen overflow-y-auto ">
+      <div onClick={closeDetailMenu} className="cursor-pointer w-full">
         <div className="w-[92px] h-[9px] bg-customBlue mx-auto mt-3 rounded-md"></div>
       </div>
 
@@ -100,6 +100,12 @@ const MenuDetalhar: React.FC<MenuDetalharProps> = ({ closeDetailMenu, obraDetalh
       </div>
 
       <div className=" ml-[25px] p-2 bg-white">
+        <p className="text-lg font-bold text-gray-800 text-[12px]">
+          Dados extraídos da plataforma <a href="https://www.gov.br/transferegov/pt-br/obrasgov/sobre" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">
+            Obrasgov.br
+          </a>
+        </p>
+
         <p className="text-lg font-bold text-gray-900 mb-4">
           Status da obra: <span className="font-bold text-gray-800">{detalhes.situacao}</span>
         </p>
