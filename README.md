@@ -25,6 +25,7 @@
   - [✅ Funcionalidades](#-funcionalidades)
     - [🖼️ Interface Principal](#interface-principal)
     - [📊 Detalhes de Obras](#detalhes-de-obras)
+    - [🖱️ Demonstração do Site em Funcionamento](#Demonstração-do-Site-em-Funcionamento)
   - [📱 Tecnologias](#-tecnologias)
   - [🧑‍🏭 Executando a aplicação](#-executando-a-aplicação)
     - [📋 Pré-requisitos](#-pré-requisitos)
@@ -56,11 +57,13 @@ Este projeto realiza o mapeamento de obras e serviços, proporcionando uma visã
   # Detalhes de Obras
 ![image](https://github.com/user-attachments/assets/9e663b66-fa41-4a8d-9695-d0cae904b858)
 
-  # Gif do Software
-  <div align="center">
-    
-    https://github.com/user-attachments/assets/37a39228-7319-4ee2-aa41-643ffee8e51a
-  
+  ## Demonstração do Site em Funcionamento
+
+Confira abaixo um vídeo mostrando o site em uso:
+  <div align="center">  
+
+https://github.com/user-attachments/assets/17c7df33-9fb7-4868-bb1a-c256b77b02e8
+
   </div>
 
 ## 📱 Tecnologias 
